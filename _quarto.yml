@@ -1,0 +1,23 @@
+project:
+  type: book
+
+book:
+  title: "CASA0023_book"
+  author: "Jane Doe"
+  date: "1/19/2023"
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - summary.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+
+editor: visual
+
