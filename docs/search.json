@@ -1,9 +1,0 @@
-[
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "CASA0023 Learning Diary",
-    "section": "",
-    "text": "Introduction and Presentation\nVlad’s Learning Diary and general thoughts on Remote Sensing Topics!\ntest does it update\n\nurl <- \"http://www.online-image-editor.com//styles/2014/images/example_image.png\"\nurl\n\n[1] \"http://www.online-image-editor.com//styles/2014/images/example_image.png\""
-  }
-]

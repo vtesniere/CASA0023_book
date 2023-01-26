@@ -4,7 +4,9 @@ Vlad's Learning Diary and general thoughts on Remote Sensing Topics!
 
 test does it update
 
-```{r}
+```{r echo=FALSE, out.width = "70%", fig.align='center', cache=TRUE, fig.cap="GitHub maximum file upload of 50mb. Source: [reddit r/ProgrammerHumor](https://www.reddit.com/r/ProgrammerHumor/comments/gm69za/my_girlfriend_crocheted_my_favourite_meme_as_a/)"}
 url <- "http://www.online-image-editor.com//styles/2014/images/example_image.png"
-url
+knitr::include_graphics(url)
+
+
 ```
