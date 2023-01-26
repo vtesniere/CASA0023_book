@@ -1,7 +1,7 @@
 {
-  "hash": "45e911645d6ac7cf95ef114d634a586a",
+  "hash": "0f222d9dc3095af54a873da95684c5e0",
   "result": {
-    "markdown": "# Preface {.unnumbered}\n\nThis is a Quarto book.\n\nTo learn more about Quarto books visit <https://quarto.org/docs/books>.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 2\n```\n:::\n:::\n\n\ntest does it update\n\n\n::: {.cell}\n\n:::\n",
+    "markdown": "# Preface {.unnumbered}\n\nThis is a Quarto book.\n\nTo learn more about Quarto books visit <https://quarto.org/docs/books>.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 2\n```\n:::\n:::\n\n\ntest does it update\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(\"usethis\")\n```\n\n::: {.cell-output .cell-output-stderr}\n```\nWarning: package 'usethis' was built under R version 4.1.2\n```\n:::\n:::\n",
     "supporting": [],
     "filters": [
       "rmarkdown/pagebreak.lua"

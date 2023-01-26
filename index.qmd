@@ -11,5 +11,6 @@ To learn more about Quarto books visit <https://quarto.org/docs/books>.
 test does it update
 
 ```{r}
+library("usethis")
 
 ```

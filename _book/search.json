@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "CASA0023_book",
     "section": "",
-    "text": "Preface\nThis is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books.\n\n1 + 1\n\n[1] 2\n\n\ntest does it update"
+    "text": "Preface\nThis is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books.\n\n1 + 1\n\n[1] 2\n\n\ntest does it update\n\nlibrary(\"usethis\")\n\nWarning: package 'usethis' was built under R version 4.1.2"
   },
   {
     "objectID": "intro.html",
