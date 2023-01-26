@@ -1,16 +1,10 @@
-# Preface {.unnumbered}
+# Introduction and Presentation {.unnumbered}
 
-This is a Quarto book.
-
-To learn more about Quarto books visit <https://quarto.org/docs/books>.
-
-```{r}
-1 + 1
-```
+Vlad's Learning Diary and general thoughts on Remote Sensing Topics!
 
 test does it update
 
 ```{r}
-library("usethis")
-
+url <- "http://www.online-image-editor.com//styles/2014/images/example_image.png"
+url
 ```
