@@ -1,8 +1,10 @@
 {
-  "hash": "e514ad799b2b10ced9d02b36ca26bbd2",
+  "hash": "2307f43f5a3070cfbe60910d97d8f7e7",
   "result": {
-    "markdown": "# Introduction\n\nThis is a book created from markdown and executable code.\n\nSee @knuth84 for additional discussion of literate programming.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 2\n```\n:::\n:::\n",
-    "supporting": [],
+    "markdown": "# Introducing Remote Sensing - A Bucharest Analysis\n\nThis is a book created from markdown and executable code.\n\nSee @knuth84 for additional discussion of literate programming.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 2\n```\n:::\n:::\n\n\n## Basic Raster image processing and statistics\n\n## Understanding the differences between Sentinel 2 and Landsat\n\n## My thoughts and interpretation of the tool\n",
+    "supporting": [
+      "intro_files"
+    ],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],

@@ -1,4 +1,4 @@
-# Introduction
+# Introducing Remote Sensing - A Bucharest Analysis
 
 This is a book created from markdown and executable code.
 
@@ -7,3 +7,9 @@ See @knuth84 for additional discussion of literate programming.
 ```{r}
 1 + 1
 ```
+
+## Basic Raster image processing and statistics
+
+## Understanding the differences between Sentinel 2 and Landsat
+
+## My thoughts and interpretation of the tool

@@ -26,5 +26,26 @@
     "title": "\n3  Summary\n",
     "section": "",
     "text": "In summary, this book has no content whatsoever.\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "intro.html#basic-raster-image-processing-and-statistics",
+    "href": "intro.html#basic-raster-image-processing-and-statistics",
+    "title": "\n1  Introducing Remote Sensing - A Bucharest Analysis\n",
+    "section": "\n1.1 Basic Raster image processing and statistics",
+    "text": "1.1 Basic Raster image processing and statistics"
+  },
+  {
+    "objectID": "intro.html#understanding-the-differences-between-sentinel-2-and-landsat",
+    "href": "intro.html#understanding-the-differences-between-sentinel-2-and-landsat",
+    "title": "\n1  Introducing Remote Sensing - A Bucharest Analysis\n",
+    "section": "\n1.2 Understanding the differences between Sentinel 2 and Landsat",
+    "text": "1.2 Understanding the differences between Sentinel 2 and Landsat"
+  },
+  {
+    "objectID": "intro.html#my-thoughts-and-interpretation-of-the-tool",
+    "href": "intro.html#my-thoughts-and-interpretation-of-the-tool",
+    "title": "\n1  Introducing Remote Sensing - A Bucharest Analysis\n",
+    "section": "\n1.3 My thoughts and interpretation of the tool",
+    "text": "1.3 My thoughts and interpretation of the tool\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97."
   }
 ]
