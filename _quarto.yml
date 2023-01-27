@@ -4,13 +4,13 @@ project:
 
 book:
   title: "CASA0023 Learning Diary"
-  author: "Vlad Tesniere"
+  # author: "Vlad Tesniere"
   navbar:
     logo: ucl_logo.png
     collapse: true
     collapse-below: lg
     background: light
-    #reader-mode: true
+    reader-mode: true
     search: true
     right:
       - icon: github
@@ -19,11 +19,11 @@ book:
     style: floating
     reader-mode: true
   repo-url: https://vtesniere.github.io/CASA0023_book/
-  repo-actions: [issue]
+  repo-actions: issue
   google-analytics:
     tracking-id: "G-5LZK055F2X"
     anonymize-ip: true
-  date: "1/19/2023"
+  # date: "1/19/2023"
   chapters:
     - index.qmd
     - intro.qmd
@@ -40,7 +40,8 @@ format:
         dark: [cerulean, darkly]
     code-link: true
   pdf:
-    documentclass: scrreprt
+    # documentclass: scrreprt
+    documentclass: scrbook
 
 editor: visual
 

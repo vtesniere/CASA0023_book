@@ -1,7 +1,7 @@
 {
-  "hash": "8f7876eaa262af0cbdf54d9929e88d4d",
+  "hash": "1450174cb1ffe2f337199916d64ee2cf",
   "result": {
-    "markdown": "# Introduction and Presentation {.unnumbered}\n\nVlad's Learning Diary and general thoughts on Remote Sensing Topics!\n\ntest does it update\n\n\n::: {.cell layout-align=\"center\" hash='index_cache/html/unnamed-chunk-1_e1a3f26a391df4076fb73951135d5442'}\n::: {.cell-output-display}\n![GitHub maximum file upload of 50mb. Source: [reddit r/ProgrammerHumor](https://www.reddit.com/r/ProgrammerHumor/comments/gm69za/my_girlfriend_crocheted_my_favourite_meme_as_a/)](http://www.online-image-editor.com//styles/2014/images/example_image.png){fig-align='center' width=70%}\n:::\n:::\n",
+    "markdown": "Vlad Tesniere [^index-1]\n\n[^index-1]: UCL Department of Geography, MSc Social and Geographic Data Science, https://www.linkedin.com/in/vladimir-tesniere-408686200/\n\nLast updated: 2023-01-28\n\n## Introduction and Presentation {.unnumbered}\n\nVlad's Learning Diary and general thoughts on Remote Sensing Topics!\n\ntest does it update\n\n\n::: {.cell layout-align=\"center\" hash='index_cache/html/unnamed-chunk-1_e1a3f26a391df4076fb73951135d5442'}\n::: {.cell-output-display}\n![GitHub maximum file upload of 50mb. Source: [reddit r/ProgrammerHumor](https://www.reddit.com/r/ProgrammerHumor/comments/gm69za/my_girlfriend_crocheted_my_favourite_meme_as_a/)](http://www.online-image-editor.com//styles/2014/images/example_image.png){fig-align='center' width=70%}\n:::\n:::\n",
     "supporting": [],
     "filters": [
       "rmarkdown/pagebreak.lua"
