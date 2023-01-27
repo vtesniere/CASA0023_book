@@ -19,7 +19,7 @@ book:
     style: floating
     reader-mode: true
   repo-url: https://vtesniere.github.io/CASA0023_book/
-  repo-actions: [edit, issue]
+  repo-actions: [issue]
   google-analytics:
     tracking-id: "G-5LZK055F2X"
     anonymize-ip: true
@@ -27,6 +27,7 @@ book:
   chapters:
     - index.qmd
     - intro.qmd
+    - 2_sensor_presentation.qmd
     - summary.qmd
     - references.qmd
 
@@ -34,7 +35,10 @@ bibliography: references.bib
 
 format:
   html:
-    theme: cosmo
+    theme:
+        light: [cerulean, flatly]
+        dark: [cerulean, darkly]
+    code-link: true
   pdf:
     documentclass: scrreprt
 
