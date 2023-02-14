@@ -1,0 +1,11 @@
+/*-- scss:defaults --*/
+.caption {
+  margin: auto;
+  text-align: center;
+}
+
+p.caption {
+  text-align: center; 
+  color: gray; 
+  font-style: italic; 
+}

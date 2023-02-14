@@ -1,14 +1,62 @@
 # Introducing Remote Sensing - A Bucharest Analysis
-
-This is a book created from markdown and executable code.
-
-See @knuth84 for additional discussion of literate programming.
-
-```{r}
-1 + 1
+```{css, echo=FALSE}
+p.caption {
+  text-align: left; 
+  color: gray; 
+  font-style: italic; 
+}
 ```
+For my first entry to this Learning diary, I chose to present my hometown of Bucharest! I believe this example to be particularly relevant as the city shows a complex structural transformation following implementation of strict socialist urban policy, paired with intensive real-estate development following the Christmas Revolution in 1989 ( @nistor2021 ) .
+
+We use the most up-to-date Sentinel and Landsat imagery that we download from \[Copernicus Open Access Hub\](https://scihub.copernicus.eu/dhus/#/home) and \[Earth Explorer\](https://earthexplorer.usgs.gov/) respectively! This working of this first week were not without hiccups, but provides an introduction to SNAP and satellite imagery processing in Rstudio with my thoughts along the way.
 
 ## Basic Raster image processing and statistics
+
+Our images presented below, were collected on the 27th and 17th of October 2022 for Sentinel and Landsat respectively. They are both true color images (TCI) with the Red, Green and Blue bands present.
+
+```{r, echo=FALSE}
+# install.packages("magick")
+# install.packages("ggplot2")
+library(cowplot)
+library(ggplot2)
+```
+
+```{r, echo=FALSE, sattelite-images,fig.height=3, fig.width=6, fig.cap= "Sentinel-2 (left) and Landsat-8 (Right) TCI over Bucharest (October 2022)", results='asis'}
+cat("<style>p.caption</style>")
+ggdraw() + 
+  draw_image('Week_1/Sentinel Images/Bucharest true color composite.png', width = 0.5) + 
+  draw_image("Week_1/Landsat_RGB.png", width = 0.5, x = 0.5)
+```
+
+
+```{r, satellite-images, echo = FALSE , include = FALSE,out.width="39%", out.height="10%",fig.cap="caption",fig.show='hold',fig.align='left'}
+
+knitr::include_graphics(c('Week_1/Sentinel Images/Bucharest true color composite.png','Week_1/Landsat_RGB.png')) #landsat
+
+# Famous Elephants
+
+```
+
+</br>
+We have a more recent view available of the Landsat imagery (24th of October) but prefer not to use it as more impurities are present. We will tackle this in future Diary entries with the introduction of atmospheric correction.
+
+```{r, echo=FALSE, fig.cap="RBG image of most recent image, not used in examples"}
+
+knitr::include_graphics('Week_1/Landsat_morerecent_RGB.png')
+
+```
+
+</br> 
+
+We continue to explore our data by looking at the different colour composites in the sentinel images: 
+```{r, echo=FALSE, composites, fig.height=3, fig.width=6, fig.cap= "Atmospheric Penetration Composite (left), False Colour Composite (Middle), 100% pixel display (right)"}
+knitr::opts_chunk$set(fig.pos = "H", out.extra = "")
+ggdraw() + 
+  draw_image('Week_1/Sentinel Images/Bucharest Atmospheric penetration composition.png', width = 0.33) + 
+  draw_image("Week_1/Sentinel Images/Bucharest false colour composite lowerres.png", width = 0.33, x = 0.33)+
+  draw_image("Week_1/Sentinel Images/Bucharest 100% pixel display SNAP.png", width = 0.33, x = 0.66)
+  
+```
 
 ## Understanding the differences between Sentinel 2 and Landsat
 

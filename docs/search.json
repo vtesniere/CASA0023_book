@@ -11,7 +11,7 @@
     "href": "index.html#introduction-and-presentation",
     "title": "CASA0023 Learning Diary",
     "section": "Introduction and Presentation",
-    "text": "Introduction and Presentation\nVlad’s Learning Diary and general thoughts on Remote Sensing Topics!\ntest does it update\n\n\n\n\nGitHub maximum file upload of 50mb. Source: reddit r/ProgrammerHumor"
+    "text": "Introduction and Presentation\nVlad’s Learning Diary and general thoughts on Remote Sensing Topics!\ntest does it update\n\n\n\n\n\nGitHub maximum file upload of 50mb. Source: reddit r/ProgrammerHumor"
   },
   {
     "objectID": "intro.html",
@@ -23,29 +23,36 @@
   {
     "objectID": "summary.html",
     "href": "summary.html",
-    "title": "\n3  Summary\n",
+    "title": "3  Summary",
     "section": "",
     "text": "In summary, this book has no content whatsoever.\n\n1 + 1\n\n[1] 2"
   },
   {
     "objectID": "intro.html#basic-raster-image-processing-and-statistics",
     "href": "intro.html#basic-raster-image-processing-and-statistics",
-    "title": "\n1  Introducing Remote Sensing - A Bucharest Analysis\n",
-    "section": "\n1.1 Basic Raster image processing and statistics",
-    "text": "1.1 Basic Raster image processing and statistics"
+    "title": "1  Introducing Remote Sensing - A Bucharest Analysis",
+    "section": "1.1 Basic Raster image processing and statistics",
+    "text": "1.1 Basic Raster image processing and statistics\nOur images presented below, were collected on the 27th and 17th of October 2022 for Sentinel and Landsat respectively. They are both true color images (TCI) with the Red, Green and Blue bands present.\n\n\n\n\n\n\n\n\nSentinel-2 (left) and Landsat-8 (Right) TCI over Bucharest (October 2022)\n\n\n\n We have a more recent view available of the Landsat imagery (24th of October) but prefer not to use it as more impurities are present. We will tackle this in future Diary entries with the introduction of atmospheric correction.\n\n\n\n\n\nRBG image of most recent image, not used in examples\n\n\n\n\n\nWe continue to explore our data by looking at the different colour composites in the sentinel images:\n\n\n\n\n\nAtmospheric Penetration Composite (left), False Colour Composite (Middle), 100% pixel display (right)"
   },
   {
     "objectID": "intro.html#understanding-the-differences-between-sentinel-2-and-landsat",
     "href": "intro.html#understanding-the-differences-between-sentinel-2-and-landsat",
-    "title": "\n1  Introducing Remote Sensing - A Bucharest Analysis\n",
-    "section": "\n1.2 Understanding the differences between Sentinel 2 and Landsat",
+    "title": "1  Introducing Remote Sensing - A Bucharest Analysis",
+    "section": "1.2 Understanding the differences between Sentinel 2 and Landsat",
     "text": "1.2 Understanding the differences between Sentinel 2 and Landsat"
   },
   {
     "objectID": "intro.html#my-thoughts-and-interpretation-of-the-tool",
     "href": "intro.html#my-thoughts-and-interpretation-of-the-tool",
-    "title": "\n1  Introducing Remote Sensing - A Bucharest Analysis\n",
-    "section": "\n1.3 My thoughts and interpretation of the tool",
-    "text": "1.3 My thoughts and interpretation of the tool\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97."
+    "title": "1  Introducing Remote Sensing - A Bucharest Analysis",
+    "section": "1.3 My thoughts and interpretation of the tool",
+    "text": "1.3 My thoughts and interpretation of the tool\n\n\n\n\nNistor, Constantin, Marina Vîrghileanu, Irina Cârlan, Bogdan-Andrei Mihai, Liviu Toma, and Bogdan Olariu. 2021. “Remote Sensing-Based Analysis of Urban Landscape Change in the City of Bucharest, Romania.” Remote Sensing 13 (12): 2323. https://doi.org/10.3390/rs13122323."
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Nistor, Constantin, Marina Vîrghileanu, Irina Cârlan, Bogdan-Andrei\nMihai, Liviu Toma, and Bogdan Olariu. 2021. “Remote Sensing-Based\nAnalysis of Urban Landscape Change in the City of Bucharest,\nRomania.” Remote Sensing 13 (12): 2323. https://doi.org/10.3390/rs13122323."
   }
 ]
