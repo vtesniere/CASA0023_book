@@ -1,0 +1,15 @@
+# Abbreviations Used in this Book!
+
+As remote sensing can get quite complex in terms of nomenclature, this Appreviation can come in handy when potential concept explenations are not clear!
+
+-   **RBG** : Red, Blue Green
+
+-   **TOA** : Top of Atmosphere
+
+-   **L-8** : Landsat-8 Satellite
+
+-   **S-2** : Sentinel-2
+
+-   **GEE** : Google Earth Engine
+
+-   **SNAP** : Sentinel Application Platform

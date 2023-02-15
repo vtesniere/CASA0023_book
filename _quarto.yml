@@ -26,6 +26,7 @@ book:
   # date: "1/19/2023"
   chapters:
     - index.qmd
+    - abbreviations.qmd
     - intro.qmd
     - 2_sensor_presentation.qmd
     - summary.qmd

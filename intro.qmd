@@ -1,4 +1,5 @@
 # Introducing Remote Sensing - A Bucharest Analysis
+
 ```{css, echo=FALSE}
 p.caption {
   text-align: left; 
@@ -6,6 +7,7 @@ p.caption {
   font-style: italic; 
 }
 ```
+
 For my first entry to this Learning diary, I chose to present my hometown of Bucharest! I believe this example to be particularly relevant as the city shows a complex structural transformation following implementation of strict socialist urban policy, paired with intensive real-estate development following the Christmas Revolution in 1989 ( @nistor2021 ) .
 
 We use the most up-to-date Sentinel and Landsat imagery that we download from \[Copernicus Open Access Hub\](https://scihub.copernicus.eu/dhus/#/home) and \[Earth Explorer\](https://earthexplorer.usgs.gov/) respectively! This working of this first week were not without hiccups, but provides an introduction to SNAP and satellite imagery processing in Rstudio with my thoughts along the way.
@@ -28,17 +30,7 @@ ggdraw() +
   draw_image("Week_1/Landsat_RGB.png", width = 0.5, x = 0.5)
 ```
 
-
-```{r, satellite-images, echo = FALSE , include = FALSE,out.width="39%", out.height="10%",fig.cap="caption",fig.show='hold',fig.align='left'}
-
-knitr::include_graphics(c('Week_1/Sentinel Images/Bucharest true color composite.png','Week_1/Landsat_RGB.png')) #landsat
-
-# Famous Elephants
-
-```
-
-</br>
-We have a more recent view available of the Landsat imagery (24th of October) but prefer not to use it as more impurities are present. We will tackle this in future Diary entries with the introduction of atmospheric correction.
+</br> We have a more recent view available of the Landsat imagery (24th of October) but prefer not to use it as more impurities are present. We will tackle this in future Diary entries with the introduction of atmospheric correction.
 
 ```{r, echo=FALSE, fig.cap="RBG image of most recent image, not used in examples"}
 
@@ -46,18 +38,51 @@ knitr::include_graphics('Week_1/Landsat_morerecent_RGB.png')
 
 ```
 
-</br> 
+</br>
 
-We continue to explore our data by looking at the different colour composites in the sentinel images: 
-```{r, echo=FALSE, composites, fig.height=3, fig.width=6, fig.cap= "Atmospheric Penetration Composite (left), False Colour Composite (Middle), 100% pixel display (right)"}
+We continue to explore our data by looking at the different colour composites in the sentinel images:
+
+```{r, echo=FALSE, composites, fig.height=3, fig.width=6, fig.cap= "Atmospheric Penetration (left), False Colour Infrared (Middle), B1 band (right)"}
 knitr::opts_chunk$set(fig.pos = "H", out.extra = "")
 ggdraw() + 
   draw_image('Week_1/Sentinel Images/Bucharest Atmospheric penetration composition.png', width = 0.33) + 
   draw_image("Week_1/Sentinel Images/Bucharest false colour composite lowerres.png", width = 0.33, x = 0.33)+
-  draw_image("Week_1/Sentinel Images/Bucharest 100% pixel display SNAP.png", width = 0.33, x = 0.66)
+  draw_image("Week_1/Sentinel Images/B1_band_Sentinel.png", width = 0.33, x = 0.66)
   
 ```
 
+Is it interesting to try and understand what the colours mean in these images. For example, the middle image, False Colour Composite (using bands B8, B4 and B3) aims to show the physiography of the terrain showing soil and land-resources which has been common practice since the 20th century (@reddy1990). As our study area is primarily urban (Bucharest located in the bottom-left corner), we see that many of the red colours bands are absorbed, signifying a lack of vegetation in the Capital, compared to rural areas on the right side of the image.
+
+The same is true for the left image, the atmospheric penetration, where we recognise distinct urban areas due to the purple/gray cyan colours in the bottom-left corner. Finally, the right side image provides a raw overview of the sentinel imagery, and specifically the B1 band. the B1 band is used for the Coastal and Aerosol information, with a detailed description of Bands available [here](https://custom-scripts.sentinel-hub.com/custom-scripts/sentinel-2/bands/#:~:text=Use%3A%20It%20gives%20excellent%20contrast,made%20features%20are%20still%20visible.)!
+
 ## Understanding the differences between Sentinel 2 and Landsat
+
+Now that we have images from both sources, we proceed to resample the images to the same resolution. Below we have a comparison of the bands between Sentinel-2 and Landsat-8.
+
+![Comparison of Sentinel and Landsat Bands, taken from @lópez-puigdollers2021](Week_1/Sentinel%20Images/Comparison-of-spectral-bands-between-Sentinel-2-and-Landsat-8-overlapping-response-with.pbm)
+
+Yet this is not enough as in order to make cross-platform comparisons successful! Below we have a detailed overview comparing band resolution between Sentinel and Landsat, with respective links to sources of [Table 1 (left)](https://gisgeography.com/sentinel-2-bands-combinations/) and [Table 2 (right)](https://www.usgs.gov/faqs/what-are-band-designations-landsat-satellites#:~:text=Landsat%204%2D5%20Thematic%20Mapper,106%20mi%20by%20114%20mi)!
+
+```{r, echo=FALSE, table_comparison,fig.height=3, fig.width=6, fig.cap= "Sentinel-2 (left) and Landsat-8 (right) band comparisons", results='asis'}
+cat("<style>p.caption</style>")
+ggdraw() + 
+  draw_image('Week_1/Sentinel Bands.png', width = 0.40) + 
+  draw_image("Week_1/Landsat 8-9 Bands.png", width = 0.55, x = 0.45)
+
+```
+
+We see that the two platforms share certain similar characteristics, but differences are notable. For example, even if the Blue, Green and Red Channels are present on both, their wavelengths do not overlap perfectly. Furthermore, both platforms do not have all the same bands, with 1,2,3,4 overlapping similarly and B11 and B12 on S-2 working with B6 and B7 on L-8. In our application today, we will only be using Bands 2 to 4 on both, B6 and 7 on Landsat and B8 and 12 on Sentinel.
+
+Most importantly, these two platforms do **not share the same resolutions**, with L-8 principally outputting at 30m compared to S-2 between 10, 20 or 60m.
+
+To overcome this, we upscale the Sentinel Imagery to Fit the 30m resolution displayed by Landsat. As we decide to focus on Bucharest specifically, we also subset the image to only the city outline using shapefiles provided by [GADM](https://gadm.org/download_country.html). The clipped results are as follows:
+
+```{r, clipped_bucharest, echo=FALSE,fig.height=3, fig.width=6, fig.cap= "Sentinel-2 (left) and Landsat-8 (right) clipped RBG images of Bucharest (at same resolution)", results='asis'}
+cat("<style>p.caption</style>")
+ggdraw() + 
+  draw_image('Week_1/Sentinel_Bucharest_Clipped.png', width = 0.50) + 
+  draw_image("Week_1/Landsat_Bucharest_Clipped.png", width = 0.50, x = 0.50)
+
+```
 
 ## My thoughts and interpretation of the tool
