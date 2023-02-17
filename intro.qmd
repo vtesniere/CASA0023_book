@@ -37,7 +37,7 @@ ggdraw() +
 
 </br> We have a more recent view available of the Landsat imagery (24th of October) but prefer not to use it as more impurities are present. We will tackle this in future Diary entries with the introduction of atmospheric correction.
 
-```{r, echo=FALSE,fig.width=60%, fig.cap="RBG image from 24/10, not used in examples but presented for visibility"}
+```{r, echo=FALSE, out.width = "70%", fig.align='center', fig.cap="RBG image from 24/10, not used in examples but presented for visibility"}
 
 knitr::include_graphics('Week_1/Landsat_morerecent_RGB.png')
 
@@ -120,7 +120,7 @@ The following steps which included using SNAP and QGIS to look, analyse, subset 
 
 I for example played around with the RBG histogram when portraying my RBG images, notably putting a 100% display to understand how the image statistics work
 
-```{r full pixel, echo=FALSE,fig.height=2, fig.width=4, fig.cap= "100% pixel display when getting exploring SNAP"}
+```{r full pixel, echo=FALSE, fig.align='center',out.width='70%', fig.cap= "100% pixel display when getting exploring SNAP"}
 # cat("<style>p.caption</style>")
 knitr::include_graphics('Week_1/Sentinel_Images/Bucharest full pixel display SNAP.png')
 
@@ -128,7 +128,7 @@ knitr::include_graphics('Week_1/Sentinel_Images/Bucharest full pixel display SNA
 
 I bumped into several issues early on, where I for example could not do the tasseled cap transformation completely. I understood and successfully presented the scatter plots between bands (B4 and B8). Unfortunately, I was not able to compute the tasseled cap transformation with the specific band equations. This is something I hope to develop on and be able to include in the coming weeks.
 
-```{r tasseled scatter, echo=FALSE,fig.height=2, fig.width=4, fig.cap= "Bucharest Spectral Feature - tasseled cap scatterplot", results='asis'}
+```{r tasseled scatter, echo=FALSE, fig.align='center',out.width='80%', fig.cap= "Bucharest Spectral Feature - tasseled cap scatterplot", results='asis'}
 # cat("<style>p.caption</style>")
 knitr::include_graphics('Week_1/Sentinel_Images/Bucharest Spectral feature space.png')
 ```

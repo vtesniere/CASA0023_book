@@ -221,11 +221,11 @@ p.caption {
 </div>
 </div>
 <p> We have a more recent view available of the Landsat imagery (24th of October) but prefer not to use it as more impurities are present. We will tackle this in future Diary entries with the introduction of atmospheric correction.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="Week_1/Landsat_morerecent_RGB.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">RBG image of most recent image, not used in examples</figcaption><p></p>
+<figure class="figure"><p><img src="Week_1/Landsat_morerecent_RGB.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p></p><figcaption class="figure-caption">RBG image from 24/10, not used in examples but presented for visibility</figcaption><p></p>
 </figure>
 </div>
 </div>
@@ -297,21 +297,23 @@ p.caption {
 <p>In terms of analysis, it was enthused to learn about the amount of satellite data freely available on <a href="https://scihub.copernicus.eu/dhus/#/home">Copernicus Open Access Hub</a> and <a href="https://earthexplorer.usgs.gov/">Earth Explorer</a>! I took the liberty to play around with these tools and fully grasp how they work and how i could use them. The image extraction for L-8 and S-2 was quite straightforward and allowed further exploration than just the Bucharest imagery used here.</p>
 <p>The following steps which included using SNAP and QGIS to look, analyse, subset and re-sample the L-8 and S-2 images. This was already slightly more complicated as I had to get accustomed to the SNAP application, it’s layout, utilities and characteristics.</p>
 <p>I for example played around with the RBG histogram when portraying my RBG images, notably putting a 100% display to understand how the image statistics work</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="Week_1/Sentinel_Images/Bucharest full pixel display SNAP.png" class="img-fluid figure-img"></p>
+<figure class="figure"><p><img src="Week_1/Sentinel_Images/Bucharest full pixel display SNAP.png" class="img-fluid figure-img" style="width:70.0%"></p>
 <p></p><figcaption class="figure-caption">100% pixel display when getting exploring SNAP</figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
 <p>I bumped into several issues early on, where I for example could not do the tasseled cap transformation completely. I understood and successfully presented the scatter plots between bands (B4 and B8). Unfortunately, I was not able to compute the tasseled cap transformation with the specific band equations. This is something I hope to develop on and be able to include in the coming weeks.</p>
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="Week_1/Sentinel_Images/Bucharest Spectral feature space.png" class="img-fluid figure-img"></p>
+<figure class="figure"><p><img src="Week_1/Sentinel_Images/Bucharest Spectral feature space.png" class="img-fluid figure-img" style="width:80.0%"></p>
 <p></p><figcaption class="figure-caption">Bucharest Spectral Feature - tasseled cap scatterplot</figcaption><p></p>
 </figure>
+</div>
 </div>
 </div>
 <p>Finally, using computational methods to compare the results between L-8 and S-2 bands allowed me to gain a better understand of general functioning of spectral bands. I was happy to have made mistakes in my initial analysis with it’s summary presented below:</p>
@@ -321,7 +323,7 @@ p.caption {
 </figure>
 </div>
 <p>In my first results, I made the mistake of comparing the wrong bands, comparing B8 in S-2 and B6 in Landsat which do not measure similar aspects. For this reason, the Band 4 in the above table fo not make sense, in the Sentinel Observations the grass values being much too high! Furthermore, from a visualisation perspective, the colors are not coordinated with the usually considered colours (i.e.&nbsp;grass as green) which make the presentation of the results more confusing.</p>
-<p>All in all, this first appraoch was beneficial and very much enjoyed! Understanding how both S-2 and L-8 bands function was not always easy, but with trial and error the <a href="###%20Computational%20Analysis%20of%20L-8%20and%20S-2%20Images">final results</a> make sense! We were able to show comparisons between L-8 and S-2 for locally defined POI’s and provided a good initiation in understanding similarities and differences between platforms.</p>
+<p>All in all, this first appraoch was beneficial and very much enjoyed! Understanding how both S-2 and L-8 bands function was not always easy, but with trial and error the <a href="https://vtesniere.github.io/CASA0023_book/intro.html#computational-analysis-of-l-8-and-s-2-images">final results</a> make sense! We were able to show comparisons between L-8 and S-2 for locally defined POI’s and provided a good initiation in understanding similarities and differences between platforms.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
