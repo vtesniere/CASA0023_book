@@ -37,7 +37,7 @@ ggdraw() +
 
 </br> We have a more recent view available of the Landsat imagery (24th of October) but prefer not to use it as more impurities are present. We will tackle this in future Diary entries with the introduction of atmospheric correction.
 
-```{r, echo=FALSE, fig.cap="RBG image of most recent image, not used in examples"}
+```{r, echo=FALSE,fig.width=70%, fig.cap="RBG image of most recent image, not used in examples"}
 
 knitr::include_graphics('Week_1/Landsat_morerecent_RGB.png')
 
