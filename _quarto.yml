@@ -29,6 +29,7 @@ book:
     - abbreviations.qmd
     - intro.qmd
     - 2_sensor_presentation.qmd
+    - corrections.qmd
     - summary.qmd
     - references.qmd
 

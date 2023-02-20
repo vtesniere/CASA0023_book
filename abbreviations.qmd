@@ -1,6 +1,6 @@
-# Abbreviations Used in this Book!
+# Common Remote Sensing Abbreviations!
 
-As remote sensing can get quite complex in terms of nomenclature, this Appreviation can come in handy when potential concept explenations are not clear!
+As remote sensing can get quite complex in terms of nomenclature, this abbreviation index can come in handy when potential concept explanations are not clear!
 
 -   **RBG** : Red, Blue Green
 
@@ -21,3 +21,7 @@ As remote sensing can get quite complex in terms of nomenclature, this Appreviat
 -   **ESRIN** : ESA center for earth Observation created in 1966 and currently based in Frascati, Italy
 
 -   **SWIR** : Short-wave infrared, part of the electromagnetic spectrum and allows for identification of objects invisible to the human eye and traditional multi-spectral bands. It can allow for the identification of certain terrain characteristics (i.e. certain bands in SWIR is more highly absorbed by water bodies). Ranges from 1.4 to 3 µm (micrometers)
+
+-   **NIR** : Near infra-red
+
+-   **DOS** : Dark Object Subtraction - Method to correct raw satellite imagery by considering the true value of the darkest pixel in the image as 0. If this is not the value of said pixel, this is attributed to variations caused by the atmosphere
