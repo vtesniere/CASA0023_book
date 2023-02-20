@@ -1,1 +1,5 @@
 # Atmospheric Corrections
+
+In this section we focus on Atmospheric correction! This concept is primordial in correctly interpreting the information provided by satellite images in remote sensing. Various elements can create interpretative issues when analysing these images. The radiance received by the satellite is affected the atmospheres scattering, absorption and refraction of light ( @chavez1996 )
+
+More precisely, our blog entry today will focus on Landsat 8-9 images of Tasmania. Known for being home to the [Tasmania Devil](https://www.nationalgeographic.com/animals/mammals/facts/tasmanian-devil) which inspired [TAZ](https://upload.wikimedia.org/wikipedia/en/thumb/c/c4/Taz-Looney_Tunes.svg/1200px-Taz-Looney_Tunes.svg.png) in the Looney Tunes Universe, Tasmania is of great environmental importance as it is home to a highly developed microcosm with many endemic plants and species that are unique to that area!
