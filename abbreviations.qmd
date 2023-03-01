@@ -29,3 +29,11 @@ As remote sensing can get quite complex in terms of nomenclature, this abbreviat
 -   **NDVI** : Normalised Difference Vegetation Index - Index determining the density of live vegetation in a particular area. The formula for this is: $$NDVI= \frac{NIR-Red}{NIR+Red}= \frac{Landsat B5 - Landsat B4} {Landsat B5 + Landsat B4}$$ The values range between -1 and 1: 0.1 and below considered low values, between 0.2 and 0.5 moderate values (i.e. shrubs and grass-land) and high values between 0.6 and 0.9 (typically dense vegetation, forests, fertile crops) @ndvith
 
 -   **NDMI** : Normalised Difference Moisture Index - Similar methodology and interpretation to NDVI but here determines vegetation water content @normaliz . For Landsat 8-9, the formula is as follows: $$NDMI= \frac{NIR-SWIR}{NIR+SWIR}= \frac{Landsat B5 - Landsat B6} {Landsat B5 + Landsat B6}$$
+
+-   **IFOV** : Instantaneous Field of View
+
+-   **SAR** : Synthetic Aperture Radar
+
+-   **Nadir** : celestial sphere directly below an observer
+
+-   **Azimuth** : the direction of a celestial object from the observer, calculated through distance from horizon from a cardinal point (usually north or south)

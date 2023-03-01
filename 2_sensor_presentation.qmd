@@ -1,1 +1,13 @@
-# Poseidon-4 Radar Altimeter
+# Sentinel 6A and the Poseidon-4 Radar Altimeter
+
+For this part of the project, another platform was used: **Xaringan**
+
+This new platform allows for the creation of Slides through R! This is a first attempt at using this type of slides and has the ability of being embedded directly into our Quarto blog!! (At the cost of some interactivity and lost formats..)
+
+```{r xaringan_embed, echo=FALSE}
+xaringanExtra::embed_xaringan(url = "https://vtesniere.github.io/CASA0023_presentation_week2/#1", ratio = "4:3")
+```
+
+This is a really efficient way of sharing the slides, even if we can recognise certain issues the readability of the slides. Indeed, we see that when we scroll down, the slides are not always easy to control and tend to go by too quickly!
+
+For full screen presentation of these slides, they are available [here!](https://vtesniere.github.io/CASA0023_presentation_week2/#1){target="_blank"} (link opens in new tab)

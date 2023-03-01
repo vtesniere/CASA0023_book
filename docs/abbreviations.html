@@ -20,6 +20,25 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -96,7 +115,7 @@ gtag('config', 'G-5LZK055F2X', { 'anonymize_ip': true});
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/vtesniere/CASA0023_book"><i class="bi bi-github" role="img" aria-label="Source Code">
+    <a class="nav-link" href="https://github.com/vtesniere/CASA0023_book"><i class="bi bi-github" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
@@ -145,7 +164,7 @@ gtag('config', 'G-5LZK055F2X', { 'anonymize_ip': true});
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./2_sensor_presentation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Poseidon-4 Radar Altimeter</span></a>
+  <a href="./2_sensor_presentation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sentinel 6A and the Poseidon-4 Radar Altimeter</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -204,11 +223,23 @@ gtag('config', 'G-5LZK055F2X', { 'anonymize_ip': true});
 <li><p><strong>SWIR</strong> : Short-wave infrared, part of the electromagnetic spectrum and allows for identification of objects invisible to the human eye and traditional multi-spectral bands. It can allow for the identification of certain terrain characteristics (i.e.&nbsp;certain bands in SWIR is more highly absorbed by water bodies). Ranges from 1.4 to 3 µm (micrometers)</p></li>
 <li><p><strong>NIR</strong> : Near infra-red</p></li>
 <li><p><strong>DOS</strong> : Dark Object Subtraction - Method to correct raw satellite imagery by considering the true value of the darkest pixel in the image as 0. If this is not the value of said pixel, this is attributed to variations caused by the atmosphere</p></li>
-<li><p><strong>NDVI</strong> : Normalised Difference Vegetation Index - Index determining the density of live vegetation in a particular area. The formula for this is: <span class="math display">\[NDVI= \frac{NIR-Red}{NIR+Red}= \frac{Landsat B5 - Landsat B4} {Landsat B5 + Landsat B4}\]</span></p></li>
-<li></li>
+<li><p><strong>NDVI</strong> : Normalised Difference Vegetation Index - Index determining the density of live vegetation in a particular area. The formula for this is: <span class="math display">\[NDVI= \frac{NIR-Red}{NIR+Red}= \frac{Landsat B5 - Landsat B4} {Landsat B5 + Landsat B4}\]</span> The values range between -1 and 1: 0.1 and below considered low values, between 0.2 and 0.5 moderate values (i.e.&nbsp;shrubs and grass-land) and high values between 0.6 and 0.9 (typically dense vegetation, forests, fertile crops) <span class="citation" data-cites="ndvith"><span>“NDVI, the Foundation for Remote Sensing Phenology | u.s. Geological Survey”</span> (<a href="references.html#ref-ndvith" role="doc-biblioref">n.d.</a>)</span></p></li>
+<li><p><strong>NDMI</strong> : Normalised Difference Moisture Index - Similar methodology and interpretation to NDVI but here determines vegetation water content <span class="citation" data-cites="normaliz"><span>“Normalized Difference Moisture Index | u.s. Geological Survey”</span> (<a href="references.html#ref-normaliz" role="doc-biblioref">n.d.</a>)</span> . For Landsat 8-9, the formula is as follows: <span class="math display">\[NDMI= \frac{NIR-SWIR}{NIR+SWIR}= \frac{Landsat B5 - Landsat B6} {Landsat B5 + Landsat B6}\]</span></p></li>
+<li><p><strong>IFOV</strong> : Instantaneous Field of View</p></li>
+<li><p><strong>SAR</strong> : Synthetic Aperture Radar</p></li>
+<li><p><strong>Nadir</strong> : celestial sphere directly below an observer</p></li>
+<li><p><strong>Azimuth</strong> : the direction of a celestial object from the observer, calculated through distance from horizon from a cardinal point (usually north or south)</p></li>
 </ul>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
+<div id="ref-ndvith" class="csl-entry" role="doc-biblioentry">
+<span>“NDVI, the Foundation for Remote Sensing Phenology | u.s. Geological Survey.”</span> n.d. <a href="https://www.usgs.gov/special-topics/remote-sensing-phenology/science/ndvi-foundation-remote-sensing-phenology">https://www.usgs.gov/special-topics/remote-sensing-phenology/science/ndvi-foundation-remote-sensing-phenology</a>.
+</div>
+<div id="ref-normaliz" class="csl-entry" role="doc-biblioentry">
+<span>“Normalized Difference Moisture Index | u.s. Geological Survey.”</span> n.d. <a href="https://www.usgs.gov/landsat-missions/normalized-difference-moisture-index">https://www.usgs.gov/landsat-missions/normalized-difference-moisture-index</a>.
+</div>
+</div>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
