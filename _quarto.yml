@@ -5,9 +5,9 @@ project:
 book:
   title: "CASA0023 Learning Diary"
   # author: "Vlad Tesniere"
-  favicon: img/UCL_square.jpeg
+  favicon: "img/UCL_square.jpeg"
   navbar:
-    logo: img/ucl_logo.png
+    logo: "img/ucl_logo.png"
     collapse: true
     collapse-below: lg
     background: light
@@ -17,7 +17,7 @@ book:
       - icon: github
   sidebar:
     title: "CASA0023 Learning Diary"
-    style: floating
+    style: docked
     reader-mode: true
   repo-url: https://github.com/vtesniere/CASA0023_book
   repo-actions: issue
@@ -26,18 +26,28 @@ book:
     anonymize-ip: true
   # date: "1/19/2023"
   chapters:
-    - index.qmd
-    - abbreviations.qmd
-    - intro.qmd
-    - 2_sensor_presentation.qmd
-    - corrections.qmd
-    - summary.qmd
-    - references.qmd
+    - part: "Introduction and Helpful Tools"
+      chapters:
+      - index.qmd
+      - abbreviations.qmd
+    - part: "Using SNAP and understanding Landsat Data"
+      chapters:
+      - intro.qmd
+      - 2_sensor_presentation.qmd
+      - corrections.qmd
+    - part: "GEE and Classification"
+      chapters: 
+        - GEE_intro.qmd
+    - part: "Discussing Policy"
+      chapters:
+      - summary.qmd
+      - references.qmd
 
 bibliography: references.bib
 
 format:
   html:
+    #cover-image: img/UCL_square.jpeg
   #css: textures.css
     theme: 
     # textures.css

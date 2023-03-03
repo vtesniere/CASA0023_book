@@ -1,3 +1,5 @@
+<div style="text-align: justify">
+
 # Atmospheric Corrections
 
 In this section we focus on Atmospheric correction! This concept is primordial in correctly interpreting the information provided by satellite images in remote sensing. Various elements can create interpretative issues when analysing these images. The radiance received by the satellite is affected the atmospheres scattering, absorption and refraction of light ( @chavez1996 )

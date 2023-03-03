@@ -1,4 +1,6 @@
-# Common Remote Sensing Abbreviations!
+<div style="text-align: justify">
+
+# Common Remote Sensing Abbreviations! {.unnumbered}
 
 As remote sensing can get quite complex in terms of nomenclature, this abbreviation index can come in handy when potential concept explanations are not clear!
 
