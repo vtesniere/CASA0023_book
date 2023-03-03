@@ -5,8 +5,9 @@ project:
 book:
   title: "CASA0023 Learning Diary"
   # author: "Vlad Tesniere"
+  favicon: img/UCL_square.jpeg
   navbar:
-    logo: ucl_logo.png
+    logo: img/ucl_logo.png
     collapse: true
     collapse-below: lg
     background: light
