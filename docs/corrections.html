@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.2.269">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
-<title>CASA0023 Learning Diary - 4&nbsp; Atmospheric Corrections</title>
+<title>CASA0023 Learning Diary - Atmospheric Corrections</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -41,7 +38,6 @@ div.csl-indent {
 }
 </style>
 
-
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
@@ -62,8 +58,7 @@ div.csl-indent {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -81,30 +76,22 @@ div.csl-indent {
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit"
   }
-}</script>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5LZK055F2X"></script>
-
-<script type="text/javascript">
+}</script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5LZK055F2X"></script><script type="text/javascript">
 
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-5LZK055F2X', { 'anonymize_ip': true});
-</script>
-
-
+</script><script src="site_libs/kePrint-0.0.1/kePrint.js"></script><link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 </head>
-
 <body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
-      <div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./img/ucl_logo.png" alt="" class="navbar-logo">
-    </a>
+    <img src="./img/ucl_logo.png" alt="" class="navbar-logo"></a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">CASA0023 Learning Diary</span>
     </a>
@@ -114,59 +101,53 @@ gtag('config', 'G-5LZK055F2X', { 'anonymize_ip': true});
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
+<li class="nav-item compact">
     <a class="nav-link" href="https://github.com/vtesniere/CASA0023_book"><i class="bi bi-github" role="img" aria-label="Source Code">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
 </ul>
-              <div class="quarto-toggle-container">
+<div class="quarto-toggle-container">
                   <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
               </div>
               <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
-    </nav>
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Atmospheric Corrections</span></h1>
+    </nav><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Atmospheric Corrections</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
-      <div class="mt-2 flex-shrink-0 align-items-center">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto"><div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item sidebar-item-section">
+<li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Introduction and Helpful Tools</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">Introduction and Presentation</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./abbreviations.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Common Remote Sensing Abbreviations!</span></a>
+  <a href="./abbreviations.html" class="sidebar-item-text sidebar-link">Common Remote Sensing Abbreviations!</a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Using SNAP and understanding Landsat Data</a>
@@ -174,24 +155,24 @@ gtag('config', 'G-5LZK055F2X', { 'anonymize_ip': true});
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introducing Remote Sensing - A Bucharest Analysis</span></a>
+  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introducing Remote Sensing - A Bucharest Analysis{.unnumbered}</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./2_sensor_presentation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Presenting a Sensor: Sentinel 6A and the Poseidon-4 Radar Altimeter</span></a>
+  <a href="./2_sensor_presentation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Presenting a Sensor: Sentinel 6A and the Poseidon-4 Radar Altimeter</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./corrections.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Atmospheric Corrections</span></a>
+  <a href="./corrections.html" class="sidebar-item-text sidebar-link active">Atmospheric Corrections</a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">GEE and Classification</a>
@@ -199,14 +180,14 @@ gtag('config', 'G-5LZK055F2X', { 'anonymize_ip': true});
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./GEE_intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Introduction to Google Earth Engine</span></a>
+  <a href="./GEE_intro.html" class="sidebar-item-text sidebar-link">Introduction to Google Earth Engine</a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Discussing Policy</a>
@@ -214,10 +195,10 @@ gtag('config', 'G-5LZK055F2X', { 'anonymize_ip': true});
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Summary</span></a>
+  <a href="./summary.html" class="sidebar-item-text sidebar-link">Summary</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -226,20 +207,27 @@ gtag('config', 'G-5LZK055F2X', { 'anonymize_ip': true});
   </div>
 </li>
       </ul>
-  </li>
+</li>
     </ul>
-    </div>
-</nav>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#collecting-and-merging-raster-images" id="toc-collecting-and-merging-raster-images" class="nav-link active" data-scroll-target="#collecting-and-merging-raster-images">Collecting and merging raster images</a></li>
+  <li><a href="#using-vegetation-and-moisture-indexes-to-learn-more-about-tasmania" id="toc-using-vegetation-and-moisture-indexes-to-learn-more-about-tasmania" class="nav-link" data-scroll-target="#using-vegetation-and-moisture-indexes-to-learn-more-about-tasmania">Using Vegetation and Moisture Indexes to learn more about Tasmania</a></li>
+  <li>
+<a href="#understanding-image-information" id="toc-understanding-image-information" class="nav-link" data-scroll-target="#understanding-image-information">Understanding Image information</a>
+  <ul class="collapse">
+<li><a href="#texture-and-filtering" id="toc-texture-and-filtering" class="nav-link" data-scroll-target="#texture-and-filtering">Texture and Filtering</a></li>
+  <li><a href="#finding-clusters-and-common-characteristics" id="toc-finding-clusters-and-common-characteristics" class="nav-link" data-scroll-target="#finding-clusters-and-common-characteristics">Finding Clusters and common characteristics</a></li>
+  </ul>
+</li>
+  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/vtesniere/CASA0023_book/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Atmospheric Corrections</span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title d-none d-lg-block">Atmospheric Corrections</h1>
 </div>
 
 
@@ -252,13 +240,96 @@ gtag('config', 'G-5LZK055F2X', { 'anonymize_ip': true});
   </div>
   
 
-</header>
-
-<div style="text-align: justify">
+</header><div style="text-align: justify">
 
 
 <p>In this section we focus on Atmospheric correction! This concept is primordial in correctly interpreting the information provided by satellite images in remote sensing. Various elements can create interpretative issues when analysing these images. The radiance received by the satellite is affected the atmospheres scattering, absorption and refraction of light ( <span class="citation" data-cites="chavez1996">Chavez (<a href="references.html#ref-chavez1996" role="doc-biblioref">1996</a>)</span> )</p>
 <p>More precisely, our blog entry today will focus on Landsat 8-9 images of Tasmania. Known for being home to the <a href="https://www.nationalgeographic.com/animals/mammals/facts/tasmanian-devil">Tasmania Devil</a> which inspired <a href="https://upload.wikimedia.org/wikipedia/en/thumb/c/c4/Taz-Looney_Tunes.svg/1200px-Taz-Looney_Tunes.svg.png">TAZ</a> in the Looney Tunes Universe, Tasmania is of great environmental importance as it is home to a highly developed microcosm with many endemic plants and species that are unique to that area!</p>
+<section id="collecting-and-merging-raster-images" class="level1"><h1>Collecting and merging raster images</h1>
+<p>For this topic, we decide to analyse the whole of Tasmania. Tasmania is has a landmass of over <span class="math inline">\(68,000 km^2\)</span>. A cloud-clear Landsat Image provides overview on approximately <span class="math inline">\(34,000km^2\)</span> which means that several captures are necessary. Below is an example of a single image over Tasmania, not enough to be representative of the island as a whole. There we will need to merge several to create a mosaic.</p>
+<p>L8 image on SNAP</p>
+<p>We took our images from the <a href="https://earthexplorer.usgs.gov/.">USGS</a> and used 7 images in total to cover the whole Island. Of these 7 images, 5 came from Landsat 8 and 2 from Landsat 9. Six of the frames were taken between 24th and 28th of January 2022 and one of them was on the 12th of February 2022. We deemed this temporal difference between images not to be significant but we will be analysing the implications further down.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="Week_3/full_tasmania_panel.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Overview of Tasmanian Mosaic broken down by band</figcaption><p></p>
+</figure>
+</div>
+<p>The bands presented here are at 30m resolution. We omit bands 8 (15m), 10 and 11 (100m) as they have different resolutions (refresher table available <a href="https://vtesniere.github.io/CASA0023_book/intro.html#:~:text=Sentinel%2D2%20(left)%20and%20Landsat%2D8%20(right)%20band%20comparisons">here</a>). As the information that spectral bands can provide is high, we can use this to get additional insight on our area of study!</p>
+</section><section id="using-vegetation-and-moisture-indexes-to-learn-more-about-tasmania" class="level1"><h1>Using Vegetation and Moisture Indexes to learn more about Tasmania</h1>
+<p>As Tasmania is known as an important microcosm, home to many endemic species both of animals and vegetation, we look at at vegetation measures. Using NIR and Red bands in L-8/9 we can understand vegetation intensity across the island. The below panel illustrates which areas meet different thresholds of <a href="https://vtesniere.github.io/CASA0023_book/abbreviations.html#:~:text=by%20the%20atmosphere-,NDVI,-%3A%20Normalised%20Difference%20Vegetation">NDVI</a>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="Week_3/Different_levels_of_NDVI.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">NDVI in Tasmania</figcaption><p></p>
+</figure>
+</div>
+<p>We see that a great proportion of Tasmanian Landmass has positive levels of NDVI, which would indicate that there are little to no areas of barren rocky or sandy surfaces (<a href="https://www.usgs.gov/special-topics/remote-sensing-phenology/science/ndvi-foundation-remote-sensing-phenology#:~:text=NDVI%20values%20range%20from%20%2B1.0,(approximately%200.2%20to%200.5).">US Geological Society</a>). This is not surprising as over 50% of Tasmania’s land area has some form of reservation classification.</p>
+<p>To continue understanding the Tasmania’s composition, we also focus on the moisture index. NDMI is used to determine vegetation water content and is measured similarly to NDVI. Below we have a similar breakdown of the different areas across various thresholds:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="Week_3/Different_levels_of_Moisture.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">NDMI levels in Tasmania</figcaption><p></p>
+</figure>
+</div>
+<p>As expected, the land areas have overwhelmingly positive values! In addition we have to keep in mind the temporal aspect as these observations were taken in the southern Hemisphere <strong>summer</strong> which means these values are likely to be higher during the traditionally wetter seasons of June, July and August (<a href="https://tasmania.com/things-to-do/weather/#:~:text=The%20winter%20months%20of%20June,Tasmania%20rarely%20drops%20below%20freezing.">source</a>)</p>
+</section><section id="understanding-image-information" class="level1"><h1>Understanding Image information</h1>
+<section id="texture-and-filtering" class="level2"><h2 class="anchored" data-anchor-id="texture-and-filtering">Texture and Filtering</h2>
+</section><section id="finding-clusters-and-common-characteristics" class="level2"><h2 class="anchored" data-anchor-id="finding-clusters-and-common-characteristics">Finding Clusters and common characteristics</h2>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead><tr>
+<th style="text-align:left;">   </th>
+   <th style="text-align:right;"> Component 1 </th>
+   <th style="text-align:right;"> Component 2 </th>
+   <th style="text-align:right;"> Component 3 </th>
+   <th style="text-align:right;"> Component 4 </th>
+   <th style="text-align:right;"> Component 5 </th>
+   <th style="text-align:right;"> Component 6 </th>
+   <th style="text-align:right;"> Component 7 </th>
+   <th style="text-align:right;"> Component 8 </th>
+   <th style="text-align:right;"> Component 9 </th>
+  </tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;"> Standard deviation </td>
+   <td style="text-align:right;"> 2.5547583 </td>
+   <td style="text-align:right;"> 1.1690118 </td>
+   <td style="text-align:right;"> 0.7963765 </td>
+   <td style="text-align:right;"> 0.5411714 </td>
+   <td style="text-align:right;"> 0.3271707 </td>
+   <td style="text-align:right;"> 0.2268870 </td>
+   <td style="text-align:right;"> 0.0996739 </td>
+   <td style="text-align:right;"> 0.0921788 </td>
+   <td style="text-align:right;"> 0.0508813 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Proportion of Variance </td>
+   <td style="text-align:right;"> 0.7251989 </td>
+   <td style="text-align:right;"> 0.1518432 </td>
+   <td style="text-align:right;"> 0.0704684 </td>
+   <td style="text-align:right;"> 0.0325407 </td>
+   <td style="text-align:right;"> 0.0118934 </td>
+   <td style="text-align:right;"> 0.0057197 </td>
+   <td style="text-align:right;"> 0.0011039 </td>
+   <td style="text-align:right;"> 0.0009441 </td>
+   <td style="text-align:right;"> 0.0002877 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Cumulative Proportion </td>
+   <td style="text-align:right;"> 0.7251989 </td>
+   <td style="text-align:right;"> 0.8770421 </td>
+   <td style="text-align:right;"> 0.9475105 </td>
+   <td style="text-align:right;"> 0.9800512 </td>
+   <td style="text-align:right;"> 0.9919446 </td>
+   <td style="text-align:right;"> 0.9976644 </td>
+   <td style="text-align:right;"> 0.9987682 </td>
+   <td style="text-align:right;"> 0.9997123 </td>
+   <td style="text-align:right;"> 1.0000000 </td>
+  </tr>
+</tbody>
+</table>
+</div>
+</div>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
@@ -266,9 +337,7 @@ gtag('config', 'G-5LZK055F2X', { 'anonymize_ip': true});
 Chavez, Pat S. 1996. <span>“Image-Based Atmospheric Corrections - Revisited and Improved.”</span>
 </div>
 </div>
-
-</div></main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></section><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -515,21 +584,21 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./2_sensor_presentation.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Presenting a Sensor: Sentinel 6A and the Poseidon-4 Radar Altimeter</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Presenting a Sensor: Sentinel 6A and the Poseidon-4 Radar Altimeter</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./GEE_intro.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Introduction to Google Earth Engine</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text">Introduction to Google Earth Engine</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
 
+</main>
+</div>
 
 
 </body></html>

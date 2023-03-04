@@ -1,7 +1,49 @@
 <div style="text-align: justify">
 
-# Atmospheric Corrections
+# Atmospheric Corrections {.unnumbered}
 
 In this section we focus on Atmospheric correction! This concept is primordial in correctly interpreting the information provided by satellite images in remote sensing. Various elements can create interpretative issues when analysing these images. The radiance received by the satellite is affected the atmospheres scattering, absorption and refraction of light ( @chavez1996 )
 
 More precisely, our blog entry today will focus on Landsat 8-9 images of Tasmania. Known for being home to the [Tasmania Devil](https://www.nationalgeographic.com/animals/mammals/facts/tasmanian-devil) which inspired [TAZ](https://upload.wikimedia.org/wikipedia/en/thumb/c/c4/Taz-Looney_Tunes.svg/1200px-Taz-Looney_Tunes.svg.png) in the Looney Tunes Universe, Tasmania is of great environmental importance as it is home to a highly developed microcosm with many endemic plants and species that are unique to that area!
+
+# Collecting and merging raster images
+
+For this topic, we decide to analyse the whole of Tasmania. Tasmania is has a landmass of over $68,000 km^2$. A cloud-clear Landsat Image provides overview on approximately $34,000km^2$ which means that several captures are necessary. Below is an example of a single image over Tasmania, not enough to be representative of the island as a whole. There we will need to merge several to create a mosaic.
+
+L8 image on SNAP
+
+We took our images from the [USGS](https://earthexplorer.usgs.gov/.) and used 7 images in total to cover the whole Island. Of these 7 images, 5 came from Landsat 8 and 2 from Landsat 9. Six of the frames were taken between 24th and 28th of January 2022 and one of them was on the 12th of February 2022. We deemed this temporal difference between images not to be significant but we will be analysing the implications further down.
+
+![Overview of Tasmanian Mosaic broken down by band](Week_3/full_tasmania_panel.png)
+
+The bands presented here are at 30m resolution. We omit bands 8 (15m), 10 and 11 (100m) as they have different resolutions (refresher table available [here](https://vtesniere.github.io/CASA0023_book/intro.html#:~:text=Sentinel%2D2%20(left)%20and%20Landsat%2D8%20(right)%20band%20comparisons)). As the information that spectral bands can provide is high, we can use this to get additional insight on our area of study!
+
+# Using Vegetation and Moisture Indexes to learn more about Tasmania
+
+As Tasmania is known as an important microcosm, home to many endemic species both of animals and vegetation, we look at at vegetation measures. Using NIR and Red bands in L-8/9 we can understand vegetation intensity across the island. The below panel illustrates which areas meet different thresholds of [NDVI](https://vtesniere.github.io/CASA0023_book/abbreviations.html#:~:text=by%20the%20atmosphere-,NDVI,-%3A%20Normalised%20Difference%20Vegetation):
+
+![NDVI in Tasmania](Week_3/Different_levels_of_NDVI.png)
+
+We see that a great proportion of Tasmanian Landmass has positive levels of NDVI, which would indicate that there are little to no areas of barren rocky or sandy surfaces ([US Geological Society](https://www.usgs.gov/special-topics/remote-sensing-phenology/science/ndvi-foundation-remote-sensing-phenology#:~:text=NDVI%20values%20range%20from%20%2B1.0,(approximately%200.2%20to%200.5).)). This is not surprising as over 50% of Tasmania's land area has some form of reservation classification.
+
+To continue understanding the Tasmania's composition, we also focus on the moisture index. NDMI is used to determine vegetation water content and is measured similarly to NDVI. Below we have a similar breakdown of the different areas across various thresholds:
+
+![NDMI levels in Tasmania](Week_3/Different_levels_of_Moisture.png)
+
+As expected, the land areas have overwhelmingly positive values! In addition we have to keep in mind the temporal aspect as these observations were taken in the southern Hemisphere **summer** which means these values are likely to be higher during the traditionally wetter seasons of June, July and August ([source](https://tasmania.com/things-to-do/weather/#:~:text=The%20winter%20months%20of%20June,Tasmania%20rarely%20drops%20below%20freezing.))
+
+# Understanding Image information
+
+## Texture and Filtering
+
+## Finding Clusters and common characteristics
+
+```{r, echo=FALSE}
+results <- matrix(c(2.5547583, 1.1690118, 0.7963765, 0.54117139, 0.32717069, 0.226886963, 0.099673918, 0.0921788008, 0.0508813343,0.7251989, 0.1518432, 0.0704684, 0.03254072, 0.01189341, 0.005719744, 0.001103877,  0.0009441035, 0.0002876567, 0.7251989, 0.8770421, 0.9475105, 0.98005121, 0.99194462, 0.997664363, 0.998768240, 0.9997123433, 1.0000000000), ncol = 9, byrow = T)
+colnames(results) <- c('Component 1','Component 2','Component 3', 'Component 4','Component 5','Component 6','Component 7','Component 8','Component 9')
+rownames(results) <- c('Standard deviation','Proportion of Variance','Cumulative Proportion')
+tab <- as.data.frame(results)
+library(kableExtra)
+tab %>% kbl() %>% kable_styling()
+
+```
