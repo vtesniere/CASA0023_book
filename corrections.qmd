@@ -8,9 +8,9 @@ More precisely, our blog entry today will focus on Landsat 8-9 images of Tasmani
 
 # Collecting and merging raster images
 
-For this topic, we decide to analyse the whole of Tasmania. Tasmania is has a landmass of over $68,000 km^2$. A cloud-clear Landsat Image provides overview on approximately $34,000km^2$ which means that several captures are necessary. Below is an example of a single image over Tasmania, not enough to be representative of the island as a whole. We need to merge several to create a mosaic.
+For this topic, we decide to analyse the whole of Tasmania. Tasmania is has a landmass of over $68,000 km^2$. A cloud-clear Landsat Image provides overview on approximately $34,000km^2$ which means that several captures are necessary. Below is an example of a single image over Tasmania, not enough to be representative of the island as a whole. We need to merge several to create a mosaic. Below we use these 7 panes and put them in a mosaic to create a full RBG view of the Island
 
-L8 image on SNAP
+![Full RGB View of Tasmania](Week_3/mosaic_Tasmania_SNAP.png)
 
 We took our images from the [USGS](https://earthexplorer.usgs.gov/.) and used 7 images in total to cover the whole Island. Of these 7 images, 5 came from Landsat 8 and 2 from Landsat 9. Six of the frames were taken between 24th and 28th of January 2022 and one of them was on the 12th of February 2022. We deemed this temporal difference between images not to be significant but we will be analysing the implications further down.
 
@@ -20,11 +20,11 @@ The bands presented here are at 30m resolution. We omit bands 8 (15m), 10 and 11
 
 ## Differences between panes
 
-We note that in our initial image, with the 7 panes, there are temporal differences between when each of them were captured, especially one of them taken more than two weeks later. Below we have the same mosaic but instead keep only 6 panes which were taken within 4 days of each other:
+We note that in our initial image, with the 7 panes, there are temporal differences between when each of them were captured, especially one of them taken more than two weeks later (top left). Not only is it taken later, but we also see the strong presence of clouds (i.e. Band 9 top left and visually with the white areas). Below we have the same mosaic but instead keep only 6 panes which were taken within 4 days of each other:
 
 ![Mosaic without temporal outlier](Week_3/6frame_tasmania_panel.png)
 
-We add this difference for visibility but also to show that time is a very important aspect and can influence image results. In our case, even if the differences are visible in the later image, we will continue will all 7 in our analysis below to get a full idea of the island, even if the results may not be perfectly precise.
+We add this difference for visibility but also to show that time and cloud cover are very important aspect and can influence image results. In our case, even if the differences are visible in the later image, we will continue will all 7 in our analysis below to get a full idea of the island, even if the results may not be perfectly precise.
 
 # Using Vegetation and Moisture Indexes to learn more about Tasmania
 
@@ -49,6 +49,10 @@ We use filtering on our images to reduce the computational weight of the image a
 We use the Gray level co-occurrence matrix (GLCM) to understand how different regions are characterised. It considers spatial relationships between pixels simultaneously to understand how the textures compare between areas of the mosaic.
 
 ![NIR Band Texture](Week_3/NIR_band_texture.png)
+
+With this panel, we are able to start visualising different terrain characteristics. The different categories indicate what characteristics are focused on between analysed neighbouring pixels.
+
+For example, the 'contrast' pane emphasises areas with high contrast between neighbouring pixels, which in this case has value in the upper center part of the island. Which makes sense as Hobart, the capital of Tasmania, is in that area and there would be contrast between urban and forests for example. As for another value such as 'homogeneity', the values are higher towards the center of the island which is the least urbanised, thus having most similar surroundings, mainly covered by forests ( @hall-beyer2017 and additional breakdowns of the characteristics starting [page 29](https://prism.ucalgary.ca/ds2/stream/?#/documents/8f9de234-cc94-401d-b701-f08ceee6cfdf/page/29)).
 
 ## Finding Clusters and common characteristics
 
