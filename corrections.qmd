@@ -8,7 +8,7 @@ More precisely, our blog entry today will focus on Landsat 8-9 images of Tasmani
 
 # Collecting and merging raster images
 
-For this topic, we decide to analyse the whole of Tasmania. Tasmania is has a landmass of over $68,000 km^2$. A cloud-clear Landsat Image provides overview on approximately $34,000km^2$ which means that several captures are necessary. Below is an example of a single image over Tasmania, not enough to be representative of the island as a whole. There we will need to merge several to create a mosaic.
+For this topic, we decide to analyse the whole of Tasmania. Tasmania is has a landmass of over $68,000 km^2$. A cloud-clear Landsat Image provides overview on approximately $34,000km^2$ which means that several captures are necessary. Below is an example of a single image over Tasmania, not enough to be representative of the island as a whole. We need to merge several to create a mosaic.
 
 L8 image on SNAP
 
@@ -17,6 +17,14 @@ We took our images from the [USGS](https://earthexplorer.usgs.gov/.) and used 7 
 ![Overview of Tasmanian Mosaic broken down by band](Week_3/full_tasmania_panel.png)
 
 The bands presented here are at 30m resolution. We omit bands 8 (15m), 10 and 11 (100m) as they have different resolutions (refresher table available [here](https://vtesniere.github.io/CASA0023_book/intro.html#:~:text=Sentinel%2D2%20(left)%20and%20Landsat%2D8%20(right)%20band%20comparisons)). As the information that spectral bands can provide is high, we can use this to get additional insight on our area of study!
+
+## Differences between panes
+
+We note that in our initial image, with the 7 panes, there are temporal differences between when each of them were captured, especially one of them taken more than two weeks later. Below we have the same mosaic but instead keep only 6 panes which were taken within 4 days of each other:
+
+![Mosaic without temporal outlier](Week_3/6frame_tasmania_panel.png)
+
+We add this difference for visibility but also to show that time is a very important aspect and can influence image results. In our case, even if the differences are visible in the later image, we will continue will all 7 in our analysis below to get a full idea of the island, even if the results may not be perfectly precise.
 
 # Using Vegetation and Moisture Indexes to learn more about Tasmania
 
@@ -34,9 +42,17 @@ As expected, the land areas have overwhelmingly positive values! In addition we 
 
 # Understanding Image information
 
-## Texture and Filtering
+## Texture
+
+We use filtering on our images to reduce the computational weight of the image and make it easier for processing in the below texture analysis.
+
+We use the Gray level co-occurrence matrix (GLCM) to understand how different regions are characterised. It considers spatial relationships between pixels simultaneously to understand how the textures compare between areas of the mosaic.
+
+![NIR Band Texture](Week_3/NIR_band_texture.png)
 
 ## Finding Clusters and common characteristics
+
+We now proceed to look at Principal Component Analysis (PCA) which aims to reduce the dimensionality in texture bands and provide easier understanding of the environmental information, whilst preserving most of the information. So it has the benefit of providing clear overviews of changes, such as variations of terrain characteristics.
 
 ```{r, echo=FALSE}
 results <- matrix(c(2.5547583, 1.1690118, 0.7963765, 0.54117139, 0.32717069, 0.226886963, 0.099673918, 0.0921788008, 0.0508813343,0.7251989, 0.1518432, 0.0704684, 0.03254072, 0.01189341, 0.005719744, 0.001103877,  0.0009441035, 0.0002876567, 0.7251989, 0.8770421, 0.9475105, 0.98005121, 0.99194462, 0.997664363, 0.998768240, 0.9997123433, 1.0000000000), ncol = 9, byrow = T)
@@ -47,3 +63,27 @@ library(kableExtra)
 tab %>% kbl() %>% kable_styling()
 
 ```
+
+As the above table provides information regarding numerical information, we can get a better understanding of how spectral data of Tasmanian L-8 imagery (during the summer season or 2022) varies. We identify that over 98% of the spectral variance is contained within the first 4 clusters. Using PCA in remote sensing provides several advantages as it allows to visualise the changes that occurred in a certain area ( @munyati2004 ) and reduce the dimensionality of the spectral data ( @balázs2018 ). This may be difficult to interpret numerically, therefore we include visualisation of the top 4 components in the image below:
+
+![Illustration of top 4 PCA bands for our study area](Week_3/panel_top4_clusters.png)
+
+# Personal Reflection
+
+The principal issue encountered for this analysis came in using the `'Rtools'` and `'RStoolbox'` packages. Indeed, different dependencies and technical differences (Mac vs Windows and R version 4.2.2 and 4.2.1) made using them difficult, specifically the `'rasterPCA'` function.
+
+This allowed me to gain better understanding of library development as I had to use the source code for the specific PCA function (master code [here](https://github.com/bleutner/RStoolbox/blob/master/R/rasterPCA.R)) and then download the appropriate objects as internal functions ([here](https://github.com/bleutner/RStoolbox/blob/master/R/internalFunctions.R)). We thank [Benjamin Leutner](https://github.com/bleutner/RStoolbox) for developing the packages and making the source code available. With this difficulty, I was able to dive deeper into the working of computing for corrections in Remote Sensing.
+
+As for corrections in general, I was unfamiliar with this topic before but found it rewarding and insightful. The amount of information possible to extract from raw spectral data is impressive and is something I want to explore further. Although we only used NDVI and NDMI in this analysis, we have more options which could include:
+
+-   SAVI - Soil Adjusted Vegetation Index proposed by @huete1988 (and variations by @qi1994 ) which aims to minimise the soil influences on canopy spectra
+
+-   GCI - Green Chlorophyll Index - NIR and Green bands and calculated as follows for L-8: $GCI = NIR/(Green-1) = B5/(B4-1)$
+
+-   ARVI - Atmospherically Resistant Vegetation Index - has NIR, Red and Blue Bands in the equation ( @kaufman1992 ) and better accounts for small size aerosol particles.
+
+-   GNDVI - Green Normalised Vegetation Index - has NIR and Green bands in equation (@ghimire2020 )
+
+Also interesting to see how the democratisation of data availability in remote sensing paired with technological has allowed for facilitated research on earth's surface (@schultetobühne2018 ) . For example, the Landsat programme which has been running since 1972 gives the ability to see how methods change over time ( @yuan2020 ). These technological advances are important in correction with examples such as machine learning using Convolutional Neural Networks (CNN) to automatically identify the presence of clouds in images ( @segal-rozenhaimer2020 ).
+
+Finally, the same is true for texture analysis. In our Tasmanian Analysis, we only focused on grey level co-occurrence matrix to use in the process of land use/cover classification. We could aim to use other methods in future analyses such as Laplace filters and granulometric analysis ( @kupidura2019 )
