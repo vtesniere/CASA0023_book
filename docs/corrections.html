@@ -214,15 +214,21 @@ gtag('config', 'G-5LZK055F2X', { 'anonymize_ip': true});
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#collecting-and-merging-raster-images" id="toc-collecting-and-merging-raster-images" class="nav-link active" data-scroll-target="#collecting-and-merging-raster-images">Collecting and merging raster images</a></li>
+<li>
+<a href="#collecting-and-merging-raster-images" id="toc-collecting-and-merging-raster-images" class="nav-link active" data-scroll-target="#collecting-and-merging-raster-images">Collecting and merging raster images</a>
+  <ul class="collapse">
+<li><a href="#differences-between-panes" id="toc-differences-between-panes" class="nav-link" data-scroll-target="#differences-between-panes">Differences between panes</a></li>
+  </ul>
+</li>
   <li><a href="#using-vegetation-and-moisture-indexes-to-learn-more-about-tasmania" id="toc-using-vegetation-and-moisture-indexes-to-learn-more-about-tasmania" class="nav-link" data-scroll-target="#using-vegetation-and-moisture-indexes-to-learn-more-about-tasmania">Using Vegetation and Moisture Indexes to learn more about Tasmania</a></li>
   <li>
 <a href="#understanding-image-information" id="toc-understanding-image-information" class="nav-link" data-scroll-target="#understanding-image-information">Understanding Image information</a>
   <ul class="collapse">
-<li><a href="#texture-and-filtering" id="toc-texture-and-filtering" class="nav-link" data-scroll-target="#texture-and-filtering">Texture and Filtering</a></li>
+<li><a href="#texture" id="toc-texture" class="nav-link" data-scroll-target="#texture">Texture</a></li>
   <li><a href="#finding-clusters-and-common-characteristics" id="toc-finding-clusters-and-common-characteristics" class="nav-link" data-scroll-target="#finding-clusters-and-common-characteristics">Finding Clusters and common characteristics</a></li>
   </ul>
 </li>
+  <li><a href="#personal-reflection" id="toc-personal-reflection" class="nav-link" data-scroll-target="#personal-reflection">Personal Reflection</a></li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/vtesniere/CASA0023_book/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
@@ -246,8 +252,12 @@ gtag('config', 'G-5LZK055F2X', { 'anonymize_ip': true});
 <p>In this section we focus on Atmospheric correction! This concept is primordial in correctly interpreting the information provided by satellite images in remote sensing. Various elements can create interpretative issues when analysing these images. The radiance received by the satellite is affected the atmospheres scattering, absorption and refraction of light ( <span class="citation" data-cites="chavez1996">Chavez (<a href="references.html#ref-chavez1996" role="doc-biblioref">1996</a>)</span> )</p>
 <p>More precisely, our blog entry today will focus on Landsat 8-9 images of Tasmania. Known for being home to the <a href="https://www.nationalgeographic.com/animals/mammals/facts/tasmanian-devil">Tasmania Devil</a> which inspired <a href="https://upload.wikimedia.org/wikipedia/en/thumb/c/c4/Taz-Looney_Tunes.svg/1200px-Taz-Looney_Tunes.svg.png">TAZ</a> in the Looney Tunes Universe, Tasmania is of great environmental importance as it is home to a highly developed microcosm with many endemic plants and species that are unique to that area!</p>
 <section id="collecting-and-merging-raster-images" class="level1"><h1>Collecting and merging raster images</h1>
-<p>For this topic, we decide to analyse the whole of Tasmania. Tasmania is has a landmass of over <span class="math inline">\(68,000 km^2\)</span>. A cloud-clear Landsat Image provides overview on approximately <span class="math inline">\(34,000km^2\)</span> which means that several captures are necessary. Below is an example of a single image over Tasmania, not enough to be representative of the island as a whole. There we will need to merge several to create a mosaic.</p>
-<p>L8 image on SNAP</p>
+<p>For this topic, we decide to analyse the whole of Tasmania. Tasmania is has a landmass of over <span class="math inline">\(68,000 km^2\)</span>. A cloud-clear Landsat Image provides overview on approximately <span class="math inline">\(34,000km^2\)</span> which means that several captures are necessary. Below is an example of a single image over Tasmania, not enough to be representative of the island as a whole. We need to merge several to create a mosaic. Below we use these 7 panes and put them in a mosaic to create a full RBG view of the Island</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="Week_3/mosaic_Tasmania_SNAP.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Full RGB View of Tasmania</figcaption><p></p>
+</figure>
+</div>
 <p>We took our images from the <a href="https://earthexplorer.usgs.gov/.">USGS</a> and used 7 images in total to cover the whole Island. Of these 7 images, 5 came from Landsat 8 and 2 from Landsat 9. Six of the frames were taken between 24th and 28th of January 2022 and one of them was on the 12th of February 2022. We deemed this temporal difference between images not to be significant but we will be analysing the implications further down.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="Week_3/full_tasmania_panel.png" class="img-fluid figure-img"></p>
@@ -255,7 +265,15 @@ gtag('config', 'G-5LZK055F2X', { 'anonymize_ip': true});
 </figure>
 </div>
 <p>The bands presented here are at 30m resolution. We omit bands 8 (15m), 10 and 11 (100m) as they have different resolutions (refresher table available <a href="https://vtesniere.github.io/CASA0023_book/intro.html#:~:text=Sentinel%2D2%20(left)%20and%20Landsat%2D8%20(right)%20band%20comparisons">here</a>). As the information that spectral bands can provide is high, we can use this to get additional insight on our area of study!</p>
-</section><section id="using-vegetation-and-moisture-indexes-to-learn-more-about-tasmania" class="level1"><h1>Using Vegetation and Moisture Indexes to learn more about Tasmania</h1>
+<section id="differences-between-panes" class="level2"><h2 class="anchored" data-anchor-id="differences-between-panes">Differences between panes</h2>
+<p>We note that in our initial image, with the 7 panes, there are temporal differences between when each of them were captured, especially one of them taken more than two weeks later (top left). Not only is it taken later, but we also see the strong presence of clouds (i.e.&nbsp;Band 9 top left and visually with the white areas). Below we have the same mosaic but instead keep only 6 panes which were taken within 4 days of each other:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="Week_3/6frame_tasmania_panel.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Mosaic without temporal outlier</figcaption><p></p>
+</figure>
+</div>
+<p>We add this difference for visibility but also to show that time and cloud cover are very important aspect and can influence image results. In our case, even if the differences are visible in the later image, we will continue will all 7 in our analysis below to get a full idea of the island, even if the results may not be perfectly precise.</p>
+</section></section><section id="using-vegetation-and-moisture-indexes-to-learn-more-about-tasmania" class="level1"><h1>Using Vegetation and Moisture Indexes to learn more about Tasmania</h1>
 <p>As Tasmania is known as an important microcosm, home to many endemic species both of animals and vegetation, we look at at vegetation measures. Using NIR and Red bands in L-8/9 we can understand vegetation intensity across the island. The below panel illustrates which areas meet different thresholds of <a href="https://vtesniere.github.io/CASA0023_book/abbreviations.html#:~:text=by%20the%20atmosphere-,NDVI,-%3A%20Normalised%20Difference%20Vegetation">NDVI</a>:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="Week_3/Different_levels_of_NDVI.png" class="img-fluid figure-img"></p>
@@ -271,8 +289,18 @@ gtag('config', 'G-5LZK055F2X', { 'anonymize_ip': true});
 </div>
 <p>As expected, the land areas have overwhelmingly positive values! In addition we have to keep in mind the temporal aspect as these observations were taken in the southern Hemisphere <strong>summer</strong> which means these values are likely to be higher during the traditionally wetter seasons of June, July and August (<a href="https://tasmania.com/things-to-do/weather/#:~:text=The%20winter%20months%20of%20June,Tasmania%20rarely%20drops%20below%20freezing.">source</a>)</p>
 </section><section id="understanding-image-information" class="level1"><h1>Understanding Image information</h1>
-<section id="texture-and-filtering" class="level2"><h2 class="anchored" data-anchor-id="texture-and-filtering">Texture and Filtering</h2>
+<section id="texture" class="level2"><h2 class="anchored" data-anchor-id="texture">Texture</h2>
+<p>We use filtering on our images to reduce the computational weight of the image and make it easier for processing in the below texture analysis.</p>
+<p>We use the Gray level co-occurrence matrix (GLCM) to understand how different regions are characterised. It considers spatial relationships between pixels simultaneously to understand how the textures compare between areas of the mosaic.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="Week_3/NIR_band_texture.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">NIR Band Texture</figcaption><p></p>
+</figure>
+</div>
+<p>With this panel, we are able to start visualising different terrain characteristics. The different categories indicate what characteristics are focused on between analysed neighbouring pixels.</p>
+<p>For example, the ‘contrast’ pane emphasises areas with high contrast between neighbouring pixels, which in this case has value in the upper center part of the island. Which makes sense as Hobart, the capital of Tasmania, is in that area and there would be contrast between urban and forests for example. As for another value such as ‘homogeneity’, the values are higher towards the center of the island which is the least urbanised, thus having most similar surroundings, mainly covered by forests ( <span class="citation" data-cites="hall-beyer2017">Hall-Beyer (<a href="references.html#ref-hall-beyer2017" role="doc-biblioref">2017</a>)</span> and additional breakdowns of the characteristics starting <a href="https://prism.ucalgary.ca/ds2/stream/?#/documents/8f9de234-cc94-401d-b701-f08ceee6cfdf/page/29">page 29</a>).</p>
 </section><section id="finding-clusters-and-common-characteristics" class="level2"><h2 class="anchored" data-anchor-id="finding-clusters-and-common-characteristics">Finding Clusters and common characteristics</h2>
+<p>We now proceed to look at Principal Component Analysis (PCA) which aims to reduce the dimensionality in texture bands and provide easier understanding of the environmental information, whilst preserving most of the information. So it has the benefit of providing clear overviews of changes, such as variations of terrain characteristics.</p>
 <div class="cell">
 <div class="cell-output-display">
 
@@ -330,14 +358,65 @@ gtag('config', 'G-5LZK055F2X', { 'anonymize_ip': true});
 </table>
 </div>
 </div>
+<p>As the above table provides information regarding numerical information, we can get a better understanding of how spectral data of Tasmanian L-8 imagery (during the summer season or 2022) varies. We identify that over 98% of the spectral variance is contained within the first 4 clusters. Using PCA in remote sensing provides several advantages as it allows to visualise the changes that occurred in a certain area ( <span class="citation" data-cites="munyati2004">Munyati (<a href="references.html#ref-munyati2004" role="doc-biblioref">2004</a>)</span> ) and reduce the dimensionality of the spectral data ( <span class="citation" data-cites="balázs2018">Balázs et al. (<a href="references.html#ref-bal%C3%A1zs2018" role="doc-biblioref">2018</a>)</span> ). This may be difficult to interpret numerically, therefore we include visualisation of the top 4 components in the image below:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="Week_3/panel_top4_clusters.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Illustration of top 4 PCA bands for our study area</figcaption><p></p>
+</figure>
+</div>
+</section></section><section id="personal-reflection" class="level1"><h1>Personal Reflection</h1>
+<p>The principal issue encountered for this analysis came in using the <code>'Rtools'</code> and <code>'RStoolbox'</code> packages. Indeed, different dependencies and technical differences (Mac vs Windows and R version 4.2.2 and 4.2.1) made using them difficult, specifically the <code>'rasterPCA'</code> function.</p>
+<p>This allowed me to gain better understanding of library development as I had to use the source code for the specific PCA function (master code <a href="https://github.com/bleutner/RStoolbox/blob/master/R/rasterPCA.R">here</a>) and then download the appropriate objects as internal functions (<a href="https://github.com/bleutner/RStoolbox/blob/master/R/internalFunctions.R">here</a>). We thank <a href="https://github.com/bleutner/RStoolbox">Benjamin Leutner</a> for developing the packages and making the source code available. With this difficulty, I was able to dive deeper into the working of computing for corrections in Remote Sensing.</p>
+<p>As for corrections in general, I was unfamiliar with this topic before but found it rewarding and insightful. The amount of information possible to extract from raw spectral data is impressive and is something I want to explore further. Although we only used NDVI and NDMI in this analysis, we have more options which could include:</p>
+<ul>
+<li><p>SAVI - Soil Adjusted Vegetation Index proposed by <span class="citation" data-cites="huete1988">Huete (<a href="references.html#ref-huete1988" role="doc-biblioref">1988</a>)</span> (and variations by <span class="citation" data-cites="qi1994">Qi et al. (<a href="references.html#ref-qi1994" role="doc-biblioref">1994</a>)</span> ) which aims to minimise the soil influences on canopy spectra</p></li>
+<li><p>GCI - Green Chlorophyll Index - NIR and Green bands and calculated as follows for L-8: <span class="math inline">\(GCI = NIR/(Green-1) = B5/(B4-1)\)</span></p></li>
+<li><p>ARVI - Atmospherically Resistant Vegetation Index - has NIR, Red and Blue Bands in the equation ( <span class="citation" data-cites="kaufman1992">Kaufman and Tanre (<a href="references.html#ref-kaufman1992" role="doc-biblioref">1992</a>)</span> ) and better accounts for small size aerosol particles.</p></li>
+<li><p>GNDVI - Green Normalised Vegetation Index - has NIR and Green bands in equation (<span class="citation" data-cites="ghimire2020">Ghimire, Lei, and Juan (<a href="references.html#ref-ghimire2020" role="doc-biblioref">2020</a>)</span> )</p></li>
+</ul>
+<p>Also interesting to see how the democratisation of data availability in remote sensing paired with technological has allowed for facilitated research on earth’s surface (<span class="citation" data-cites="schultetobühne2018">Schulte to Bühne and Pettorelli (<a href="references.html#ref-schultetob%C3%BChne2018" role="doc-biblioref">2018</a>)</span> ) . For example, the Landsat programme which has been running since 1972 gives the ability to see how methods change over time ( <span class="citation" data-cites="yuan2020">Yuan, O’Neil, and Torrejon (<a href="references.html#ref-yuan2020" role="doc-biblioref">2020</a>)</span> ). These technological advances are important in correction with examples such as machine learning using Convolutional Neural Networks (CNN) to automatically identify the presence of clouds in images ( <span class="citation" data-cites="segal-rozenhaimer2020">Segal-Rozenhaimer et al. (<a href="references.html#ref-segal-rozenhaimer2020" role="doc-biblioref">2020</a>)</span> ).</p>
+<p>Finally, the same is true for texture analysis. In our Tasmanian Analysis, we only focused on grey level co-occurrence matrix to use in the process of land use/cover classification. We could aim to use other methods in future analyses such as Laplace filters and granulometric analysis ( <span class="citation" data-cites="kupidura2019">Kupidura (<a href="references.html#ref-kupidura2019" role="doc-biblioref">2019</a>)</span> )</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
+<div id="ref-balázs2018" class="csl-entry" role="doc-biblioentry">
+Balázs, Boglárka, Tibor Bíró, Gareth Dyke, Sudhir Kumar Singh, and Szilárd Szabó. 2018. <span>“Extracting Water-Related Features Using Reflectance Data and Principal Component Analysis of Landsat Images.”</span> <em>Hydrological Sciences Journal</em> 63 (2): 269–84. <a href="https://doi.org/10.1080/02626667.2018.1425802">https://doi.org/10.1080/02626667.2018.1425802</a>.
+</div>
 <div id="ref-chavez1996" class="csl-entry" role="doc-biblioentry">
 Chavez, Pat S. 1996. <span>“Image-Based Atmospheric Corrections - Revisited and Improved.”</span>
 </div>
+<div id="ref-ghimire2020" class="csl-entry" role="doc-biblioentry">
+Ghimire, Prakash, Deng Lei, and Nie Juan. 2020. <span>“Effect of Image Fusion on Vegetation Index Quality<span></span>A Comparative Study from Gaofen-1, Gaofen-2, Gaofen-4, Landsat-8 OLI and MODIS Imagery.”</span> <em>Remote Sensing</em> 12 (10): 1550. <a href="https://doi.org/10.3390/rs12101550">https://doi.org/10.3390/rs12101550</a>.
 </div>
-</section></section><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+<div id="ref-hall-beyer2017" class="csl-entry" role="doc-biblioentry">
+Hall-Beyer, Mryka. 2017. <span>“GLCM Texture: A Tutorial v. 3.0 March 2017,”</span> March. <a href="https://doi.org/10.11575/PRISM/33280">https://doi.org/10.11575/PRISM/33280</a>.
+</div>
+<div id="ref-huete1988" class="csl-entry" role="doc-biblioentry">
+Huete, A. R. 1988. <span>“A Soil-Adjusted Vegetation Index (SAVI).”</span> <em>Remote Sensing of Environment</em> 25 (3): 295–309. <a href="https://doi.org/10.1016/0034-4257(88)90106-X">https://doi.org/10.1016/0034-4257(88)90106-X</a>.
+</div>
+<div id="ref-kaufman1992" class="csl-entry" role="doc-biblioentry">
+Kaufman, Y. J., and D. Tanre. 1992. <span>“Atmospherically Resistant Vegetation Index (ARVI) for EOS-MODIS.”</span> <em>IEEE Transactions on Geoscience and Remote Sensing</em> 30 (2): 261–70. <a href="https://doi.org/10.1109/36.134076">https://doi.org/10.1109/36.134076</a>.
+</div>
+<div id="ref-kupidura2019" class="csl-entry" role="doc-biblioentry">
+Kupidura, Przemysław. 2019. <span>“The Comparison of Different Methods of Texture Analysis for Their Efficacy for Land Use Classification in Satellite Imagery.”</span> <em>Remote Sensing</em> 11 (10): 1233. <a href="https://doi.org/10.3390/rs11101233">https://doi.org/10.3390/rs11101233</a>.
+</div>
+<div id="ref-munyati2004" class="csl-entry" role="doc-biblioentry">
+Munyati, Christopher. 2004. <span>“Use of Principal Component Analysis (PCA) of Remote Sensing Images in Wetland Change Detection on the Kafue Flats, Zambia.”</span> <em>Geocarto International</em> 19 (3): 11–22. <a href="https://doi.org/10.1080/10106040408542313">https://doi.org/10.1080/10106040408542313</a>.
+</div>
+<div id="ref-qi1994" class="csl-entry" role="doc-biblioentry">
+Qi, J., A. Chehbouni, A. R. Huete, Y. H. Kerr, and S. Sorooshian. 1994. <span>“A Modified Soil Adjusted Vegetation Index.”</span> <em>Remote Sensing of Environment</em> 48 (2): 119–26. <a href="https://doi.org/10.1016/0034-4257(94)90134-1">https://doi.org/10.1016/0034-4257(94)90134-1</a>.
+</div>
+<div id="ref-schultetobühne2018" class="csl-entry" role="doc-biblioentry">
+Schulte to Bühne, Henrike, and Nathalie Pettorelli. 2018. <span>“Better Together: Integrating and Fusing Multispectral and Radar Satellite Imagery to Inform Biodiversity Monitoring, Ecological Research and Conservation Science.”</span> <em>Methods in Ecology and Evolution</em> 9 (4): 849–65. <a href="https://doi.org/10.1111/2041-210X.12942">https://doi.org/10.1111/2041-210X.12942</a>.
+</div>
+<div id="ref-segal-rozenhaimer2020" class="csl-entry" role="doc-biblioentry">
+Segal-Rozenhaimer, Michal, Alan Li, Kamalika Das, and Ved Chirayath. 2020. <span>“Cloud Detection Algorithm for Multi-Modal Satellite Imagery Using Convolutional Neural-Networks (CNN).”</span> <em>Remote Sensing of Environment</em> 237 (February): 111446. <a href="https://doi.org/10.1016/j.rse.2019.111446">https://doi.org/10.1016/j.rse.2019.111446</a>.
+</div>
+<div id="ref-yuan2020" class="csl-entry" role="doc-biblioentry">
+Yuan, Karen, Patrick O’Neil, and Diego Torrejon. 2020. <span>“8 - Landsat’s Past Paves the Way for Data Democratization in Earth Science.”</span> In, edited by Feras A. Batarseh and Ruixin Yang, 147–61. Academic Press. <a href="https://doi.org/10.1016/B978-0-12-818366-3.00008-3">https://doi.org/10.1016/B978-0-12-818366-3.00008-3</a>.
+</div>
+</div>
+</section><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
