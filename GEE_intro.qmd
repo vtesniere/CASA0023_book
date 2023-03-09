@@ -1,3 +1,11 @@
 <div style="text-align: justify">
 
 # Introduction to Google Earth Engine {.unnumbered}
+
+Initially launched at a small scale in 2010 for Scientists and NGO's, GEE has now been made available freely to the general public and provides a powerful tool for geo-spatial analysis! The ability of this service to analyse large scale data and provide results within seconds is not only unprecedented, but also allows for efficient research at high levels of granularity and methods that were computationally unavailable for the individual user. Instead of having to store this information locally, users like myself can use the Google Cloud Platform capabilities instead of local storage and machines.
+
+This entry is an initial usage of the platform to familiarise myself with it, and provide initial impressions.
+
+## Exploring the Examples in the script editor
+
+The interface is easy to use and provides a panoply of different scripts to get accustomed to the different uses of the platform

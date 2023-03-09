@@ -1,6 +1,6 @@
-# Summary {.unnumbered}
+# Policy {.unnumbered}
 
-In summary, this book has no content whatsoever.
+define what a policy actually is
 
 ```{r}
 1 + 1

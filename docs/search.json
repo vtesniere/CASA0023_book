@@ -23,9 +23,9 @@
   {
     "objectID": "summary.html",
     "href": "summary.html",
-    "title": "Summary",
+    "title": "Policy",
     "section": "",
-    "text": "In summary, this book has no content whatsoever.\n\n1 + 1\n\n[1] 2"
+    "text": "define what a policy actually is\n\n1 + 1\n\n[1] 2"
   },
   {
     "objectID": "intro.html#basic-raster-image-processing-and-statistics",
@@ -110,5 +110,12 @@
     "title": "Atmospheric Corrections",
     "section": "Texture",
     "text": "Texture\nWe use filtering on our images to reduce the computational weight of the image and make it easier for processing in the below texture analysis.\nWe use the Gray level co-occurrence matrix (GLCM) to understand how different regions are characterised. It considers spatial relationships between pixels simultaneously to understand how the textures compare between areas of the mosaic.\n\n\nNIR Band Texture\n\n\nWith this panel, we are able to start visualising different terrain characteristics. The different categories indicate what characteristics are focused on between analysed neighbouring pixels.\nFor example, the ‘contrast’ pane emphasises areas with high contrast between neighbouring pixels, which in this case has value in the upper center part of the island. Which makes sense as Hobart, the capital of Tasmania, is in that area and there would be contrast between urban and forests for example. As for another value such as ‘homogeneity’, the values are higher towards the center of the island which is the least urbanised, thus having most similar surroundings, mainly covered by forests ( Hall-Beyer (2017) and additional breakdowns of the characteristics starting page 29)."
+  },
+  {
+    "objectID": "GEE_intro.html#exploring-the-examples-in-the-script-editor",
+    "href": "GEE_intro.html#exploring-the-examples-in-the-script-editor",
+    "title": "Introduction to Google Earth Engine",
+    "section": "Exploring the Examples in the script editor",
+    "text": "Exploring the Examples in the script editor\nThe interface is easy to use and provides a panoply of different scripts to get accustomed to the different uses of the platform"
   }
 ]
