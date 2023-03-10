@@ -6,8 +6,28 @@ Initially launched at a small scale in 2010 for Scientists and NGO's, GEE has no
 
 This entry is an initial usage of the platform to familiarise myself with it, and provide initial impressions.
 
+This entry will focus on analysis the characteristics of the 'city of love' and possibly one of the most exciting places in the world with exquisite food, Paris, France! 🇫🇷
+
 ## Exploring the Examples in the script editor
 
 The interface is easy to use and provides a panoply of different scripts to get accustomed to the different uses of the platform.
 
 **Learning to use Javascript** - JavaScript (JS) is a scripting/programming language which allows for the implementation of dynamic behaviour and updating control multimedia. In our case, we use JavaScript to use the GEE API and access their satellite imagery data and analysis capabilities ([GEE platform](https://earthengine.google.com/platform/)).
+
+## Exploring Paris with GEE
+
+We start by playing around with the Earth Engine to get a better idea and understanding of what tools are available to us. Our aim is to analyse Paris and it's characteristics so we start off by taking the appropriate shapefile (`'GID_2 == "FRA.8.3_1"'`) from [GADM](https://gadm.org/download_country.html).
+
+The images we use are from L-8 and [Level 2, Collection 2 tier 1 images](https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LC08_C02_T1_L2) (additional info on L-8 tiers [here](https://www.remote-research.org/sat/understanding-landsat-collections-levels-and-tiers-which-do-i-use/))
+
+After being able to clip the city as a whole, we compare the images:
+
+-   Left image shows Clipped Paris untouched (aka without any transformations). We see that the image is mostly black as no correction has been made
+
+-   Right Image shows Paris with the appropriate adjustment for surface reflectance through scaling factors
+
+```{r, echo=FALSE, composites, fig.cap="Initial clip of Paris (left not transformed and right adjusted for surface reflectance", fig.align='center', results='asis',out.width='90%'}
+library(cowplot)
+knitr::opts_chunk$set(fig.pos = "H", out.extra = "")
+ggdraw() + draw_image('Week_5/without_correction.png', width = 0.5) + draw_image('Week_5/Clipped_paris_initial.png', width = 0.5, x = 0.5)
+```

@@ -1,7 +1,7 @@
 {
-  "hash": "c11a3f7f579a88b65640ab02af0f7087",
+  "hash": "7b1e40c7af8cc00ab6c313b09fbca7a8",
   "result": {
-    "markdown": "# Policy {.unnumbered}\n\ndefine what a policy actually is\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 2\n```\n:::\n:::\n",
+    "markdown": "# Policy {.unnumbered}\n\ndefine what a policy actually is\n\ndefine why it is useful and how we can develop it\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 2\n```\n:::\n:::\n",
     "supporting": [
       "summary_files"
     ],

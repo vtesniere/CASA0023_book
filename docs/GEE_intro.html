@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.2.269">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
 <title>CASA0023 Learning Diary - Introduction to Google Earth Engine</title>
 <style>
 code{white-space: pre-wrap;}
@@ -21,7 +18,6 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
-
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
@@ -43,8 +39,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -62,36 +57,26 @@ ul.task-list li input[type="checkbox"] {
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit"
   }
-}</script>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5LZK055F2X"></script>
-
-<script type="text/javascript">
+}</script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5LZK055F2X"></script><script type="text/javascript">
 
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-5LZK055F2X', { 'anonymize_ip': true});
-</script>
-<style>
+</script><style>
     .quarto-title-block .quarto-title-banner {
       background-image: url(img/Nighttime-purple.jpeg);
 background-size: cover;
     }
     </style>
-
-
 </head>
-
 <body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
-      <div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./img/ucl_logo.png" alt="" class="navbar-logo">
-    </a>
+    <img src="./img/ucl_logo.png" alt="" class="navbar-logo"></a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">CASA0023 Learning Diary</span>
     </a>
@@ -101,31 +86,25 @@ background-size: cover;
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
+<li class="nav-item compact">
     <a class="nav-link" href="https://github.com/vtesniere/CASA0023_book"><i class="bi bi-github" role="img" aria-label="Source Code">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
 </ul>
-              <div class="quarto-toggle-container">
+<div class="quarto-toggle-container">
                   <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
               </div>
               <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
-    </nav>
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
+    </nav><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
       <h1 class="quarto-secondary-nav-title">Introduction to Google Earth Engine</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
+  </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default page-columns page-full"><div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <h1 class="title d-none d-lg-block">Introduction to Google Earth Engine</h1>
                       </div>
@@ -142,23 +121,22 @@ background-size: cover;
   
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
-      <div class="mt-2 flex-shrink-0 align-items-center">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto"><div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item sidebar-item-section">
+<li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Introduction and Helpful Tools</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">Introduction and Presentation</a>
   </div>
@@ -169,7 +147,7 @@ background-size: cover;
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Using SNAP and understanding Landsat Data</a>
@@ -177,8 +155,8 @@ background-size: cover;
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intro.html" class="sidebar-item-text sidebar-link">Introducing Remote Sensing - A Bucharest Analysis</a>
   </div>
@@ -194,7 +172,7 @@ background-size: cover;
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">GEE and Classification</a>
@@ -202,14 +180,14 @@ background-size: cover;
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./GEE_intro.html" class="sidebar-item-text sidebar-link active">Introduction to Google Earth Engine</a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Discussing Policy</a>
@@ -217,8 +195,8 @@ background-size: cover;
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">Policy</a>
   </div>
@@ -229,40 +207,47 @@ background-size: cover;
   </div>
 </li>
       </ul>
-  </li>
+</li>
     </ul>
-    </div>
-</nav>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#exploring-the-examples-in-the-script-editor" id="toc-exploring-the-examples-in-the-script-editor" class="nav-link active" data-scroll-target="#exploring-the-examples-in-the-script-editor">Exploring the Examples in the script editor</a></li>
-  </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/vtesniere/CASA0023_book/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<li><a href="#exploring-the-examples-in-the-script-editor" id="toc-exploring-the-examples-in-the-script-editor" class="nav-link active" data-scroll-target="#exploring-the-examples-in-the-script-editor">Exploring the Examples in the script editor</a></li>
+  <li><a href="#exploring-paris-with-gee" id="toc-exploring-paris-with-gee" class="nav-link" data-scroll-target="#exploring-paris-with-gee">Exploring Paris with GEE</a></li>
+  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/vtesniere/CASA0023_book/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
-
-
-
-
-<div style="text-align: justify">
+<main class="content quarto-banner-title-block" id="quarto-document-content"><div style="text-align: justify">
 
 
 <p>Initially launched at a small scale in 2010 for Scientists and NGO’s, GEE has now been made available freely to the general public and provides a powerful tool for geo-spatial analysis! The ability of this service to analyse large scale data and provide results within seconds is not only unprecedented, but also allows for efficient research at high levels of granularity and methods that were computationally unavailable for the individual user. Instead of having to store this information locally, users like myself can use the Google Cloud Platform capabilities instead of local storage and machines.</p>
 <p>This entry is an initial usage of the platform to familiarise myself with it, and provide initial impressions.</p>
-<section id="exploring-the-examples-in-the-script-editor" class="level2">
-<h2 class="anchored" data-anchor-id="exploring-the-examples-in-the-script-editor">Exploring the Examples in the script editor</h2>
-<p>The interface is easy to use and provides a panoply of different scripts to get accustomed to the different uses of the platform</p>
+<p>This entry will focus on analysis the characteristics of the ‘city of love’ and possibly one of the most exciting places in the world with exquisite food, Paris, France! 🇫🇷</p>
+<section id="exploring-the-examples-in-the-script-editor" class="level2"><h2 class="anchored" data-anchor-id="exploring-the-examples-in-the-script-editor">Exploring the Examples in the script editor</h2>
+<p>The interface is easy to use and provides a panoply of different scripts to get accustomed to the different uses of the platform.</p>
+<p><strong>Learning to use Javascript</strong> - JavaScript (JS) is a scripting/programming language which allows for the implementation of dynamic behaviour and updating control multimedia. In our case, we use JavaScript to use the GEE API and access their satellite imagery data and analysis capabilities (<a href="https://earthengine.google.com/platform/">GEE platform</a>).</p>
+</section><section id="exploring-paris-with-gee" class="level2"><h2 class="anchored" data-anchor-id="exploring-paris-with-gee">Exploring Paris with GEE</h2>
+<p>We start by playing around with the Earth Engine to get a better idea and understanding of what tools are available to us. Our aim is to analyse Paris and it’s characteristics so we start off by taking the appropriate shapefile (<code>'GID_2 == "FRA.8.3_1"'</code>) from <a href="https://gadm.org/download_country.html">GADM</a>.</p>
+<p>The images we use are from L-8 and <a href="https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LC08_C02_T1_L2">Level 2, Collection 2 tier 1 images</a> (additional info on L-8 tiers <a href="https://www.remote-research.org/sat/understanding-landsat-collections-levels-and-tiers-which-do-i-use/">here</a>)</p>
+<p>After being able to clip the city as a whole, we compare the images:</p>
+<ul>
+<li><p>Left image shows Clipped Paris untouched (aka without any transformations). We see that the image is mostly black as no correction has been made</p></li>
+<li><p>Right Image shows Paris with the appropriate adjustment for surface reflectance through scaling factors</p></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="GEE_intro_files/figure-html/composites-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<p></p><figcaption class="figure-caption">Initial clip of Paris (left not transformed and right adjusted for surface reflectance</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
 
 
-</section>
-
-</div></main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -509,9 +494,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./corrections.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Atmospheric Corrections</span>
       </a>          
@@ -524,6 +507,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </nav>
 </div> <!-- /content -->
 
+</main>
+</div>
 
 
 </body></html>
