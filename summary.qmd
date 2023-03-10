@@ -2,6 +2,8 @@
 
 define what a policy actually is
 
+define why it is useful and how we can develop it
+
 ```{r}
 1 + 1
 ```

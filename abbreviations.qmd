@@ -41,3 +41,5 @@ As remote sensing can get quite complex in terms of nomenclature, this abbreviat
 -   **Azimuth** : the direction of a celestial object from the observer, calculated through distance from horizon from a cardinal point (usually north or south)
 
 -   **PCA** : Principal Component Analysis - is a method of unsupervised learning which aims to reduce the number of dimensions whilst still keeping most of the information. In remote sensing this is particularly useful as it can help understand and visualise where changes in terrain characteristics have taken place ( @munyati2004 )
+
+-   **GLCM** : gray-level co-occurrence matrix which is a method that examines textures whilst considering the spatial relationship of the pixels. Several different methods can be applied which prioritize different pixel characteristics (i.e. homogeneity, contrasts etc.)

@@ -8,4 +8,6 @@ This entry is an initial usage of the platform to familiarise myself with it, an
 
 ## Exploring the Examples in the script editor
 
-The interface is easy to use and provides a panoply of different scripts to get accustomed to the different uses of the platform
+The interface is easy to use and provides a panoply of different scripts to get accustomed to the different uses of the platform.
+
+**Learning to use Javascript** - JavaScript (JS) is a scripting/programming language which allows for the implementation of dynamic behaviour and updating control multimedia. In our case, we use JavaScript to use the GEE API and access their satellite imagery data and analysis capabilities ([GEE platform](https://earthengine.google.com/platform/)).
