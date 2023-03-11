@@ -17,6 +17,88 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -216,6 +298,15 @@ background-size: cover;
   <ul>
 <li><a href="#exploring-the-examples-in-the-script-editor" id="toc-exploring-the-examples-in-the-script-editor" class="nav-link active" data-scroll-target="#exploring-the-examples-in-the-script-editor">Exploring the Examples in the script editor</a></li>
   <li><a href="#exploring-paris-with-gee" id="toc-exploring-paris-with-gee" class="nav-link" data-scroll-target="#exploring-paris-with-gee">Exploring Paris with GEE</a></li>
+  <li>
+<a href="#taking-the-analysis-further" id="toc-taking-the-analysis-further" class="nav-link" data-scroll-target="#taking-the-analysis-further">Taking the Analysis further</a>
+  <ul class="collapse">
+<li><a href="#texture-analysis-in-gee" id="toc-texture-analysis-in-gee" class="nav-link" data-scroll-target="#texture-analysis-in-gee">Texture Analysis in GEE</a></li>
+  <li><a href="#pca-in-gee" id="toc-pca-in-gee" class="nav-link" data-scroll-target="#pca-in-gee">PCA in GEE</a></li>
+  <li><a href="#band-maths" id="toc-band-maths" class="nav-link" data-scroll-target="#band-maths">Band Maths</a></li>
+  </ul>
+</li>
+  <li><a href="#personal-reflection" id="toc-personal-reflection" class="nav-link" data-scroll-target="#personal-reflection">Personal Reflection</a></li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/vtesniere/CASA0023_book/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
@@ -230,7 +321,7 @@ background-size: cover;
 <p><strong>Learning to use Javascript</strong> - JavaScript (JS) is a scripting/programming language which allows for the implementation of dynamic behaviour and updating control multimedia. In our case, we use JavaScript to use the GEE API and access their satellite imagery data and analysis capabilities (<a href="https://earthengine.google.com/platform/">GEE platform</a>).</p>
 </section><section id="exploring-paris-with-gee" class="level2"><h2 class="anchored" data-anchor-id="exploring-paris-with-gee">Exploring Paris with GEE</h2>
 <p>We start by playing around with the Earth Engine to get a better idea and understanding of what tools are available to us. Our aim is to analyse Paris and it’s characteristics so we start off by taking the appropriate shapefile (<code>'GID_2 == "FRA.8.3_1"'</code>) from <a href="https://gadm.org/download_country.html">GADM</a>.</p>
-<p>The images we use are from L-8 and <a href="https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LC08_C02_T1_L2">Level 2, Collection 2 tier 1 images</a> (additional info on L-8 tiers <a href="https://www.remote-research.org/sat/understanding-landsat-collections-levels-and-tiers-which-do-i-use/">here</a>)</p>
+<p>The images we use are from L-8 and <a href="https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LC08_C02_T1_L2">Level 2, Collection 2 tier 1 images</a> (additional info on L-8 tiers <a href="https://www.remote-research.org/sat/understanding-landsat-collections-levels-and-tiers-which-do-i-use/">here</a>). They were collected between June 2020 and October 2022.</p>
 <p>After being able to clip the city as a whole, we compare the images:</p>
 <ul>
 <li><p>Left image shows Clipped Paris untouched (aka without any transformations). We see that the image is mostly black as no correction has been made</p></li>
@@ -239,14 +330,77 @@ background-size: cover;
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="GEE_intro_files/figure-html/composites-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
-<p></p><figcaption class="figure-caption">Initial clip of Paris (left not transformed and right adjusted for surface reflectance</figcaption><p></p>
+<figure class="figure"><p><img src="GEE_intro_files/figure-html/composites-1.png" class="img-fluid figure-img" width="576"></p>
+<p></p><figcaption class="figure-caption">Initial clip of Paris, including not transformed (left) and adjusted for surface reflectance (right)</figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
+</section><section id="taking-the-analysis-further" class="level2"><h2 class="anchored" data-anchor-id="taking-the-analysis-further">Taking the Analysis further</h2>
+<section id="texture-analysis-in-gee" class="level3"><h3 class="anchored" data-anchor-id="texture-analysis-in-gee">Texture Analysis in GEE</h3>
+<p>Similar to one of our <a href="https://vtesniere.github.io/CASA0023_book/corrections.html#texture">previous analyses</a>, we choose to look at Gray Level Co-Occurrence Matrix (GLCM), a texture analysis which considers the spatial relationships of pixels in an image. Below, we include the contrast GCLM, which uses the contrast between neighbouring pixels as a measure of the texture.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="Week_5/Contrast_glcm.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Contrast GLCM</figcaption><p></p>
+</figure>
+</div>
+<p>As a sanity check, we interpret the results from the image:</p>
+<ul>
+<li>Low Contrast at points in group 1 as these are the park areas of Paris (‘bois de Vincennes’ on the right and ‘hippodrome de Long-champs’ on the left). Due to low contrast, the GCLM does not indicate much texture change in the area, which is expected as they are all park/woodland areas</li>
+<li>High contrast at point 2, as this is the cultural and touristic center, notably including the Eiffel tower, small parks, Haussmannian 19th century buildings and recently built elements. So it is not a surprise that this area has high contrast values.</li>
+<li>Finally, area 3 follows part of the Seine. As this is the main water body in the city, we would expect high values of similarity which is is the case as there are many light pixels grouped together in that area!</li>
+</ul></section><section id="pca-in-gee" class="level3"><h3 class="anchored" data-anchor-id="pca-in-gee">PCA in GEE</h3>
+<p>Although not as intuitive as the <code>rasterPCA</code> in <code>RStoolbox</code>, PCA analysis is possible in GEE. we find that the first 4 clusters account for more than 98% of the total variance of the studied area.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="Week_5/Values_PCA.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Values of PCA clusters (in %)</figcaption><p></p>
+</figure>
+</div>
+<p>Below we have an illustration of the four main groups visible. We see that a great deal of the variance is captured in the first frame. This is not a surprise as Paris is an Urban area and has quite strong similarities in terms of colours, and does not have a lot of variance with big contrasts between urban and green areas for example (parks are quite small compared to other cities, say London).</p>
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQJDWrorUm7O9a7wDok9ZfQSQckoNT_mBeTWnTEBqv6YenX2MZoMu4eAspaeC3vsVtUR3aSBwEH8zTy/embed?start=false&amp;loop=true&amp;delayms=5000" frameborder="0" width="760" height="515" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true">
+</iframe>
+</section><section id="band-maths" class="level3"><h3 class="anchored" data-anchor-id="band-maths">Band Maths</h3>
+<section id="ndvi" class="level4"><h4 class="anchored" data-anchor-id="ndvi">NDVI</h4>
+<p>The Normalised Vegetation Index is the usual indicator of vegetation in an area. Here it makes sense that the values are higher in the park areas, closer to the outskirts of the city, than in the center which has a very high population density.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="Week_5/Paris_NDVI.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">The Normalised Vegetation Index</figcaption><p></p>
+</figure>
+</div>
+</section><section id="ndmi" class="level4"><h4 class="anchored" data-anchor-id="ndmi">NDMI</h4>
+<p>The Normalised Moisture Index allows to collect information on the amount of moisture in the soil. The bands are calculated as follows in GEE:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>var NDMI <span class="ot">=</span> <span class="fu">clip.select</span>(<span class="st">'SR_B5'</span>)<span class="fu">.subtract</span>(<span class="fu">clip.select</span>(<span class="st">'SR_B6'</span>))</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">.divide</span>(<span class="fu">clip.select</span>(<span class="st">'SR_B5'</span>)<span class="fu">.add</span>(<span class="fu">clip.select</span>(<span class="st">'SR_B6'</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The values go from -1 to 1, with the brown areas having the highest positive values. Again, most of the values are around 0 as the city has high building density. Nonetheless, the parks have high moisture value, with a strong brown colour.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="Week_5/Paris_NDMI.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">The Normalised Moisture Index</figcaption><p></p>
+</figure>
+</div>
+</section><section id="gci" class="level4"><h4 class="anchored" data-anchor-id="gci">GCI</h4>
+<p>The Green Chlorophyll Index is an index that we have not analysed before but mentioned before. We thought using it in this project would be interesting to see the results but also it’s implementation in GEE. It was initially used in for MODIS ( <span class="citation" data-cites="gitelson1996">Gitelson, Kaufman, and Merzlyak (<a href="references.html#ref-gitelson1996" role="doc-biblioref">1996</a>)</span> ) but as bands have similar characteristics between platforms, it can also be used on L-8.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>var GCI <span class="ot">=</span> <span class="fu">clip.select</span>(<span class="st">'SR_B5'</span>)<span class="fu">.divide</span>(<span class="fu">clip.select</span>(<span class="st">'SR_B5'</span>)<span class="fu">.add</span>(<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Below we have the illustration of the GCI. The values range between -1 and 1, with bright red representing a value of 1. In the case of Paris, we see that the values are mainly pinkish, representative of an urban environment, which is to be expected in Paris.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="Week_5/GCI_paris.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">The Green Chlorophyll Index</figcaption><p></p>
+</figure>
+</div>
+</section></section></section><section id="personal-reflection" class="level1"><h1>Personal Reflection</h1>
+<p>Using GEE was eye-opening, seeing how efficient getting access to satellite imagery was compared to using SNAP and other sources such as <a href="https://scihub.copernicus.eu/dhus/#/home">Copernicus Open Access Hub</a> (for S-2) and <a href="https://earthexplorer.usgs.gov/">Earth Explorer</a> (for L-8).</p>
+<p>This initial project was a very good opportunity to start getting accustomed to using JS and putting into practice. Although, I did not use much of my own code for this week (majoritarily inspired from <a href="https://andrewmaclachlan.github.io/CASA0023/5_GEE_I.html#pca">CASA0023</a> and web-sources), I was still able to understand local areas and tweak the code accordingly! I was also able to build on the band math, using indices such as NDMI as my understanding of Javascript and Bands has improved.</p>
+<p>I was able to also add mote interactivity in the presentation of my findings, notably when presenting my findings for PCA an illustrating this in an embedded Google Slides using HTML and ‘iframe’ directly.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
+<div id="ref-gitelson1996" class="csl-entry" role="doc-biblioentry">
+Gitelson, Anatoly A., Yoram J. Kaufman, and Mark N. Merzlyak. 1996. <span>“Use of a Green Channel in Remote Sensing of Global Vegetation from EOS-MODIS.”</span> <em>Remote Sensing of Environment</em> 58 (3): 289–98. <a href="https://doi.org/10.1016/S0034-4257(96)00072-7">https://doi.org/10.1016/S0034-4257(96)00072-7</a>.
+</div>
+</div>
 </section><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
