@@ -98,3 +98,5 @@ Using GEE was eye-opening, seeing how efficient getting access to satellite imag
 This initial project was a very good opportunity to start getting accustomed to using JS and putting into practice. Although, I did not use much of my own code for this week (majoritarily inspired from [CASA0023](https://andrewmaclachlan.github.io/CASA0023/5_GEE_I.html#pca) and web-sources), I was still able to understand local areas and tweak the code accordingly! I was also able to build on the band math, using indices such as NDMI as my understanding of Javascript and Bands has improved.
 
 I was able to also add mote interactivity in the presentation of my findings, notably when presenting my findings for PCA an illustrating this in an embedded Google Slides using HTML and 'iframe' directly.
+
+This was a very plentiful diary entry, as it has given me many ideas but also shown me the GEE has many options which I want to look into. Notably looking at the evolution of areas over time, with examples in mind aiming to show how global warming, droughts and overconsumption have let to considerable changes in water levels in certain areas (i.e. lake, reservoir, damn etc.)
