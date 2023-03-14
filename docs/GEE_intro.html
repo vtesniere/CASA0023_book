@@ -169,7 +169,7 @@ background-size: cover;
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
 <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/vtesniere/CASA0023_book"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/vtesniere/CASA0023_book"><i class="bi bi-github" role="img" aria-label="Source Code">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
@@ -375,8 +375,8 @@ background-size: cover;
 </section><section id="ndmi" class="level4"><h4 class="anchored" data-anchor-id="ndmi">NDMI</h4>
 <p>The Normalised Moisture Index allows to collect information on the amount of moisture in the soil. The bands are calculated as follows in GEE:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>var NDMI <span class="ot">=</span> <span class="fu">clip.select</span>(<span class="st">'SR_B5'</span>)<span class="fu">.subtract</span>(<span class="fu">clip.select</span>(<span class="st">'SR_B6'</span>))</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">.divide</span>(<span class="fu">clip.select</span>(<span class="st">'SR_B5'</span>)<span class="fu">.add</span>(<span class="fu">clip.select</span>(<span class="st">'SR_B6'</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> NDMI <span class="op">=</span> clip<span class="op">.</span><span class="fu">select</span>(<span class="st">'SR_B5'</span>)<span class="op">.</span><span class="fu">subtract</span>(clip<span class="op">.</span><span class="fu">select</span>(<span class="st">'SR_B6'</span>))</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">divide</span>(clip<span class="op">.</span><span class="fu">select</span>(<span class="st">'SR_B5'</span>)<span class="op">.</span><span class="fu">add</span>(clip<span class="op">.</span><span class="fu">select</span>(<span class="st">'SR_B6'</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The values go from -1 to 1, with the brown areas having the highest positive values. Again, most of the values are around 0 as the city has high building density. Nonetheless, the parks have high moisture value, with a strong brown colour.</p>
 <div class="quarto-figure quarto-figure-center">
@@ -387,7 +387,7 @@ background-size: cover;
 </section><section id="gci" class="level4"><h4 class="anchored" data-anchor-id="gci">GCI</h4>
 <p>The Green Chlorophyll Index is an index that we have not analysed before but mentioned before. We thought using it in this project would be interesting to see the results but also it’s implementation in GEE. It was initially used in for MODIS ( <span class="citation" data-cites="gitelson1996">Gitelson, Kaufman, and Merzlyak (<a href="references.html#ref-gitelson1996" role="doc-biblioref">1996</a>)</span> ) but as bands have similar characteristics between platforms, it can also be used on L-8.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>var GCI <span class="ot">=</span> <span class="fu">clip.select</span>(<span class="st">'SR_B5'</span>)<span class="fu">.divide</span>(<span class="fu">clip.select</span>(<span class="st">'SR_B5'</span>)<span class="fu">.add</span>(<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> GCI <span class="op">=</span> clip<span class="op">.</span><span class="fu">select</span>(<span class="st">'SR_B5'</span>)<span class="op">.</span><span class="fu">divide</span>(clip<span class="op">.</span><span class="fu">select</span>(<span class="st">'SR_B5'</span>)<span class="op">.</span><span class="fu">add</span>(<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Below we have the illustration of the GCI. The values range between -1 and 1, with bright red representing a value of 1. In the case of Paris, we see that the values are mainly pinkish, representative of an urban environment, which is to be expected in Paris.</p>
 <div class="quarto-figure quarto-figure-center">
@@ -400,6 +400,12 @@ background-size: cover;
 <p>This initial project was a very good opportunity to start getting accustomed to using JS and putting into practice. Although, I did not use much of my own code for this week (majoritarily inspired from <a href="https://andrewmaclachlan.github.io/CASA0023/5_GEE_I.html#pca">CASA0023</a> and web-sources), I was still able to understand local areas and tweak the code accordingly! I was also able to build on the band math, using indices such as NDMI as my understanding of Javascript and Bands has improved.</p>
 <p>I was able to also add mote interactivity in the presentation of my findings, notably when presenting my findings for PCA an illustrating this in an embedded Google Slides using HTML and ‘iframe’ directly.</p>
 <p>This was a very plentiful diary entry, as it has given me many ideas but also shown me the GEE has many options which I want to look into. Notably looking at the evolution of areas over time, with examples in mind aiming to show how global warming, droughts and overconsumption have let to considerable changes in water levels in certain areas (i.e.&nbsp;lake, reservoir, damn etc.)</p>
+<p>One striking example that inspired me was looking at the evolution of Las Vegas over the years, through its unwelcoming climate setting (i.e.&nbsp;in the desert) but which still witnessed considerable growth over the past half century.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="Week_5/vegas_example.gif" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption"><a href="(https://www.vox.com/2015/5/1/8529995/satellite-timelapse-images-video)">Evolution</a> of Las Vegas though Satellite Imagery</figcaption><p></p>
+</figure>
+</div>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">

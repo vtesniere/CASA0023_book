@@ -102,7 +102,7 @@ background-size: cover;
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/vtesniere/CASA0023_book"><i class="bi bi-github" role="img" aria-label="Source Code">
+    <a class="nav-link" href="https://github.com/vtesniere/CASA0023_book"><i class="bi bi-github" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
@@ -245,6 +245,7 @@ background-size: cover;
    
   <ul>
   <li><a href="#setting-the-area-in-gee" id="toc-setting-the-area-in-gee" class="nav-link active" data-scroll-target="#setting-the-area-in-gee"><span class="toc-section-number">2</span>  Setting the area in GEE</a></li>
+  <li><a href="#personal-reflection" id="toc-personal-reflection" class="nav-link" data-scroll-target="#personal-reflection"><span class="toc-section-number">3</span>  Personal Reflection</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/vtesniere/CASA0023_book/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -260,12 +261,24 @@ background-size: cover;
 <p>For this entry, we focus on atmospheric correction in GEE, with specific on the Wollongong area, in New South Wales Australia. We initailly chose this region because the name is particularly interesting but also has the advantage of having interesting characteristics. It is surrounded by the ocean on the east, wilderness on the western side and urban areas in Wollongong itself, making the ground contrast interesting to analyse.</p>
 <section id="setting-the-area-in-gee" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Setting the area in GEE</h1>
-<p>We managed to clip the relevant area from the GAUL data set and <a href="https://stackoverflow.com/questions/61220828/how-to-clip-an-image-collection-to-a-feature-collections-geometry">user forums</a>. This is interesting as we used the clip directly when defining the mask instead of clipping the image separately. The JS code format is as follows:</p>
-<pre data-echo="FALSE," data-eval="FALSE"><code>var waytwo = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED')
-                  .filterDate('2022-01-01', '2022-10-31')
-                  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE',20))
-                  .map(maskS2clouds)
-                  .map(function(image){return image.clip(wollo)});</code></pre>
+</section>
+<section id="personal-reflection" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Personal Reflection</h1>
+<p>This entry allowed to further delve into the technical side of GEE.</p>
+<p>Initially, we managed to clip the relevant area from the GAUL data set and <a href="https://stackoverflow.com/questions/61220828/how-to-clip-an-image-collection-to-a-feature-collections-geometry">user forums</a>. This is interesting as we used the clip directly when defining the mask instead of clipping the image separately. The JS code format is as follows:</p>
+<p><code>{javascript eval=FALSE} var waytwo = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED')                   .filterDate('2022-01-01', '2022-10-31')                   .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE',20))                   .map(maskS2clouds)                   // clips the images and applies it over the image collection                   .map(function(image){return image.clip(wollo)});</code></p>
+<p>Issues were encountered when trying to understand how to make the CART model for classification work. When running the above code, although we managed to clip the image an create the wished layer, we could not get the input to work when getting the cart model. We got the below error:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Week_6/clip_error.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Clip Error Example - GEE Console</figcaption><p></p>
+</figure>
+</div>
+<p>To counter this, in the JS code, it is important to make the relevant variables as functions in order to apply certain characteristics, such as clipping which works using base commands such as <code>.median()</code>:</p>
+<p>```{javascript eval = False} // in this example, ‘wollo’ is the shapefile for the project, wollongong // data here collected from Sentinel-2 var waytwo = ee.ImageCollection(‘COPERNICUS/S2_SR_HARMONIZED’) .filterDate(‘2022-01-01’, ‘2022-10-31’) .filterBounds(wollo) .filter(ee.Filter.lt(‘CLOUDY_PIXEL_PERCENTAGE’,20));</p>
+<p>// initially we tried making the object work using // where maskS2clouds is a cloud cover function var waytwo_masked = waytwo.map(maskS2clouds) // this does not work as the variable is not a function, but when adding the median() argument, this is no longer an issue // also allows for the removal of clouds as it takes the middle value of each pixel var waytwo_masked = waytwo.map(maskS2clouds).median();</p>
+<p>var waytwo_clip = waytwo_masked.clip(wollo) ```</p>
+<p>Although this took a while to figure out, trial and error has allowed to better understand how the different functions and notations work in Javascript which will be useful for following analysis.</p>
 
 
 </section>

@@ -21,7 +21,7 @@ var waytwo = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED')
                   .map(function(image){return image.clip(wollo)});
 ```
 
-Issues were encountered when trying to understand how to make the CART model for classification work. When running the above code; although we managed to clip the image an create the wished layer, we could not get the input to work when getting the cart model. We got the below error:
+Issues were encountered when trying to understand how to make the CART model for classification work. When running the above code, although we managed to clip the image an create the wished layer, we could not get the input to work when getting the cart model. We got the below error:
 
 ![Clip Error Example - GEE Console](Week_6/clip_error.png)
 
@@ -44,3 +44,5 @@ var waytwo_masked = waytwo.map(maskS2clouds).median();
 
 var waytwo_clip = waytwo_masked.clip(wollo)
 ```
+
+Although this took a while to figure out, trial and error has allowed to better understand how the different functions and notations work in Javascript which will be useful for following analysis.
