@@ -100,3 +100,7 @@ This initial project was a very good opportunity to start getting accustomed to 
 I was able to also add mote interactivity in the presentation of my findings, notably when presenting my findings for PCA an illustrating this in an embedded Google Slides using HTML and 'iframe' directly.
 
 This was a very plentiful diary entry, as it has given me many ideas but also shown me the GEE has many options which I want to look into. Notably looking at the evolution of areas over time, with examples in mind aiming to show how global warming, droughts and overconsumption have let to considerable changes in water levels in certain areas (i.e. lake, reservoir, damn etc.)
+
+One striking example that inspired me was looking at the evolution of Las Vegas over the years, through its unwelcoming climate setting (i.e. in the desert) but which still witnessed considerable growth over the past half century.
+
+![Evolution of Las Vegas though Satellite Imagery](https://www.vox.com/2015/5/1/8529995/satellite-timelapse-images-video)
