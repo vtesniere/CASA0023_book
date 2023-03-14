@@ -20,6 +20,25 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -102,7 +121,7 @@ background-size: cover;
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/vtesniere/CASA0023_book"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/vtesniere/CASA0023_book"><i class="bi bi-github" role="img" aria-label="Source Code">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
@@ -244,8 +263,12 @@ background-size: cover;
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#setting-the-area-in-gee" id="toc-setting-the-area-in-gee" class="nav-link active" data-scroll-target="#setting-the-area-in-gee"><span class="toc-section-number">2</span>  Setting the area in GEE</a></li>
-  <li><a href="#personal-reflection" id="toc-personal-reflection" class="nav-link" data-scroll-target="#personal-reflection"><span class="toc-section-number">3</span>  Personal Reflection</a></li>
+  <li><a href="#setting-the-area-in-gee" id="toc-setting-the-area-in-gee" class="nav-link active" data-scroll-target="#setting-the-area-in-gee"><span class="toc-section-number">2</span>  Setting the area in GEE</a>
+  <ul class="collapse">
+  <li><a href="#understanding-how-the-cloud-mask-works" id="toc-understanding-how-the-cloud-mask-works" class="nav-link" data-scroll-target="#understanding-how-the-cloud-mask-works"><span class="toc-section-number">2.1</span>  Understanding how the cloud mask works</a></li>
+  </ul></li>
+  <li><a href="#classification" id="toc-classification" class="nav-link" data-scroll-target="#classification"><span class="toc-section-number">3</span>  Classification</a></li>
+  <li><a href="#personal-reflection" id="toc-personal-reflection" class="nav-link" data-scroll-target="#personal-reflection"><span class="toc-section-number">4</span>  Personal Reflection</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/vtesniere/CASA0023_book/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -258,12 +281,63 @@ background-size: cover;
 <div style="text-align: justify">
 
 
-<p>For this entry, we focus on atmospheric correction in GEE, with specific on the Wollongong area, in New South Wales Australia. We initailly chose this region because the name is particularly interesting but also has the advantage of having interesting characteristics. It is surrounded by the ocean on the east, wilderness on the western side and urban areas in Wollongong itself, making the ground contrast interesting to analyse.</p>
+<p>For this entry, we focus on atmospheric correction in GEE, with specific on the Wollongong area, in New South Wales Australia. We initially chose this region because the name is particularly interesting but also has the advantage of having interesting characteristics:</p>
+<ul>
+<li><p>is surrounded by the ocean on the east</p></li>
+<li><p>wilderness on the western side</p></li>
+<li><p>urban areas in Wollongong itself, providing ground contrast interesting to analyse.</p></li>
+</ul>
 <section id="setting-the-area-in-gee" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Setting the area in GEE</h1>
+<p>We start of our analysis by getting a simple view of the studied area. Here, we have Wollongong illustrated through S-2 with images collected between January and October 2022. In this case, we selected images with less than <strong>1%</strong> cloud cover, which allows up to not need to implement a cloud mask but provide a clear image of the area:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Week_6/wollo_low_cloud_cover.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Wollongong Clipped with Low Cloud Images Input</figcaption><p></p>
+</figure>
+</div>
+<p>Whilst this method allows for clear images, when studying an area these might not always be available. For example, the study area might not have sufficient low cloud-cover images as the research is time specific (i.e.&nbsp;focused on a specific time period). For this reason, the below image is the result we have when include images with up to <strong>20%</strong> cloud cover:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Week_6/wollo_clouds.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Wollongong with clouds</figcaption><p></p>
+</figure>
+</div>
+<section id="understanding-how-the-cloud-mask-works" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="understanding-how-the-cloud-mask-works"><span class="header-section-number">2.1</span> Understanding how the cloud mask works</h2>
+<p>The urban area of Wollongong is particularly covered in clouds, so-much so that none of the urban area is visible. To counter this, we use a cloud mask which uses the <strong>QA60 band</strong>, where the QA stands for ‘Quality Assurance’ and 60 refers to the granularity of the image, with 60m spatial resolution <a href="https://philippgaertner.github.io/2020/08/percent-cloud-cover/">source</a>. It has two possible values, bit 10 and bit 11 which respectively to opaque and cirrus clouds. Using this band has been particularly successful in developing automatic cloud models for S-2 in GEE ( <span class="citation" data-cites="li2022">Li et al. (<a href="references.html#ref-li2022" role="doc-biblioref">2022</a>)</span> ).</p>
+<p>In addition to the mask, we take the median value of the pixel and apply it as a value. This allows the removal of the clouds whilst also keeping the image information.</p>
+<p><strong>NOTE:</strong> we acknowledge that other methods which are more efficient exist, as some information is lost with the ‘median’ method. We attempted to use a <a href="https://code.earthengine.google.com/?scriptPath=Examples%3ACloud%20Masking%2FSentinel2%20Cloud%20And%20Shadow">GEE community provided example</a> of s2cloudless but was unsuccessful as we recurring memory limit issues.</p>
+<p>When applying the respective cloud masking function, we get the following result:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Week_6/wollo_cloud_msk_polygons.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Successful Cloud Masking Output</figcaption><p></p>
+</figure>
+</div>
+<p>We see a significant improvement in the results, with no more clouds appearing in the image. The polygons included above serve as reference areas for the classifications we with to use.</p>
+<p>The colours refer to:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Week_6/polygon_index.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Polygon Index</figcaption><p></p>
+</figure>
+</div>
 </section>
-<section id="personal-reflection" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Personal Reflection</h1>
+</section>
+<section id="classification" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Classification</h1>
+<p>By selecting the reference area polygons, we use this as ground truths in classifier models. These serve as reference areas by which our Random-forest will predict in which category areas outside our reference polygons belong:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Week_6/Random_forest.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Random Forest Classification of Wollongong ground areas</figcaption><p></p>
+</figure>
+</div>
+<p><strong>In this case and all following classification analysis, ‘grey’, ‘blue’, ‘white’, ‘black’, ‘green’ are respectively urban low, water, high urban, farmland and forest areas!</strong></p>
+</section>
+<section id="personal-reflection" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Personal Reflection</h1>
 <p>This entry allowed to further delve into the technical side of GEE.</p>
 <p>Initially, we managed to clip the relevant area from the GAUL data set and <a href="https://stackoverflow.com/questions/61220828/how-to-clip-an-image-collection-to-a-feature-collections-geometry">user forums</a>. This is interesting as we used the clip directly when defining the mask instead of clipping the image separately. The JS code format is as follows:</p>
 <p><code>{javascript eval=FALSE} var waytwo = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED')                   .filterDate('2022-01-01', '2022-10-31')                   .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE',20))                   .map(maskS2clouds)                   // clips the images and applies it over the image collection                   .map(function(image){return image.clip(wollo)});</code></p>
@@ -281,6 +355,11 @@ background-size: cover;
 <p>Although this took a while to figure out, trial and error has allowed to better understand how the different functions and notations work in Javascript which will be useful for following analysis.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
+<div id="ref-li2022" class="csl-entry" role="doc-biblioentry">
+Li, Jianfeng, Luyao Wang, Siqi Liu, Biao Peng, and Huping Ye. 2022. <span>“An Automatic Cloud Detection Model for Sentinel-2 Imagery Based on Google Earth Engine.”</span> <em>Remote Sensing Letters</em> 13 (2): 196–206. <a href="https://doi.org/10.1080/2150704X.2021.1988753">https://doi.org/10.1080/2150704X.2021.1988753</a>.
+</div>
+</div>
 </section>
 
 </div></main> <!-- /main -->

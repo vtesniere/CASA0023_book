@@ -2,9 +2,49 @@
 
 # Corrections in GEE - Part 1
 
-For this entry, we focus on atmospheric correction in GEE, with specific on the Wollongong area, in New South Wales Australia. We initailly chose this region because the name is particularly interesting but also has the advantage of having interesting characteristics. It is surrounded by the ocean on the east, wilderness on the western side and urban areas in Wollongong itself, making the ground contrast interesting to analyse.
+For this entry, we focus on atmospheric correction in GEE, with specific on the Wollongong area, in New South Wales Australia. We initially chose this region because the name is particularly interesting but also has the advantage of having interesting characteristics:
+
+-   is surrounded by the ocean on the east
+
+-   wilderness on the western side
+
+-   urban areas in Wollongong itself, providing ground contrast interesting to analyse.
 
 # Setting the area in GEE
+
+We start of our analysis by getting a simple view of the studied area. Here, we have Wollongong illustrated through S-2 with images collected between January and October 2022. In this case, we selected images with less than **1%** cloud cover, which allows up to not need to implement a cloud mask but provide a clear image of the area:
+
+![Wollongong Clipped with Low Cloud Images Input](Week_6/wollo_low_cloud_cover.png)
+
+Whilst this method allows for clear images, when studying an area these might not always be available. For example, the study area might not have sufficient low cloud-cover images as the research is time specific (i.e. focused on a specific time period). For this reason, the below image is the result we have when include images with up to **20%** cloud cover:
+
+![Wollongong with clouds](Week_6/wollo_clouds.png)
+
+## Understanding how the cloud mask works
+
+The urban area of Wollongong is particularly covered in clouds, so-much so that none of the urban area is visible. To counter this, we use a cloud mask which uses the **QA60 band**, where the QA stands for 'Quality Assurance' and 60 refers to the granularity of the image, with 60m spatial resolution [source](https://philippgaertner.github.io/2020/08/percent-cloud-cover/). It has two possible values, bit 10 and bit 11 which respectively to opaque and cirrus clouds. Using this band has been particularly successful in developing automatic cloud models for S-2 in GEE ( @li2022 ).
+
+In addition to the mask, we take the median value of the pixel and apply it as a value. This allows the removal of the clouds whilst also keeping the image information.
+
+**NOTE:** we acknowledge that other methods which are more efficient exist, as some information is lost with the 'median' method. We attempted to use a [GEE community provided example](https://code.earthengine.google.com/?scriptPath=Examples%3ACloud%20Masking%2FSentinel2%20Cloud%20And%20Shadow) of s2cloudless but was unsuccessful as we recurring memory limit issues.
+
+When applying the respective cloud masking function, we get the following result:
+
+![Successful Cloud Masking Output](Week_6/wollo_cloud_msk_polygons.png)
+
+We see a significant improvement in the results, with no more clouds appearing in the image. The polygons included above serve as reference areas for the classifications we with to use.
+
+The colours refer to:
+
+![Polygon Index](Week_6/polygon_index.png)
+
+# Classification
+
+By selecting the reference area polygons, we use this as ground truths in classifier models. These serve as reference areas by which our Random-forest will predict in which category areas outside our reference polygons belong:
+
+![Random Forest Classification of Wollongong ground areas](Week_6/Random_forest.png)
+
+**In this case and all following classification analysis, 'grey', 'blue', 'white', 'black', 'green' are respectively urban low, water, high urban, farmland and forest areas!**
 
 # Personal Reflection
 
