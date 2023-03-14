@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>CASA0023 Learning Diary - Common Remote Sensing Abbreviations!</title>
+<title>CASA0023 Learning Diary - 1&nbsp; Corrections in GEE - Part 1</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,25 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
 </style>
 
 
@@ -49,8 +30,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./intro.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./summary.html" rel="next">
+<link href="./GEE_intro.html" rel="prev">
 <link href="./img/UCL_square.jpeg" rel="icon" type="image/jpeg">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -98,7 +79,6 @@ background-size: cover;
     }
     </style>
 
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -122,7 +102,7 @@ background-size: cover;
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/vtesniere/CASA0023_book"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/vtesniere/CASA0023_book"><i class="bi bi-github" role="img" aria-label="Source Code">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
@@ -136,7 +116,7 @@ background-size: cover;
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Common Remote Sensing Abbreviations!</h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Corrections in GEE - Part 1</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -147,7 +127,7 @@ background-size: cover;
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title d-none d-lg-block">Common Remote Sensing Abbreviations!</h1>
+      <h1 class="title d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Corrections in GEE - Part 1</span></h1>
                       </div>
   </div>
     
@@ -185,7 +165,7 @@ background-size: cover;
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./abbreviations.html" class="sidebar-item-text sidebar-link active">Common Remote Sensing Abbreviations!</a>
+  <a href="./abbreviations.html" class="sidebar-item-text sidebar-link">Common Remote Sensing Abbreviations!</a>
   </div>
 </li>
       </ul>
@@ -230,7 +210,7 @@ background-size: cover;
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./correction_GEE_1.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Corrections in GEE - Part 1</span></a>
+  <a href="./correction_GEE_1.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Corrections in GEE - Part 1</span></a>
   </div>
 </li>
       </ul>
@@ -260,7 +240,13 @@ background-size: cover;
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#setting-the-area-in-gee" id="toc-setting-the-area-in-gee" class="nav-link active" data-scroll-target="#setting-the-area-in-gee"><span class="toc-section-number">2</span>  Setting the area in GEE</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/vtesniere/CASA0023_book/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -271,43 +257,18 @@ background-size: cover;
 <div style="text-align: justify">
 
 
-<p>As remote sensing can get quite complex in terms of nomenclature, this abbreviation index can come in handy when potential concept explanations are not clear!</p>
-<ul>
-<li><p><strong>RBG</strong> : Red, Blue Green</p></li>
-<li><p><strong>TOA</strong> : Top of Atmosphere</p></li>
-<li><p><strong>L-8</strong> : Landsat-8 Satellite</p></li>
-<li><p><strong>S-2</strong> : Sentinel-2</p></li>
-<li><p><strong>GEE</strong> : Google Earth Engine</p></li>
-<li><p><strong>SNAP</strong> : Sentinel Application Platform is provided by the ESA/ESRIN and allows the Earth Observation Community with a free tool to process and analyse satellite imagery. It has the advantage of providing InSAR Processing capabilities, <a href="https://gis.stackexchange.com/questions/348182/does-google-earth-engine-have-insar-processing-capabilities-for-sentinel-1-data#:~:text=The%20answer%20is%20no.,flexible%20python%2Dbased%20InSAR%20toolboxes">which is not yet the case with GEE</a></p></li>
-<li><p><strong>POI</strong> : Points of Interest - these are points that are representative of certain land-cover types and allows for comparison between platforms. This was for example used in the <a href="https://vtesniere.github.io/CASA0023_book/intro.html#Selecting-our-Points-of-Interest">Bucharest Analysis</a> where we used reference area for water, green area and industrial area to compare L-8 and S-2 imagery.</p></li>
-<li><p><strong>ESA</strong> : European Space Agency</p></li>
-<li><p><strong>ESRIN</strong> : ESA center for earth Observation created in 1966 and currently based in Frascati, Italy</p></li>
-<li><p><strong>SWIR</strong> : Short-wave infrared, part of the electromagnetic spectrum and allows for identification of objects invisible to the human eye and traditional multi-spectral bands. It can allow for the identification of certain terrain characteristics (i.e.&nbsp;certain bands in SWIR is more highly absorbed by water bodies). Ranges from 1.4 to 3 µm (micrometers)</p></li>
-<li><p><strong>NIR</strong> : Near infra-red</p></li>
-<li><p><strong>DOS</strong> : Dark Object Subtraction - Method to correct raw satellite imagery by considering the true value of the darkest pixel in the image as 0. If this is not the value of said pixel, this is attributed to variations caused by the atmosphere</p></li>
-<li><p><strong>NDVI</strong> : Normalised Difference Vegetation Index - Index determining the density of live vegetation in a particular area. The formula for this is: <span class="math display">\[NDVI= \frac{NIR-Red}{NIR+Red}= \frac{Landsat B5 - Landsat B4} {Landsat B5 + Landsat B4}\]</span> The values range between -1 and 1: 0.1 and below considered low values, between 0.2 and 0.5 moderate values (i.e.&nbsp;shrubs and grass-land) and high values between 0.6 and 0.9 (typically dense vegetation, forests, fertile crops) <span class="citation" data-cites="ndvith"><span>“NDVI, the Foundation for Remote Sensing Phenology | u.s. Geological Survey”</span> (<a href="references.html#ref-ndvith" role="doc-biblioref">n.d.</a>)</span></p></li>
-<li><p><strong>NDMI</strong> : Normalised Difference Moisture Index - Similar methodology and interpretation to NDVI but here determines vegetation water content <span class="citation" data-cites="normaliz"><span>“Normalized Difference Moisture Index | u.s. Geological Survey”</span> (<a href="references.html#ref-normaliz" role="doc-biblioref">n.d.</a>)</span> . For Landsat 8-9, the formula is as follows: <span class="math display">\[NDMI= \frac{NIR-SWIR}{NIR+SWIR}= \frac{Landsat B5 - Landsat B6} {Landsat B5 + Landsat B6}\]</span></p></li>
-<li><p><strong>IFOV</strong> : Instantaneous Field of View</p></li>
-<li><p><strong>SAR</strong> : Synthetic Aperture Radar</p></li>
-<li><p><strong>Nadir</strong> : celestial sphere directly below an observer</p></li>
-<li><p><strong>Azimuth</strong> : the direction of a celestial object from the observer, calculated through distance from horizon from a cardinal point (usually north or south)</p></li>
-<li><p><strong>PCA</strong> : Principal Component Analysis - is a method of unsupervised learning which aims to reduce the number of dimensions whilst still keeping most of the information. In remote sensing this is particularly useful as it can help understand and visualise where changes in terrain characteristics have taken place ( <span class="citation" data-cites="munyati2004">Munyati (<a href="references.html#ref-munyati2004" role="doc-biblioref">2004</a>)</span> )</p></li>
-<li><p><strong>GLCM</strong> : gray-level co-occurrence matrix which is a method that examines textures whilst considering the spatial relationship of the pixels. Several different methods can be applied which prioritize different pixel characteristics (i.e.&nbsp;homogeneity, contrasts etc.)</p></li>
-<li><p><strong>GAUL</strong> : Global Administrative Unit Layers - unique name and code for all administrative area globally, with level 1 for countries and lower levels for more granular breakdowns. This initiative was started by the FOA (Food and Agriculture Organization) and now used open-access in GEE.</p></li>
-</ul>
+<p>For this entry, we focus on atmospheric correction in GEE, with specific on the Wollongong area, in New South Wales Australia. We initailly chose this region because the name is particularly interesting but also has the advantage of having interesting characteristics. It is surrounded by the ocean on the east, wilderness on the western side and urban areas in Wollongong itself, making the ground contrast interesting to analyse.</p>
+<section id="setting-the-area-in-gee" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Setting the area in GEE</h1>
+<p>We managed to clip the relevant area from the GAUL data set and <a href="https://stackoverflow.com/questions/61220828/how-to-clip-an-image-collection-to-a-feature-collections-geometry">user forums</a>. This is interesting as we used the clip directly when defining the mask instead of clipping the image separately. The JS code format is as follows:</p>
+<pre data-echo="FALSE," data-eval="FALSE"><code>var waytwo = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED')
+                  .filterDate('2022-01-01', '2022-10-31')
+                  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE',20))
+                  .map(maskS2clouds)
+                  .map(function(image){return image.clip(wollo)});</code></pre>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
-<div id="ref-munyati2004" class="csl-entry" role="doc-biblioentry">
-Munyati, Christopher. 2004. <span>“Use of Principal Component Analysis (PCA) of Remote Sensing Images in Wetland Change Detection on the Kafue Flats, Zambia.”</span> <em>Geocarto International</em> 19 (3): 11–22. <a href="https://doi.org/10.1080/10106040408542313">https://doi.org/10.1080/10106040408542313</a>.
-</div>
-<div id="ref-ndvith" class="csl-entry" role="doc-biblioentry">
-<span>“NDVI, the Foundation for Remote Sensing Phenology | u.s. Geological Survey.”</span> n.d. <a href="https://www.usgs.gov/special-topics/remote-sensing-phenology/science/ndvi-foundation-remote-sensing-phenology">https://www.usgs.gov/special-topics/remote-sensing-phenology/science/ndvi-foundation-remote-sensing-phenology</a>.
-</div>
-<div id="ref-normaliz" class="csl-entry" role="doc-biblioentry">
-<span>“Normalized Difference Moisture Index | u.s. Geological Survey.”</span> n.d. <a href="https://www.usgs.gov/landsat-missions/normalized-difference-moisture-index">https://www.usgs.gov/landsat-missions/normalized-difference-moisture-index</a>.
-</div>
-</div>
+</section>
 
 </div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -560,13 +521,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introduction and Presentation</span>
+      <a href="./GEE_intro.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introduction to Google Earth Engine</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./intro.html" class="pagination-link">
-        <span class="nav-page-text">Introducing Remote Sensing - A Bucharest Analysis</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./summary.html" class="pagination-link">
+        <span class="nav-page-text">Policy</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

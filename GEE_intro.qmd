@@ -70,7 +70,7 @@ The Normalised Vegetation Index is the usual indicator of vegetation in an area.
 
 The Normalised Moisture Index allows to collect information on the amount of moisture in the soil. The bands are calculated as follows in GEE:
 
-```{r eval=FALSE}
+```{javascript eval=FALSE}
 var NDMI = clip.select('SR_B5').subtract(clip.select('SR_B6'))
   .divide(clip.select('SR_B5').add(clip.select('SR_B6')))
 ```
@@ -83,7 +83,7 @@ The values go from -1 to 1, with the brown areas having the highest positive val
 
 The Green Chlorophyll Index is an index that we have not analysed before but mentioned before. We thought using it in this project would be interesting to see the results but also it's implementation in GEE. It was initially used in for MODIS ( @gitelson1996 ) but as bands have similar characteristics between platforms, it can also be used on L-8.
 
-```{r eval=FALSE}
+```{javascript eval=FALSE}
 var GCI = clip.select('SR_B5').divide(clip.select('SR_B5').add(1))
 ```
 

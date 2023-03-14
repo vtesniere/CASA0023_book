@@ -1,0 +1,46 @@
+<div style="text-align: justify">
+
+# Corrections in GEE - Part 1
+
+For this entry, we focus on atmospheric correction in GEE, with specific on the Wollongong area, in New South Wales Australia. We initailly chose this region because the name is particularly interesting but also has the advantage of having interesting characteristics. It is surrounded by the ocean on the east, wilderness on the western side and urban areas in Wollongong itself, making the ground contrast interesting to analyse.
+
+# Setting the area in GEE
+
+# Personal Reflection
+
+This entry allowed to further delve into the technical side of GEE.
+
+Initially, we managed to clip the relevant area from the GAUL data set and [user forums](https://stackoverflow.com/questions/61220828/how-to-clip-an-image-collection-to-a-feature-collections-geometry). This is interesting as we used the clip directly when defining the mask instead of clipping the image separately. The JS code format is as follows:
+
+```{javascript eval=FALSE}
+var waytwo = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED')
+                  .filterDate('2022-01-01', '2022-10-31')
+                  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE',20))
+                  .map(maskS2clouds)
+                  // clips the images and applies it over the image collection
+                  .map(function(image){return image.clip(wollo)});
+```
+
+Issues were encountered when trying to understand how to make the CART model for classification work. When running the above code; although we managed to clip the image an create the wished layer, we could not get the input to work when getting the cart model. We got the below error:
+
+![Clip Error Example - GEE Console](Week_6/clip_error.png)
+
+To counter this, in the JS code, it is important to make the relevant variables as functions in order to apply certain characteristics, such as clipping which works using base commands such as `.median()`:
+
+```{javascript eval = False}
+// in this example, 'wollo' is the shapefile for the project, wollongong
+// data here collected from Sentinel-2
+var waytwo = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED')
+  .filterDate('2022-01-01', '2022-10-31')
+  .filterBounds(wollo)
+  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE',20));
+  
+// initially we tried making the object work using 
+// where maskS2clouds is a cloud cover function
+var waytwo_masked = waytwo.map(maskS2clouds)
+// this does not work as the variable is not a function, but when adding the median() argument, this is no longer an issue
+// also allows for the removal of clouds as it takes the middle value of each pixel
+var waytwo_masked = waytwo.map(maskS2clouds).median();
+
+var waytwo_clip = waytwo_masked.clip(wollo)
+```

@@ -38,6 +38,7 @@ book:
     - part: "GEE and Classification"
       chapters: 
         - GEE_intro.qmd
+        - correction_GEE_1.qmd
     - part: "Discussing Policy"
       chapters:
       - summary.qmd
