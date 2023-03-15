@@ -1,6 +1,6 @@
 <div style="text-align: justify">
 
-# Corrections in GEE - Part 1
+# Corrections in GEE - Part 1 {.unnumbered}
 
 For this entry, we focus on atmospheric correction in GEE, with specific on the Wollongong area, in New South Wales Australia. We initially chose this region because the name is particularly interesting but also has the advantage of having interesting characteristics:
 
@@ -20,7 +20,7 @@ Whilst this method allows for clear images, when studying an area these might no
 
 ![Wollongong with clouds](Week_6/wollo_clouds.png)
 
-## Understanding how the cloud mask works
+## Understanding how cloud mask works
 
 The urban area of Wollongong is particularly covered in clouds, so-much so that none of the urban area is visible. To counter this, we use a cloud mask which uses the **QA60 band**, where the QA stands for 'Quality Assurance' and 60 refers to the granularity of the image, with 60m spatial resolution [source](https://philippgaertner.github.io/2020/08/percent-cloud-cover/). It has two possible values, bit 10 and bit 11 which respectively to opaque and cirrus clouds. Using this band has been particularly successful in developing automatic cloud models for S-2 in GEE ( @li2022 ).
 
@@ -40,19 +40,96 @@ The colours refer to:
 
 # Classification
 
+## Random Forest (RF)
+
+### At polygon level
+
 By selecting the reference area polygons, we use this as ground truths in classifier models. These serve as reference areas by which our Random-forest will predict in which category areas outside our reference polygons belong:
 
 ![Random Forest Classification of Wollongong ground areas](Week_6/Random_forest.png)
 
+Here, 70% of the data is in the training set, and 30% in the test. This means that 70% of the data is seen by the model, and then once the parameters are created, it tests it's efficiency on the remaining 30%, which remain unseen at that point.
+
 **In this case and all following classification analysis, 'grey', 'blue', 'white', 'black', 'green' are respectively urban low, water, high urban, farmland and forest areas!**
 
+### At pixel level
+
+As the previous analysis was conducted at polygon, some accuracy is lost as it is not as representative as taking it at pixel level. We decide to follow with this as it has the advantage of generally being more precise in most cases, especially urban areas. **Although**, this is not always the case, as heterogeneous or mountain tropical environments have had evidence where they perform better with object based modelling ( @silveira2019 ). We will compared the visual and numeric results from both classification approach methods:
+
+![Pixel Classification Approach](Week_6/pixel_classification.png)
+
+We see that the Pixel Classification approach is more precise that the Object based approach. Notable as the pixel based approach is more successful in categorising Farm Land areas (the black dots) which were in-existent in the object based approach.
+
+## CART (Classification and Regression Tree)
+
+We then proceed to run the same analysis for CART. We use the same methods as above for polygon and pixel level, putting 70% of the data in training and 30% in test. It has the advantage of automatically selecting the useful spectral data ( @lawrence ), making it easy to work with even for non-ML experts.
+
+Like for the RF, we initially use 10 nodes, meaning using trees with a maximum of 10 leaf nodes. These trees look something a little like this:
+
+![Example of how nodes in CART work](Week_6/leaf_example.jpeg)
+
+### At polygon level
+
+Our initial Cart output illustrates the model with object based references with 10 nodes.
+
+![CART polygon 10 nodes](Week_6/cart_10_nodes.png)
+
+We proceed to see how the results change when we add more granularity in the number of possible nodes, increasing this to 100.
+
+![CART polygon 100 nodes](Week_6/cart_100_nodes.png)
+
+Differences are visible between the different nodes in the object based analysis. Similar to the RF, there seems to be no black classification (farm land). This is likely due to the non-optimal reference area selecting by us, the user. Our farm-land area most likely encompasses too many topographical differences within the polygon, which does not allow for precise identification of farm-land through object based classification.
+
+Nonetheless, pixel level analysis allows us to make different insights
+
+### At pixel level
+
+![CART pixels 10 nodes](Week_6/cart_10_nodes_pixel.png)
+
+With 10 nodes at pixel level, we already see the appearance of the black dots, or representations of the farm-land categories. We increase the number of nodes to 100 to see if this betters the results.
+
+![Cart pixels 100 nodes](Week_6/cart_100_nodes_pixel.png)
+
+The classifications change depending on the number of nodes but we can not visually determine which method is best.
+
+We can do this numerically by comparing the training and validation accuracy between RF and CART for our study area Wollongong:
+
+```{r echo=FALSE}
+results <- matrix(c(0.9951065054691998, 0.8132372214941023, 0.7927461139896373, 0.7916120576671035, 0.842832469775475, 0.7876802096985583), ncol = 2, byrow = T)
+colnames(results) <- c('Training Accuracy','Validation Accuracy')
+rownames(results) <- c('Random Forest', 'CART (10 nodes)', 'CART (100 nodes)')
+tab <- as.data.frame(results)
+library(kableExtra)
+tab %>% kbl() %>% kable_styling()
+```
+
+We see that RF has the highest validation accuracy although it seems to have considerable over-fitting, with the accuracy decreasing by nearly **20%** between training and validations sets. This is not surprising as RF's tend to over-fit, and this is further accentuated by our non-optimal reference object choices ( @tang2018 ).
+
 # Personal Reflection
+
+## Correction Analysis methods
+
+This entry was quite insightful in terms of technical understanding in remote sensing image processing and correction. Notably introducing ML techniques that are CART and RF's. The insights found were interesting, especially with the models correctly identifying various ground characteristics, such as the rivers which coincide with the existing topography.
+
+It was interesting to compare these different techniques, playing around with the different techniques (RF vs CART) but also looking at various parameters such as the number of nodes and reference methods (object based vs pixel).
+
+In future, now that we are more familiar with the methods, we look into getting more precise models. We would do so by paying attention to the **hyper-parameters** tuning strategies in order to optimise the outcomes ( @probst2019 ) whilst still keeping it computationally efficient. This includes, but not limited to:
+
+-   minimum number of samples a node must contain
+
+-   maximum number of nodes per branch
+
+-   defining a splitting rule (which optimises Gini Impurity in classification, determining how a feature should split the data when forming the tree)
+
+Finally, we also acknowledge the black box elements to these statistical methods used for analysis. Black boxes are systems that their internal logic to the user ( @guidotti2019 ) which make certain results, although correct, difficult to precisely explain.
+
+## GEE Technicalities
 
 This entry allowed to further delve into the technical side of GEE.
 
 Initially, we managed to clip the relevant area from the GAUL data set and [user forums](https://stackoverflow.com/questions/61220828/how-to-clip-an-image-collection-to-a-feature-collections-geometry). This is interesting as we used the clip directly when defining the mask instead of clipping the image separately. The JS code format is as follows:
 
-```{javascript eval=FALSE}
+```{javascript, eval=FALSE}
 var waytwo = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED')
                   .filterDate('2022-01-01', '2022-10-31')
                   .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE',20))
@@ -67,7 +144,7 @@ Issues were encountered when trying to understand how to make the CART model for
 
 To counter this, in the JS code, it is important to make the relevant variables as functions in order to apply certain characteristics, such as clipping which works using base commands such as `.median()`:
 
-```{javascript eval = False}
+```{javascript eval = FALSE}
 // in this example, 'wollo' is the shapefile for the project, wollongong
 // data here collected from Sentinel-2
 var waytwo = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED')
