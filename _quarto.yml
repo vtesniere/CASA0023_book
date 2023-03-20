@@ -20,7 +20,7 @@ book:
     style: docked
     reader-mode: true
   repo-url: https://github.com/vtesniere/CASA0023_book
-  repo-actions: issue
+  repo-actions: [issue]
   google-analytics:
     tracking-id: "G-5LZK055F2X"
     anonymize-ip: true
