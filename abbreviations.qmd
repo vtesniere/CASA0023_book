@@ -51,3 +51,5 @@ As remote sensing can get quite complex in terms of nomenclature, this abbreviat
     -   classification methods: method for mapping binary decisions that lead to a decision about the class (interpretation) of an object
 
     -   regression methods: modelling relationship between one or mode variables in a linear manner
+
+-   **LULC** : Land-Use Land-Cover - indicates the visible surface of land whist also indicating the socio-economic dimension (e.g. forestry, agriculture, residential etc.). In order for successful understanding of this tool, is it important to have data availability in order to show how these evolve over time, they are time sensitive ( @phan2021 )

@@ -1,0 +1,51 @@
+<div style="text-align: justify">
+
+```{r echo = FALSE}
+tippy::tippy_this(elementId = "LULC", tooltip = "indicates the visible surface of land whist also indicating the socio-economic dimension (e.g. forestry, agriculture, residential etc.)")
+```
+
+# Corrections in GEE - Part 2 {.unnumbered}
+
+## Novel Techniques - Dynamic World Example
+
+In this entry, we look at some slightly more advanced and novel techniques of classifications and topography understanding techniques, facilitated through GEE. A primary example of this is the [Dynamic World](https://dynamicworld.app/) project which aims to provide real-time data-sets of the physical material on the surfaces of the earth, compared to the traditional methods which had substantial lag times and were updated annually and inconsistent between image processing and data release ( @brown2022 ).
+
+This project implementation has been successful and personally believe that the framework will be successful for better understanding of our environment. Dynamic world provides more detailed data than ever before which allows for better understanding of <u id='LULC'>LULC</u> and its evolution over time.
+
+# Defining the study area
+
+This week we decide to focus on a politically difficult and unstable area: Kosovo. As it is not a recognised country by all authorities, it is difficult to work with. In our case, the regions were considered part of Serbia and we had to find a workaround in order to make clear boundaries. We circle in red the areas which are currently considered as Kosovan territory:
+
+![Serbia with Level 1 boundaries](Week_7/serbia_full.png)
+
+Thanks to [community help](https://gis.stackexchange.com/questions/417564/how-to-get-union-of-multiple-polygons-in-google-earth-engine) we were able to get a union of multiple polygons through the following code with the `inList` argument allowing us to select multiple areas, which in our case delimitate Kosovo [(code available here)](https://code.earthengine.google.com/d3874a00d59a226671a201d4d7ab713e):
+
+```{javascript echo=FALSE}
+var filterAll = ee.Filter.inList('ADM1_NAME',
+['Kosovsko-pomoravski', 'Kosovski', 'Kosovsko-mitrovatski', 'Pecki', 'Prizremski']);
+var kosovo = ee.FeatureCollection(dataset.filter(filterAll)).geometry().dissolve()
+print(kosovo)
+Map.addLayer(kosovo, {}, "Kosovo")
+```
+
+Below we include Kosovo with both the district boundaries and with the boundaries of the country as a whole:
+
+```{r, echo=FALSE, composites, fig.cap="Kosovo Boundaries, with districts (left) and as whole coutnry (right)", fig.align='center', results='asis',fig.height=3, fig.width=6}
+knitr::opts_chunk$set(fig.pos = "H", out.extra = "")
+library(cowplot)
+ggdraw() + draw_image('Week_7/kosovo_no_boundaries.png', width = 0.5) + draw_image('Week_7/kosovo_boundaries.png', width = 0.5, x = 0.5)
+```
+
+# Using Landsat imagery
+
+We proceed to provide a true RBG image of the study area. We do so by selecting areas with less than 1% cloud cover. Yet, we realise that even within a large amount of time (between January and October 2022), there are certain tiles in the study area that do not have **any** observations with less than 1% cloud cover.
+
+-   we either take area over the same time period with less than 5%
+
+-   or we keep the 1% cutoff but we increase the study period to include January 2021 to October 2022)
+
+# Personal Reflection
+
+It was interesting to note that in the GAUL data-set available on GEE, **we cannot use 'Pristina'**, Kosovo's Capital, as a study area. Although internationally recognized, this area does not appear in neither Level 1 or 2 nomenclature, which was an interesting discovery and illustrates possible limitations in the use of GAUL and GEE.
+
+We also find some issues in the notation, as Kosovo is not recognised as a country, it makes working with the relevant shapefiles very difficult. The regions used to create the country shapefile were difficult to find and didn't really have much continuity. The relevant ADM1_name codes used for this are `'Kosovsko-pomoravski', 'Kosovski', 'Kosovsko-mitrovatski', 'Pecki', 'Prizremski'` but this is not logical notation, as it does not follow Kosovo's current nomenclature. For example, the capital region is called 'Kosovski' in the GAUL dataset and Serbian Authorities, but 'Pristina' by the Kosovo government.

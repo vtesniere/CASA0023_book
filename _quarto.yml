@@ -39,6 +39,7 @@ book:
       chapters: 
         - GEE_intro.qmd
         - correction_GEE_1.qmd
+        - correction_GEE_2.qmd
     - part: "Discussing Policy"
       chapters:
       - summary.qmd

@@ -8,6 +8,8 @@ Last updated: `r Sys.Date()`
 
 Vlad's Learning Diary and general thoughts on Remote Sensing Topics!
 
+In this diary, the topics cover all material from [CASA0023](https://andrewmaclachlan.github.io/CASA0023/) led by [Andrew Maclachlan](https://www.ucl.ac.uk/bartlett/casa/people/dr-andrew-maclachlan). There are no numbers in the entries of the diary as the aim of this blog is to provide an overview of the different techniques used in remote sensing. Although preferable to follow the blog entries in order, there should be sufficient information (with support from the '[Common Abbreviations](https://vtesniere.github.io/CASA0023_book/abbreviations.html)' entry) to understand each individually.
+
 test does it update
 
 ```{r echo=FALSE, out.width = "70%", fig.align='center', cache=TRUE, fig.cap="GitHub maximum file upload of 50mb. Source: [reddit r/ProgrammerHumor](https://www.reddit.com/r/ProgrammerHumor/comments/gm69za/my_girlfriend_crocheted_my_favourite_meme_as_a/)"}
