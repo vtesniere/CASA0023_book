@@ -11,7 +11,7 @@
     "href": "index.html#introduction-and-presentation",
     "title": "CASA0023 Learning Diary",
     "section": "Introduction and Presentation",
-    "text": "Introduction and Presentation\nVlad’s Learning Diary and general thoughts on Remote Sensing Topics!\ntest does it update\n\n\n\n\nGitHub maximum file upload of 50mb. Source: reddit r/ProgrammerHumor"
+    "text": "Introduction and Presentation\nVlad’s Learning Diary and general thoughts on Remote Sensing Topics!\nIn this diary, the topics cover all material from CASA0023 led by Andrew Maclachlan. There are no numbers in the entries of the diary as the aim of this blog is to provide an overview of the different techniques used in remote sensing. Although preferable to follow the blog entries in order, there should be sufficient information (with support from the ‘Common Abbreviations’ entry) to understand each individually.\ntest does it update\n\n\n\n\nGitHub maximum file upload of 50mb. Source: reddit r/ProgrammerHumor"
   },
   {
     "objectID": "intro.html",
@@ -207,7 +207,7 @@
     "href": "correction_GEE_2.html",
     "title": "Corrections in GEE - Part 2",
     "section": "",
-    "text": "Figuring the study area\nThis week we decide to focus on a politically difficult to categorise area: Kosovo. As it is not a recognised country by all authorities, it is difficult to work with. In our case, the regions were considered part of Serbia and we had to find a workaround in order to make clear boundaries. We circle in red the areas which are currently considered as Kosovan territory:\nThanks to community help we were able to get a union of multiple polygons through the following code with the inList argument allowing us to select multiple areas, which in our case delimitate Kosovo:\nBelow we include Kosovo with both the district boundaries and with the boundaries of the country as a whole:\nIt was interesting to note that in the GAUL data-set available on GEE, we cannot use ‘Pristina’, Kosovo’s Capital, as a study area. Although internationally recognized, this area does not appear in neither Level 1 or 2 nomenclature, which was an interesting discovery and illustrates possible limitations in the use of GAUL and GEE.\nWe also find some issues in the notation, as Kosovo is not recognised as a country, it makes working with the relevant shapefiles very difficult. The regions used to create the country shapefile were difficult to find and didn’t really have much continuity. The relevant ADM1_name codes used for this are 'Kosovsko-pomoravski', 'Kosovski', 'Kosovsko-mitrovatski', 'Pecki', 'Prizremski' but this is not logical notation, as it does not follow Kosovo’s current nomenclature. For example, the capital region is called ‘Kosovski’ in the GAUL dataset and Serbian Authorities, but ‘Pristina’ by the Kosovo government."
+    "text": "Defining the study area\nThis week we decide to focus on a politically difficult and unstable area: Kosovo. As it is not a recognised country by all authorities, it is difficult to work with. In our case, the regions were considered part of Serbia and we had to find a workaround in order to make clear boundaries. We circle in red the areas which are currently considered as Kosovan territory:\nThanks to community help we were able to get a union of multiple polygons through the following code with the inList argument allowing us to select multiple areas, which in our case delimitate Kosovo (code available here):\nBelow we include Kosovo with both the district boundaries and with the boundaries of the country as a whole:\nWe proceed to provide a true RBG image of the study area. We do so by selecting areas with less than 1% cloud cover. Yet, we realise that even within a large amount of time (between January and October 2022), there are certain tiles in the study area that do not have any observations with less than 1% cloud cover.\nWe decide to go with a study timeframe from January 2021 to October 2022, which provides us with a true cloudless image:"
   },
   {
     "objectID": "correction_GEE_2.html#novel-techniques---dynamic-world-example",
@@ -215,5 +215,26 @@
     "title": "Corrections in GEE - Part 2",
     "section": "Novel Techniques - Dynamic World Example",
     "text": "Novel Techniques - Dynamic World Example\nIn this entry, we look at some slightly more advanced and novel techniques of classifications and topography understanding techniques, facilitated through GEE. A primary example of this is the Dynamic World project which aims to provide real-time data-sets of the physical material on the surfaces of the earth, compared to the traditional methods which had substantial lag times and were updated annually and inconsistent between image processing and data release ( Brown et al. (2022) ).\nThis project implementation has been successful and personally believe that the framework will be successful for better understanding of our environment. Dynamic world provides more detailed data than ever before which allows for better understanding of LULC and its evolution over time."
+  },
+  {
+    "objectID": "correction_GEE_2.html#sub-pixel-classification",
+    "href": "correction_GEE_2.html#sub-pixel-classification",
+    "title": "Corrections in GEE - Part 2",
+    "section": "Sub-Pixel Classification",
+    "text": "Sub-Pixel Classification"
+  },
+  {
+    "objectID": "correction_GEE_2.html#study-area-issues",
+    "href": "correction_GEE_2.html#study-area-issues",
+    "title": "Corrections in GEE - Part 2",
+    "section": "Study Area issues",
+    "text": "Study Area issues\nIt was interesting to note that in the GAUL data-set available on GEE, we cannot use ‘Pristina’, Kosovo’s Capital, as a study area. Although internationally recognized, this area does not appear in neither Level 1 or 2 nomenclature, which was an interesting discovery and illustrates possible limitations in the use of GAUL and GEE.\nWe also find some issues in the notation, as Kosovo is not recognised as a country, it makes working with the relevant shapefiles very difficult. The regions used to create the country shapefile were difficult to find and didn’t really have much continuity. The relevant ADM1_name codes used for this are 'Kosovsko-pomoravski', 'Kosovski', 'Kosovsko-mitrovatski', 'Pecki', 'Prizremski' but this is not logical notation, as it does not follow Kosovo’s current nomenclature. For example, the capital region is called ‘Kosovski’ in the GAUL dataset and Serbian Authorities, but ‘Pristina’ by the Kosovo government."
+  },
+  {
+    "objectID": "correction_GEE_2.html#limitations-in-the-quality-of-the-model",
+    "href": "correction_GEE_2.html#limitations-in-the-quality-of-the-model",
+    "title": "Corrections in GEE - Part 2",
+    "section": "Limitations in the quality of the model",
+    "text": "Limitations in the quality of the model\nIn our case, by Selecting Kosovo, we took a country that has been under considerable political tension for the past decades. This entails population displacement and boundary issues, but it also influences the way in which people live in the country. For example, Kosovo has a low urbanization rate, at approx. 50%, (source: UN) compared to other European continent countries such as France and UK having higher rates at respectively 81% and 84% (source: Statista). This implies that in our sub-pixel analysis, and classification methods more generally, the urban areas are not as dense populated and do not represent perfectly an urban environment. Indeed, pixel in areas which we classy as urban may not be fully urban, meaning this could lead to certain miss-classificaitons.\nWe have an example of this in our analysis, near the “white drin” river, where the sub-pixel spectral unfixing indicates signs of urban settlements near the river, which is not the case when looking at direct satellite imagery:\n\n\n\n\nWhite drin river, with spectral unfixing (left and urban classified areas in red) and real colour (right) view\n\n\n\n\n\n\n\n\nBrown, Christopher F., Steven P. Brumby, Brookie Guzder-Williams, Tanya Birch, Samantha Brooks Hyde, Joseph Mazzariello, Wanda Czerwinski, et al. 2022. “Dynamic World, Near Real-Time Global 10 m Land Use Land Cover Mapping.” Scientific Data 9 (1): 251. https://doi.org/10.1038/s41597-022-01307-4."
   }
 ]

@@ -111,7 +111,7 @@ background-size: cover;
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
 <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/vtesniere/CASA0023_book"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/vtesniere/CASA0023_book"><i class="bi bi-github" role="img" aria-label="Source Code">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
@@ -249,8 +249,21 @@ background-size: cover;
    
   <ul>
 <li><a href="#novel-techniques---dynamic-world-example" id="toc-novel-techniques---dynamic-world-example" class="nav-link active" data-scroll-target="#novel-techniques---dynamic-world-example">Novel Techniques - Dynamic World Example</a></li>
-  <li><a href="#figuring-the-study-area" id="toc-figuring-the-study-area" class="nav-link" data-scroll-target="#figuring-the-study-area">Figuring the study area</a></li>
-  <li><a href="#personal-reflection" id="toc-personal-reflection" class="nav-link" data-scroll-target="#personal-reflection">Personal Reflection</a></li>
+  <li><a href="#defining-the-study-area" id="toc-defining-the-study-area" class="nav-link" data-scroll-target="#defining-the-study-area">Defining the study area</a></li>
+  <li><a href="#using-landsat-imagery" id="toc-using-landsat-imagery" class="nav-link" data-scroll-target="#using-landsat-imagery">Using Landsat imagery</a></li>
+  <li>
+<a href="#analysing-the-images" id="toc-analysing-the-images" class="nav-link" data-scroll-target="#analysing-the-images">Analysing the images</a>
+  <ul class="collapse">
+<li><a href="#sub-pixel-classification" id="toc-sub-pixel-classification" class="nav-link" data-scroll-target="#sub-pixel-classification">Sub-Pixel Classification</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#personal-reflection" id="toc-personal-reflection" class="nav-link" data-scroll-target="#personal-reflection">Personal Reflection</a>
+  <ul class="collapse">
+<li><a href="#study-area-issues" id="toc-study-area-issues" class="nav-link" data-scroll-target="#study-area-issues">Study Area issues</a></li>
+  <li><a href="#limitations-in-the-quality-of-the-model" id="toc-limitations-in-the-quality-of-the-model" class="nav-link" data-scroll-target="#limitations-in-the-quality-of-the-model">Limitations in the quality of the model</a></li>
+  </ul>
+</li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/vtesniere/CASA0023_book/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
@@ -259,21 +272,21 @@ background-size: cover;
 
 <div class="cell">
 <div class="cell-output-display">
-<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="464px" id="htmlwidget-a5f914f527b0bd858736" width="100%"></span>
-<script type="application/json" data-for="htmlwidget-a5f914f527b0bd858736">{"x":{"element":"LULC","opts":{"content":"indicates the visible surface of land whist also indicating the socio-economic dimension (e.g. forestry, agriculture, residential etc.)"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="464px" id="htmlwidget-5390d38505835639202e" width="100%"></span>
+<script type="application/json" data-for="htmlwidget-5390d38505835639202e">{"x":{"element":"LULC","opts":{"content":"indicates the visible surface of land whist also indicating the socio-economic dimension (e.g. forestry, agriculture, residential etc.)"}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <section id="novel-techniques---dynamic-world-example" class="level2"><h2 class="anchored" data-anchor-id="novel-techniques---dynamic-world-example">Novel Techniques - Dynamic World Example</h2>
 <p>In this entry, we look at some slightly more advanced and novel techniques of classifications and topography understanding techniques, facilitated through GEE. A primary example of this is the <a href="https://dynamicworld.app/">Dynamic World</a> project which aims to provide real-time data-sets of the physical material on the surfaces of the earth, compared to the traditional methods which had substantial lag times and were updated annually and inconsistent between image processing and data release ( <span class="citation" data-cites="brown2022">Brown et al. (<a href="references.html#ref-brown2022" role="doc-biblioref">2022</a>)</span> ).</p>
 <p>This project implementation has been successful and personally believe that the framework will be successful for better understanding of our environment. Dynamic world provides more detailed data than ever before which allows for better understanding of <u id="LULC">LULC</u> and its evolution over time.</p>
-</section><section id="figuring-the-study-area" class="level1"><h1>Figuring the study area</h1>
-<p>This week we decide to focus on a politically difficult to categorise area: Kosovo. As it is not a recognised country by all authorities, it is difficult to work with. In our case, the regions were considered part of Serbia and we had to find a workaround in order to make clear boundaries. We circle in red the areas which are currently considered as Kosovan territory:</p>
+</section><section id="defining-the-study-area" class="level1"><h1>Defining the study area</h1>
+<p>This week we decide to focus on a politically difficult and unstable area: Kosovo. As it is not a recognised country by all authorities, it is difficult to work with. In our case, the regions were considered part of Serbia and we had to find a workaround in order to make clear boundaries. We circle in red the areas which are currently considered as Kosovan territory:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="Week_7/serbia_full.png" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption">Serbia with Level 1 boundaries</figcaption><p></p>
 </figure>
 </div>
-<p>Thanks to <a href="https://gis.stackexchange.com/questions/417564/how-to-get-union-of-multiple-polygons-in-google-earth-engine">community help</a> we were able to get a union of multiple polygons through the following code with the <code>inList</code> argument allowing us to select multiple areas, which in our case delimitate Kosovo:</p>
+<p>Thanks to <a href="https://gis.stackexchange.com/questions/417564/how-to-get-union-of-multiple-polygons-in-google-earth-engine">community help</a> we were able to get a union of multiple polygons through the following code with the <code>inList</code> argument allowing us to select multiple areas, which in our case delimitate Kosovo <a href="https://code.earthengine.google.com/d3874a00d59a226671a201d4d7ab713e">(code available here)</a>:</p>
 <div class="cell">
 
 </div>
@@ -287,9 +300,56 @@ background-size: cover;
 </div>
 </div>
 </div>
-</section><section id="personal-reflection" class="level1"><h1>Personal Reflection</h1>
+</section><section id="using-landsat-imagery" class="level1"><h1>Using Landsat imagery</h1>
+<p>We proceed to provide a true RBG image of the study area. We do so by selecting areas with less than 1% cloud cover. Yet, we realise that even within a large amount of time (between January and October 2022), there are certain tiles in the study area that do not have <strong>any</strong> observations with less than 1% cloud cover.</p>
+<ul>
+<li>we keep the 1% cutoff but we increase the study period to include January 2021 to October 2022)
+<ul>
+<li>in this case we see that not all tiles for the study area are available</li>
+</ul>
+</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="Week_7/w_1pct_cloud.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">January to October 2022 with 1% cloud cover argument</figcaption><p></p>
+</figure>
+</div>
+<ul>
+<li>or we either take area over the same time period with less than 5%
+<ul>
+<li>in this case have considerable clouds on the left mountainous regions of Kosovo which could impede further analysis</li>
+</ul>
+</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="Week_7/w_5pct_cloud.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">With 5% cloud cover</figcaption><p></p>
+</figure>
+</div>
+<p>We decide to go with a study timeframe from <strong>January 2021 to October 2022</strong>, which provides us with a true cloudless image:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="Week_7/kosovo_RBG.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">True Colour RBG image Cloudless for Kosovo</figcaption><p></p>
+</figure>
+</div>
+</section><section id="analysing-the-images" class="level1"><h1>Analysing the images</h1>
+<section id="sub-pixel-classification" class="level2"><h2 class="anchored" data-anchor-id="sub-pixel-classification">Sub-Pixel Classification</h2>
+</section></section><section id="personal-reflection" class="level1"><h1>Personal Reflection</h1>
+<section id="study-area-issues" class="level2"><h2 class="anchored" data-anchor-id="study-area-issues">Study Area issues</h2>
 <p>It was interesting to note that in the GAUL data-set available on GEE, <strong>we cannot use ‘Pristina’</strong>, Kosovo’s Capital, as a study area. Although internationally recognized, this area does not appear in neither Level 1 or 2 nomenclature, which was an interesting discovery and illustrates possible limitations in the use of GAUL and GEE.</p>
 <p>We also find some issues in the notation, as Kosovo is not recognised as a country, it makes working with the relevant shapefiles very difficult. The regions used to create the country shapefile were difficult to find and didn’t really have much continuity. The relevant ADM1_name codes used for this are <code>'Kosovsko-pomoravski', 'Kosovski', 'Kosovsko-mitrovatski', 'Pecki', 'Prizremski'</code> but this is not logical notation, as it does not follow Kosovo’s current nomenclature. For example, the capital region is called ‘Kosovski’ in the GAUL dataset and Serbian Authorities, but ‘Pristina’ by the Kosovo government.</p>
+</section><section id="limitations-in-the-quality-of-the-model" class="level2"><h2 class="anchored" data-anchor-id="limitations-in-the-quality-of-the-model">Limitations in the quality of the model</h2>
+<p>In our case, by Selecting Kosovo, we took a country that has been under considerable political tension for the past decades. This entails population displacement and boundary issues, but it also influences the way in which people live in the country. For example, Kosovo has a low urbanization rate, at approx. 50%, (source: <a href="https://unhabitat.org/kosovo">UN</a>) compared to other European continent countries such as France and UK having higher rates at respectively 81% and 84% (source: Statista). This implies that in our sub-pixel analysis, and classification methods more generally, the urban areas are not as dense populated and do not represent perfectly an urban environment. Indeed, pixel in areas which we classy as urban may not be fully urban, meaning this could lead to certain miss-classificaitons.</p>
+<p>We have an example of this in our analysis, near the “white drin” river, where the sub-pixel spectral unfixing indicates signs of urban settlements near the river, which is not the case when looking at direct satellite imagery:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="correction_GEE_2_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="576"></p>
+<p></p><figcaption class="figure-caption">White drin river, with spectral unfixing (left and urban classified areas in red) and real colour (right) view</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
@@ -297,7 +357,7 @@ background-size: cover;
 Brown, Christopher F., Steven P. Brumby, Brookie Guzder-Williams, Tanya Birch, Samantha Brooks Hyde, Joseph Mazzariello, Wanda Czerwinski, et al. 2022. <span>“Dynamic World, Near Real-Time Global 10 m Land Use Land Cover Mapping.”</span> <em>Scientific Data</em> 9 (1): 251. <a href="https://doi.org/10.1038/s41597-022-01307-4">https://doi.org/10.1038/s41597-022-01307-4</a>.
 </div>
 </div>
-</section><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></section><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");

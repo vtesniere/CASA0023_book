@@ -7,3 +7,6 @@
 .Rdata
 .httr-oauth
 .DS_Store
+
+/Week_7/classification_error_real.png
+/Week_7/classification_error.png

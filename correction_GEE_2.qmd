@@ -16,11 +16,12 @@ This project implementation has been successful and personally believe that the 
 
 This week we decide to focus on a politically difficult and unstable area: Kosovo. As it is not a recognised country by all authorities, it is difficult to work with. In our case, the regions were considered part of Serbia and we had to find a workaround in order to make clear boundaries. We circle in red the areas which are currently considered as Kosovan territory:
 
-![Serbia with Level 1 boundaries](Week_7/serbia_full.png)
+![Serbia with Level 1 boundaries](Week_7/serbia_full.png){fig-align="center"}
 
 Thanks to [community help](https://gis.stackexchange.com/questions/417564/how-to-get-union-of-multiple-polygons-in-google-earth-engine) we were able to get a union of multiple polygons through the following code with the `inList` argument allowing us to select multiple areas, which in our case delimitate Kosovo [(code available here)](https://code.earthengine.google.com/d3874a00d59a226671a201d4d7ab713e):
 
 ```{javascript echo=FALSE}
+var dataset = ee.FeatureCollection("FAO/GAUL/2015/level1");
 var filterAll = ee.Filter.inList('ADM1_NAME',
 ['Kosovsko-pomoravski', 'Kosovski', 'Kosovsko-mitrovatski', 'Pecki', 'Prizremski']);
 var kosovo = ee.FeatureCollection(dataset.filter(filterAll)).geometry().dissolve()
@@ -40,12 +41,40 @@ ggdraw() + draw_image('Week_7/kosovo_no_boundaries.png', width = 0.5) + draw_ima
 
 We proceed to provide a true RBG image of the study area. We do so by selecting areas with less than 1% cloud cover. Yet, we realise that even within a large amount of time (between January and October 2022), there are certain tiles in the study area that do not have **any** observations with less than 1% cloud cover.
 
--   we either take area over the same time period with less than 5%
+-   we keep the 1% cutoff but we increase the study period to include January 2021 to October 2022)
+    -   in this case we see that not all tiles for the study area are available
 
--   or we keep the 1% cutoff but we increase the study period to include January 2021 to October 2022)
+![January to October 2022 with 1% cloud cover argument](Week_7/w_1pct_cloud.png){fig-align="center"}
+
+-   or we either take area over the same time period with less than 5%
+    -   in this case have considerable clouds on the left mountainous regions of Kosovo which could impede further analysis
+
+![With 5% cloud cover](Week_7/w_5pct_cloud.png){fig-align="center"}
+
+We decide to go with a study timeframe from **January 2021 to October 2022**, which provides us with a true cloudless image:
+
+![True Colour RBG image Cloudless for Kosovo](Week_7/kosovo_RBG.png){fig-align="center"}
+
+# Analysing the images
+
+## Sub-Pixel Classification
 
 # Personal Reflection
+
+## Study Area issues
 
 It was interesting to note that in the GAUL data-set available on GEE, **we cannot use 'Pristina'**, Kosovo's Capital, as a study area. Although internationally recognized, this area does not appear in neither Level 1 or 2 nomenclature, which was an interesting discovery and illustrates possible limitations in the use of GAUL and GEE.
 
 We also find some issues in the notation, as Kosovo is not recognised as a country, it makes working with the relevant shapefiles very difficult. The regions used to create the country shapefile were difficult to find and didn't really have much continuity. The relevant ADM1_name codes used for this are `'Kosovsko-pomoravski', 'Kosovski', 'Kosovsko-mitrovatski', 'Pecki', 'Prizremski'` but this is not logical notation, as it does not follow Kosovo's current nomenclature. For example, the capital region is called 'Kosovski' in the GAUL dataset and Serbian Authorities, but 'Pristina' by the Kosovo government.
+
+## Limitations in the quality of the model
+
+In our case, by Selecting Kosovo, we took a country that has been under considerable political tension for the past decades. This entails population displacement and boundary issues, but it also influences the way in which people live in the country. For example, Kosovo has a low urbanization rate, at approx. 50%, (source: [UN](https://unhabitat.org/kosovo)) compared to other European continent countries such as France and UK having higher rates at respectively 81% and 84% (source: Statista). This implies that in our sub-pixel analysis, and classification methods more generally, the urban areas are not as dense populated and do not represent perfectly an urban environment. Indeed, pixel in areas which we classy as urban may not be fully urban, meaning this could lead to certain miss-classificaitons.
+
+We have an example of this in our analysis, near the "white drin" river, where the sub-pixel spectral unfixing indicates signs of urban settlements near the river, which is not the case when looking at direct satellite imagery:
+
+```{r, echo=FALSE, fig.cap="White drin river, with spectral unfixing (left and urban classified areas in red) and real colour (right) view", fig.align='center', results='asis',fig.height=3, fig.width=6}
+knitr::opts_chunk$set(fig.pos = "H", out.extra = "")
+library(cowplot)
+ggdraw() + draw_image('Week_7/classification_error_copy.png', width = 0.5) + draw_image('Week_7/classification_error_real_copy.png', width = 0.5, x = 0.5)
+```
