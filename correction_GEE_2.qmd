@@ -6,6 +6,14 @@ tippy::tippy_this(elementId = "LULC", tooltip = "indicates the visible surface o
 
 # Corrections in GEE - Part 2 {.unnumbered}
 
+OVERVIEW
+
+-   adding a mountainous region as an reference area does not bring considerable advantages in sub-pixel and object level classifications
+
+-   classification is prone to image factors such as cloud presence, which in our study case were considered as urban areas
+
+    -   even when cloudy areas were accounted for, mis-classification was still present as classification identified 'urban' areas where in reality this was not the case.
+
 ## Novel Techniques - Dynamic World Example
 
 In this entry, we look at some slightly more advanced and novel techniques of classifications and topography understanding techniques, facilitated through GEE. A primary example of this is the [Dynamic World](https://dynamicworld.app/) project which aims to provide real-time data-sets of the physical material on the surfaces of the earth, compared to the traditional methods which had substantial lag times and were updated annually and inconsistent between image processing and data release ( @brown2022 ).
@@ -59,6 +67,76 @@ We decide to go with a study timeframe from **January 2021 to October 2022**, wh
 
 ## Sub-Pixel Classification
 
+In order to conduct sub-pixel classification, we first need to conduct spectral unmixing. Unmixing has been proven to allow for accurate extraction of surface material information ( @sun2017 ).
+
+We add 5 different reference areas to account for the different terrains present in Kosovo:
+
+-   Urban
+
+-   Water
+
+-   Forest
+
+-   Bare Earth
+
+-   Mountainous - we choose to include mountainous regions here as the southern and western Kosovo are areas with a lot of mountainous terrain. We thought that including this in our studied area may provide more input
+
+As previously we included two runs of the sub-pixel analysis: one with the 5% cloud image (but over a shorter period of time) and with 1% (over nearly two years).
+
+Our initial results are with the 5% cloud image are encouraging but present several issues
+
+![5% cloud image as base of sub-pixel classification](Week_7/sub_pixel_attempt1.png)
+
+Although the urban areas are well defined, classified in red, we see that many of the cloudy areas in the south and west are also classified as containing urban areas when this is not really the case
+
+```{r, echo=FALSE, fig.cap="Urban areas in red (left) and mis-classified cloudy areas also in red (right)", fig.align='center', results='asis',fig.height=3, fig.width=6}
+knitr::opts_chunk$set(fig.pos = "H", out.extra = "")
+library(cowplot)
+ggdraw() + draw_image('Week_7/sp_attempt1_city.png', width = 0.5) + draw_image('Week_7/sp_attempt1_cloudmix.png', width = 0.5, x = 0.5)
+```
+
+We run the analysis again using the 1% cloud cover image and the results come back more encouraging
+
+![1% cloud image sub-pixel classification](Week_7/sp_better.png)
+
+Green areas are now visible, which was not the case before hand, which represent 'bare earth' and 'mountainous areas'. We chose to regroup them as they were too similar and did not provide additional insight. The dark areas are areas which were not able to classified correctly as they did not contain sufficient terrain information to make accurate inference on the surface area (i.e. area was not able to be fully categorised into a single area)
+
+Kosovo's capital, the Urban area of Prisitna, is clearly defined in the classification task, with the agricultural areas defined to it's right in green.
+
+![Pristina sub-classification](Week_7/sp_pristina_area.png)
+
+We also witness improvements in the mountainous regions, were previously the snow and clouds were confused as urban areas, and is no longer the case
+
+![Southern mountainous Kosovo correctly classified](Week_7/sp_mountain_noclouds.png)
+
+## Visualising how Kosovo was classified
+
+We used two criteria of re-classification, comparing how the results change when the results are filtered. The first image provided has a pixel criteria of 0.5 and the second of 0.7. This means that when a pixel has more than 0.5 or 0.7 proportion of a certain land area, it will be classified as such.
+
+![0.5 proportion criteria](Week_7/pixel_0.5_accuracy.png)
+
+Above, the different areas are quite well delimitated, as we can see delimited urban areas (pastel), bare earth/farmland (green), forest/mountain areas in beige and water (blue).
+
+On the other hand, when using the 0.7 criteria, the image gets more confusing and the delimitations less clear
+
+![0.7 proportion criteria](Week_7/pixel_0.7_accuracy.png)
+
+### Framework for accuracy assessments
+
+We could use the reclassified areas and run Machine models to predict the number of correctly classified areas:
+
+-   make ground truth data in the study area by classifying areas (either manually or through other forms)
+
+-   use MESMA (Multiple end-member spectral mixture analysis) method to map land cover ( @dennison2003 )
+
+-   these techniques allow to provide accuracy assessments of the study area
+
+## Clustering methods
+
+Finally, we include the SNIC (Simple Non-Iterative Clustering) to identify different clusters in the surface area characteristics
+
+![SNIC for Kosovo](Week_7/SNIC.png)
+
 # Personal Reflection
 
 ## Study Area issues
@@ -69,7 +147,7 @@ We also find some issues in the notation, as Kosovo is not recognised as a count
 
 ## Limitations in the quality of the model
 
-In our case, by Selecting Kosovo, we took a country that has been under considerable political tension for the past decades. This entails population displacement and boundary issues, but it also influences the way in which people live in the country. For example, Kosovo has a low urbanization rate, at approx. 50%, (source: [UN](https://unhabitat.org/kosovo)) compared to other European continent countries such as France and UK having higher rates at respectively 81% and 84% (source: Statista). This implies that in our sub-pixel analysis, and classification methods more generally, the urban areas are not as dense populated and do not represent perfectly an urban environment. Indeed, pixel in areas which we classy as urban may not be fully urban, meaning this could lead to certain miss-classificaitons.
+In our case, by Selecting Kosovo, we took a country that has been under considerable political tension for the past decades. This entails population displacement and boundary issues, but it also influences the way in which people live in the country. For example, Kosovo has a low urbanization rate, at approx. 50%, (source: [UN](https://unhabitat.org/kosovo)) compared to other European continent countries such as France and UK having higher rates at respectively 81% and 84% (source: Statista). This implies that in our sub-pixel analysis, and classification methods more generally, the urban areas are not as dense populated and do not represent perfectly an urban environment. Indeed, pixel in areas which we classy as urban may not be fully urban, meaning this could lead to certain miss-classifications.
 
 We have an example of this in our analysis, near the "white drin" river, where the sub-pixel spectral unfixing indicates signs of urban settlements near the river, which is not the case when looking at direct satellite imagery:
 
@@ -78,3 +156,11 @@ knitr::opts_chunk$set(fig.pos = "H", out.extra = "")
 library(cowplot)
 ggdraw() + draw_image('Week_7/classification_error_copy.png', width = 0.5) + draw_image('Week_7/classification_error_real_copy.png', width = 0.5, x = 0.5)
 ```
+
+## Cloud recognition in snowy/mountainous areas
+
+Although cloud identification is a major concern in remote sensing, and much research has focused on identifying clouds precisely, not having the algorithm confuse it with other elements such as snow ( @zhu2014, @li2022 etc.) . In the snowy areas of Kosovo, we observed this to be the case as our cloud algorithm confused between these elements
+
+![Western Kosovo mountainous region confusing our cloud detection](Week_7/cloud_msk_clouds_snow.png)
+
+As our work uses Landsat imagery, would look to use other algorithms such as F-mask and T-mask. F-mask uses single-date imagery and T-mask uses extra temporal information to fill in the missing information ( @zhu2014 ) . Specifically, this would be to continue our study of the area and monitor land cover change!
