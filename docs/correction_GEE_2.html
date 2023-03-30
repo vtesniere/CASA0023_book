@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.2.269">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>CASA0023 Learning Diary - Corrections in GEE - Part 2</title>
+<title>CASA0023 Learning Diary - Corrections in GEE - 2</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -111,7 +111,7 @@ background-size: cover;
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
 <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/vtesniere/CASA0023_book"><i class="bi bi-github" role="img" aria-label="Source Code">
+    <a class="nav-link" href="https://github.com/vtesniere/CASA0023_book"><i class="bi bi-github" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
@@ -123,14 +123,14 @@ background-size: cover;
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Corrections in GEE - Part 2</h1>
+      <h1 class="quarto-secondary-nav-title">Corrections in GEE - 2</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
     </div>
   </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default page-columns page-full"><div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title d-none d-lg-block">Corrections in GEE - Part 2</h1>
+      <h1 class="title d-none d-lg-block">Corrections in GEE - 2</h1>
                       </div>
   </div>
     
@@ -212,12 +212,12 @@ background-size: cover;
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./correction_GEE_1.html" class="sidebar-item-text sidebar-link">Corrections in GEE - Part 1</a>
+  <a href="./correction_GEE_1.html" class="sidebar-item-text sidebar-link">Corrections in GEE - 1</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./correction_GEE_2.html" class="sidebar-item-text sidebar-link active">Corrections in GEE - Part 2</a>
+  <a href="./correction_GEE_2.html" class="sidebar-item-text sidebar-link active">Corrections in GEE - 2</a>
   </div>
 </li>
       </ul>
@@ -255,6 +255,13 @@ background-size: cover;
 <a href="#analysing-the-images" id="toc-analysing-the-images" class="nav-link" data-scroll-target="#analysing-the-images">Analysing the images</a>
   <ul class="collapse">
 <li><a href="#sub-pixel-classification" id="toc-sub-pixel-classification" class="nav-link" data-scroll-target="#sub-pixel-classification">Sub-Pixel Classification</a></li>
+  <li>
+<a href="#visualising-how-kosovo-was-classified" id="toc-visualising-how-kosovo-was-classified" class="nav-link" data-scroll-target="#visualising-how-kosovo-was-classified">Visualising how Kosovo was classified</a>
+  <ul class="collapse">
+<li><a href="#framework-for-accuracy-assessments" id="toc-framework-for-accuracy-assessments" class="nav-link" data-scroll-target="#framework-for-accuracy-assessments">Framework for accuracy assessments</a></li>
+  </ul>
+</li>
+  <li><a href="#clustering-methods" id="toc-clustering-methods" class="nav-link" data-scroll-target="#clustering-methods">Clustering methods</a></li>
   </ul>
 </li>
   <li>
@@ -262,6 +269,7 @@ background-size: cover;
   <ul class="collapse">
 <li><a href="#study-area-issues" id="toc-study-area-issues" class="nav-link" data-scroll-target="#study-area-issues">Study Area issues</a></li>
   <li><a href="#limitations-in-the-quality-of-the-model" id="toc-limitations-in-the-quality-of-the-model" class="nav-link" data-scroll-target="#limitations-in-the-quality-of-the-model">Limitations in the quality of the model</a></li>
+  <li><a href="#cloud-recognition-in-snowymountainous-areas" id="toc-cloud-recognition-in-snowymountainous-areas" class="nav-link" data-scroll-target="#cloud-recognition-in-snowymountainous-areas">Cloud recognition in snowy/mountainous areas</a></li>
   </ul>
 </li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/vtesniere/CASA0023_book/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
@@ -272,13 +280,55 @@ background-size: cover;
 
 <div class="cell">
 <div class="cell-output-display">
-<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="464px" id="htmlwidget-0881345122ff61a99a30" width="100%"></span>
-<script type="application/json" data-for="htmlwidget-0881345122ff61a99a30">{"x":{"element":"LULC","opts":{"content":"indicates the visible surface of land whist also indicating the socio-economic dimension (e.g. forestry, agriculture, residential etc.)"}},"evals":[],"jsHooks":[]}</script>
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="464px" id="htmlwidget-b559692443adc869aad1" width="100%"></span>
+<script type="application/json" data-for="htmlwidget-b559692443adc869aad1">{"x":{"element":"LULC","opts":{"content":"indicates the visible surface of land whist also indicating the socio-economic dimension (e.g. forestry, agriculture, residential etc.)"}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output-display">
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="464px" id="htmlwidget-569b8e53b38a0eb6b722" width="100%"></span>
+<script type="application/json" data-for="htmlwidget-569b8e53b38a0eb6b722">{"x":{"element":"FOA","opts":{"content":"Food and Agriculture Organization"}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output-display">
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="464px" id="htmlwidget-e671aed71c5eb7d3eacb" width="100%"></span>
+<script type="application/json" data-for="htmlwidget-e671aed71c5eb7d3eacb">{"x":{"element":"GAUL","opts":{"content":"Global Administrative Unit Layers"}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output-display">
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="464px" id="htmlwidget-2eddc30ac3fb07166cf9" width="100%"></span>
+<script type="application/json" data-for="htmlwidget-2eddc30ac3fb07166cf9">{"x":{"element":"SNIC","opts":{"content":"Simple Non-Iterative Clustering"}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+OVERVIEW
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>
+<p>Understanding Kosovo’s surface through sub-pixel analysis and extraction of surface material information with unmixing (used to account for mixed pixels, with more than one surface present within the pixel)</p>
+<ul>
+<li><p>difficulties in getting actual boundaries of Kosovo as state not recognised by <u id="FOA">FOA</u> and <u id="GAUL">GAUL</u> classification</p></li>
+<li><p>Getting <u id="SNIC">SNIC</u> clustering to information on areas with similar characteristics within the country</p></li>
+</ul>
+</li>
+<li>
+<p>classification results are influenced by elements other than surface contents, with factors such as cloud presence. In our analysis of Kosovo, cloud cover happened to be classified as ‘urban’ areas</p>
+<ul>
+<li>even when cloudy areas were accounted for, mis-classification was still an issue and was a technical limitation in our analysis</li>
+<li>Areas identified as ‘urban’ where not in reality when checking on true colour satellite imagery</li>
+</ul>
+</li>
+<li><p>adding a mountainous region as reference area does not bring considerable advantages in sub-pixel and object level classifications</p></li>
+<li><p>Tools being developed to provide real time updates on the earths surface and provide representative information on <u id="LULC">LULC</u>. New platforms such as Dynamic world allow facilitated processing of this data</p></li>
+</ul>
 </div>
 </div>
 <section id="novel-techniques---dynamic-world-example" class="level2"><h2 class="anchored" data-anchor-id="novel-techniques---dynamic-world-example">Novel Techniques - Dynamic World Example</h2>
-<p>In this entry, we look at some slightly more advanced and novel techniques of classifications and topography understanding techniques, facilitated through GEE. A primary example of this is the <a href="https://dynamicworld.app/">Dynamic World</a> project which aims to provide real-time data-sets of the physical material on the surfaces of the earth, compared to the traditional methods which had substantial lag times and were updated annually and inconsistent between image processing and data release ( <span class="citation" data-cites="brown2022">Brown et al. (<a href="references.html#ref-brown2022" role="doc-biblioref">2022</a>)</span> ).</p>
-<p>This project implementation has been successful and personally believe that the framework will be successful for better understanding of our environment. Dynamic world provides more detailed data than ever before which allows for better understanding of <u id="LULC">LULC</u> and its evolution over time.</p>
+<p>In this entry, we look at some slightly more advanced and novel techniques of classifications and topography understanding techniques, facilitated through GEE. A primary example of this is the <a href="https://dynamicworld.app/" target="_blank">Dynamic World</a> project which aims to provide real-time data-sets of the physical material on the surfaces of the earth, compared to the traditional methods which had substantial lag times and were updated annually and inconsistent between image processing and data release ( <span class="citation" data-cites="brown2022">Brown et al. (<a href="references.html#ref-brown2022" role="doc-biblioref">2022</a>)</span> ).</p>
+<p>This project implementation has been successful and personally believe that the framework will be successful for better understanding of our environment. Dynamic world provides more detailed data than ever before which allows for better understanding of LULC and its evolution over time.</p>
 </section><section id="defining-the-study-area" class="level1"><h1>Defining the study area</h1>
 <p>This week we decide to focus on a politically difficult and unstable area: Kosovo. As it is not a recognised country by all authorities, it is difficult to work with. In our case, the regions were considered part of Serbia and we had to find a workaround in order to make clear boundaries. We circle in red the areas which are currently considered as Kosovan territory:</p>
 <div class="quarto-figure quarto-figure-center">
@@ -286,7 +336,7 @@ background-size: cover;
 <p></p><figcaption class="figure-caption">Serbia with Level 1 boundaries</figcaption><p></p>
 </figure>
 </div>
-<p>Thanks to <a href="https://gis.stackexchange.com/questions/417564/how-to-get-union-of-multiple-polygons-in-google-earth-engine">community help</a> we were able to get a union of multiple polygons through the following code with the <code>inList</code> argument allowing us to select multiple areas, which in our case delimitate Kosovo <a href="https://code.earthengine.google.com/d3874a00d59a226671a201d4d7ab713e">(code available here)</a>:</p>
+<p>Thanks to <a href="https://gis.stackexchange.com/questions/417564/how-to-get-union-of-multiple-polygons-in-google-earth-engine" target="_blank">community help</a> we were able to get a union of multiple polygons through the following code with the <code>inList</code> argument allowing us to select multiple areas, which in our case delimitate Kosovo <a href="https://code.earthengine.google.com/d3874a00d59a226671a201d4d7ab713e" target="_blank">(code available here)</a>:</p>
 <div class="cell">
 
 </div>
@@ -334,27 +384,120 @@ background-size: cover;
 </div>
 </section><section id="analysing-the-images" class="level1"><h1>Analysing the images</h1>
 <section id="sub-pixel-classification" class="level2"><h2 class="anchored" data-anchor-id="sub-pixel-classification">Sub-Pixel Classification</h2>
+<p>In order to conduct sub-pixel classification, we first need to conduct spectral unmixing. Unmixing has been proven to allow for accurate extraction of surface material information ( <span class="citation" data-cites="sun2017">Sun, Du, and Xiong (<a href="references.html#ref-sun2017" role="doc-biblioref">2017</a>)</span> ).</p>
+<p>We add 5 different reference areas to account for the different terrains present in Kosovo:</p>
+<ul>
+<li><p>Urban</p></li>
+<li><p>Water</p></li>
+<li><p>Forest</p></li>
+<li><p>Bare Earth</p></li>
+<li><p>( Mountainous - we tried to include mountainous regions here as the southern and western Kosovo are areas with a lot of mountainous terrain. We thought that including this in our studied area may provide more input but this was not the case as too similar with ‘Bare Earth’ and we then decided to regroup the two categories. )</p></li>
+</ul>
+<p>As previously, we included <strong>two</strong> runs of the sub-pixel analysis: one with the <strong>5%</strong> cloud cover (but over a shorter period of time) and with <strong>1%</strong> (over nearly two years).</p>
+<p>Our initial results are with the 5% cloud image are encouraging but present several issues</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="Week_7/sub_pixel_attempt1.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">5% cloud image as base of sub-pixel classification</figcaption><p></p>
+</figure>
+</div>
+<p>Although the urban areas are well defined, classified in red, we see that many of the cloudy areas in the south and west are also classified as containing urban areas when this is not actually the case</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="correction_GEE_2_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="576"></p>
+<p></p><figcaption class="figure-caption">Urban areas in red (left) and mis-classified cloudy areas also in red (right)</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We run the analysis again using the 1% cloud cover image and the results are more encouraging</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="Week_7/sp_better.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">1% cloud image sub-pixel classification</figcaption><p></p>
+</figure>
+</div>
+<p>Green areas are now visible, which was not the case before hand. These areas represent ‘bare earth’ and ‘mountainous areas’.</p>
+<p>We chose to regroup them as they were too similar and did not provide additional insight. The dark areas are areas which were not able to classified correctly as they did not contain sufficient terrain information to make accurate inference on the surface area (i.e.&nbsp;area was not able to be fully categorised into a single area)</p>
+<p>Kosovo’s capital, the Urban area of Prisitna, is clearly defined in the classification task, with the agricultural areas defined to it’s right in green.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="Week_7/sp_pristina_area.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Pristina sub-classification</figcaption><p></p>
+</figure>
+</div>
+<p>We also witness improvements in the mountainous regions, were previously the snow and clouds were confused as urban areas, and is no longer the case</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="Week_7/sp_mountain_noclouds.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Southern mountainous Kosovo correctly classified</figcaption><p></p>
+</figure>
+</div>
+</section><section id="visualising-how-kosovo-was-classified" class="level2"><h2 class="anchored" data-anchor-id="visualising-how-kosovo-was-classified">Visualising how Kosovo was classified</h2>
+<p>We used two criteria of re-classification, comparing how the results change when the results are filtered. The first image provided has a pixel criteria of 0.5 and the second of 0.7. This means that when a pixel has more than 0.5 or 0.7 proportion of a certain land area, it will be classified as such.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="Week_7/pixel_0.5_accuracy.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">0.5 proportion criteria</figcaption><p></p>
+</figure>
+</div>
+<p>Above, the different areas are quite well delimitated, as we can see delimited urban areas (pastel), bare earth/farmland (green), forest/mountain areas in beige and water (blue).</p>
+<p>On the other hand, when using the 0.7 criteria, the image gets more confusing and the delimitations less clear</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="Week_7/pixel_0.7_accuracy.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">0.7 proportion criteria</figcaption><p></p>
+</figure>
+</div>
+<section id="framework-for-accuracy-assessments" class="level3"><h3 class="anchored" data-anchor-id="framework-for-accuracy-assessments">Framework for accuracy assessments</h3>
+<p>We could use the reclassified areas and run Machine models to predict the number of correctly classified areas:</p>
+<ul>
+<li><p>make ground truth data in the study area by classifying areas (either manually or through other forms)</p></li>
+<li><p>use MESMA (Multiple end-member spectral mixture analysis) method to map land cover ( <span class="citation" data-cites="dennison2003">Dennison and Roberts (<a href="references.html#ref-dennison2003" role="doc-biblioref">2003</a>)</span> )</p></li>
+<li><p>these techniques allow to provide accuracy assessments of the study area</p></li>
+</ul></section></section><section id="clustering-methods" class="level2"><h2 class="anchored" data-anchor-id="clustering-methods">Clustering methods</h2>
+<p>Finally, we include the SNIC (Simple Non-Iterative Clustering) to identify different clusters in the surface area characteristics</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="Week_7/SNIC.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">SNIC for Kosovo</figcaption><p></p>
+</figure>
+</div>
 </section></section><section id="personal-reflection" class="level1"><h1>Personal Reflection</h1>
 <section id="study-area-issues" class="level2"><h2 class="anchored" data-anchor-id="study-area-issues">Study Area issues</h2>
 <p>It was interesting to note that in the GAUL data-set available on GEE, <strong>we cannot use ‘Pristina’</strong>, Kosovo’s Capital, as a study area. Although internationally recognized, this area does not appear in neither Level 1 or 2 nomenclature, which was an interesting discovery and illustrates possible limitations in the use of GAUL and GEE.</p>
 <p>We also find some issues in the notation, as Kosovo is not recognised as a country, it makes working with the relevant shapefiles very difficult. The regions used to create the country shapefile were difficult to find and didn’t really have much continuity. The relevant ADM1_name codes used for this are <code>'Kosovsko-pomoravski', 'Kosovski', 'Kosovsko-mitrovatski', 'Pecki', 'Prizremski'</code> but this is not logical notation, as it does not follow Kosovo’s current nomenclature. For example, the capital region is called ‘Kosovski’ in the GAUL dataset and Serbian Authorities, but ‘Pristina’ by the Kosovo government.</p>
 </section><section id="limitations-in-the-quality-of-the-model" class="level2"><h2 class="anchored" data-anchor-id="limitations-in-the-quality-of-the-model">Limitations in the quality of the model</h2>
-<p>In our case, by Selecting Kosovo, we took a country that has been under considerable political tension for the past decades. This entails population displacement and boundary issues, but it also influences the way in which people live in the country. For example, Kosovo has a low urbanization rate, at approx. 50%, (source: <a href="https://unhabitat.org/kosovo">UN</a>) compared to other European continent countries such as France and UK having higher rates at respectively 81% and 84% (source: Statista). This implies that in our sub-pixel analysis, and classification methods more generally, the urban areas are not as dense populated and do not represent perfectly an urban environment. Indeed, pixel in areas which we classy as urban may not be fully urban, meaning this could lead to certain miss-classificaitons.</p>
-<p>We have an example of this in our analysis, near the “white drin” river, where the sub-pixel spectral unfixing indicates signs of urban settlements near the river, which is not the case when looking at direct satellite imagery:</p>
+<p>In our case, by Selecting Kosovo, we took a country that has been under considerable political tension for the past decades. This entails population displacement and boundary issues, but it also influences the way in which people live in the country. For example, Kosovo has a low urbanization rate, at approx. 50%, (source: <a href="https://unhabitat.org/kosovo" target="_blank">UN</a>) compared to other European continent countries such as France and UK having higher rates at respectively 81% and 84% (source: Statista). This implies that in our sub-pixel analysis, and classification methods more generally, the urban areas are not as dense populated and do not represent perfectly an urban environment. Indeed, pixel in areas which we classy as urban may not be fully urban, meaning this could lead to certain miss-classifications.</p>
+<p>We have an example of this in our analysis, near the “white Drin” river, where the sub-pixel spectral unfixing indicates signs of urban settlements near the river, which is not the case when looking at direct satellite imagery:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="correction_GEE_2_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="576"></p>
+<figure class="figure"><p><img src="correction_GEE_2_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="576"></p>
 <p></p><figcaption class="figure-caption">White drin river, with spectral unfixing (left and urban classified areas in red) and real colour (right) view</figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
+</section><section id="cloud-recognition-in-snowymountainous-areas" class="level2"><h2 class="anchored" data-anchor-id="cloud-recognition-in-snowymountainous-areas">Cloud recognition in snowy/mountainous areas</h2>
+<p>Although cloud identification is a major concern in remote sensing, and much research has focused on identifying clouds precisely, not having the algorithm confuse it with other elements such as snow ( <span class="citation" data-cites="zhu2014">Zhu and Woodcock (<a href="references.html#ref-zhu2014" role="doc-biblioref">2014</a>)</span>, <span class="citation" data-cites="li2022">Li et al. (<a href="references.html#ref-li2022" role="doc-biblioref">2022</a>)</span> etc.) . In the snowy areas of Kosovo, we observed this to be the case as our cloud algorithm confused between these elements</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="Week_7/cloud_msk_clouds_snow.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Western Kosovo mountainous region confusing our cloud detection</figcaption><p></p>
+</figure>
+</div>
+<p>As our work uses Landsat imagery, would look to use other algorithms such as F-mask and T-mask. F-mask uses single-date imagery and T-mask uses extra temporal information to fill in the missing information (<span class="citation" data-cites="zhu2014">Zhu and Woodcock (<a href="references.html#ref-zhu2014" role="doc-biblioref">2014</a>)</span>). Specifically, this would be to continue our study of the area and monitor land cover change!</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
 <div id="ref-brown2022" class="csl-entry" role="doc-biblioentry">
 Brown, Christopher F., Steven P. Brumby, Brookie Guzder-Williams, Tanya Birch, Samantha Brooks Hyde, Joseph Mazzariello, Wanda Czerwinski, et al. 2022. <span>“Dynamic World, Near Real-Time Global 10 m Land Use Land Cover Mapping.”</span> <em>Scientific Data</em> 9 (1): 251. <a href="https://doi.org/10.1038/s41597-022-01307-4">https://doi.org/10.1038/s41597-022-01307-4</a>.
+</div>
+<div id="ref-dennison2003" class="csl-entry" role="doc-biblioentry">
+Dennison, Philip E., and Dar A. Roberts. 2003. <span>“Endmember Selection for Multiple Endmember Spectral Mixture Analysis Using Endmember Average RMSE.”</span> <em>Remote Sensing of Environment</em> 87 (2): 123–35. <a href="https://doi.org/10.1016/S0034-4257(03)00135-4">https://doi.org/10.1016/S0034-4257(03)00135-4</a>.
+</div>
+<div id="ref-li2022" class="csl-entry" role="doc-biblioentry">
+Li, Jianfeng, Luyao Wang, Siqi Liu, Biao Peng, and Huping Ye. 2022. <span>“An Automatic Cloud Detection Model for Sentinel-2 Imagery Based on Google Earth Engine.”</span> <em>Remote Sensing Letters</em> 13 (2): 196–206. <a href="https://doi.org/10.1080/2150704X.2021.1988753">https://doi.org/10.1080/2150704X.2021.1988753</a>.
+</div>
+<div id="ref-sun2017" class="csl-entry" role="doc-biblioentry">
+Sun, Weiwei, Bo Du, and Shaolong Xiong. 2017. <span>“Quantifying Sub-Pixel Surface Water Coverage in Urban Environments Using Low-Albedo Fraction from Landsat Imagery.”</span> <em>Remote Sensing</em> 9 (5): 428. <a href="https://doi.org/10.3390/rs9050428">https://doi.org/10.3390/rs9050428</a>.
+</div>
+<div id="ref-zhu2014" class="csl-entry" role="doc-biblioentry">
+Zhu, Zhe, and Curtis E. Woodcock. 2014. <span>“Automated Cloud, Cloud Shadow, and Snow Detection in Multitemporal Landsat Data: An Algorithm Designed Specifically for Monitoring Land Cover Change.”</span> <em>Remote Sensing of Environment</em> 152 (September): 217–34. <a href="https://doi.org/10.1016/j.rse.2014.06.012">https://doi.org/10.1016/j.rse.2014.06.012</a>.
 </div>
 </div>
 </section></section><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
@@ -606,7 +749,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./correction_GEE_1.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Corrections in GEE - Part 1</span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Corrections in GEE - 1</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

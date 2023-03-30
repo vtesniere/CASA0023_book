@@ -1,6 +1,28 @@
 <div style="text-align: justify">
 
+```{r echo = FALSE}
+tippy::tippy_this(elementId = "RT", tooltip = "the time it takes for satellite to provide observations between the same point on Earth (16 days for L-8 and 5 days for S-2)")
+tippy::tippy_this(elementId = "L-8", tooltip = "Landsat 8 - American Observation Satellite Luanched February 2013")
+tippy::tippy_this(elementId = "S-2", tooltip = "Sentinel 2 - Launched June 2015 and acquires high spatial resolution images over land and water")
+tippy::tippy_this(elementId = "TC", tooltip = "Red, Blue, Green (RGB) bands to create output familiar to the human eye")
+tippy::tippy_this(elementId = "POI", tooltip = "Points of interest - selected areas containing specific terrain characteristics")
+
+```
+
 # Introducing Remote Sensing - A Bucharest Analysis {.unnumbered}
+
+::: callout-note
+# OVERVIEW
+
+-   presentation of Bucharest's topography and characteristics through <u id='L-8'>L-8</u> and <u id='S-2'>S-2</u> imagery analysis
+-   Using basic raster processing and statistics to visualise <u id='TC'>True-Colour</u> outputs
+    -   Selecting <u id='POI'>POI's</u> and clipping image to fit our desired study area
+-   understanding differences between the two satellites
+    -   how bands work between platforms and how they are characterised by different wavelengths
+
+    -   how different <u id='RT'>revisit-times</u> and cloud cover affect image availability
+-   Leading computational analysis in R to compare results between S-2 and L-8
+:::
 
 ```{css, echo=FALSE}
 p.caption {

@@ -88,6 +88,11 @@ gtag('config', 'G-5LZK055F2X', { 'anonymize_ip': true});
 background-size: cover;
     }
     </style>
+<script src="site_libs/htmlwidgets-1.6.1/htmlwidgets.js"></script><link href="site_libs/tippyjs-3.2.0/themes/google.css" rel="stylesheet">
+<link href="site_libs/tippyjs-3.2.0/themes/light-border.css" rel="stylesheet">
+<link href="site_libs/tippyjs-3.2.0/themes/light.css" rel="stylesheet">
+<link href="site_libs/tippyjs-3.2.0/themes/translucent.css" rel="stylesheet">
+<script src="site_libs/tippyjs-3.2.0/tippy.all.min.js"></script><script src="site_libs/tippy-binding-0.1.0/tippy.js"></script>
 </head>
 <body class="nav-sidebar docked nav-fixed">
 
@@ -106,7 +111,7 @@ background-size: cover;
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
 <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/vtesniere/CASA0023_book"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/vtesniere/CASA0023_book"><i class="bi bi-github" role="img" aria-label="Source Code">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
@@ -205,6 +210,16 @@ background-size: cover;
   <a href="./GEE_intro.html" class="sidebar-item-text sidebar-link">Introduction to Google Earth Engine</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./correction_GEE_1.html" class="sidebar-item-text sidebar-link">Corrections in GEE - 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./correction_GEE_2.html" class="sidebar-item-text sidebar-link">Corrections in GEE - 2</a>
+  </div>
+</li>
       </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -248,7 +263,55 @@ background-size: cover;
 <main class="content quarto-banner-title-block" id="quarto-document-content"><div style="text-align: justify">
 
 
-
+<div class="cell">
+<div class="cell-output-display">
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="464px" id="htmlwidget-53e0204254258d1fe22a" width="100%"></span>
+<script type="application/json" data-for="htmlwidget-53e0204254258d1fe22a">{"x":{"element":"RT","opts":{"content":"the time it takes for satellite to provide observations between the same point on Earth (16 days for L-8 and 5 days for S-2)"}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output-display">
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="464px" id="htmlwidget-72fa27596899ff2e504a" width="100%"></span>
+<script type="application/json" data-for="htmlwidget-72fa27596899ff2e504a">{"x":{"element":"L-8","opts":{"content":"Landsat 8 - American Observation Satellite Luanched February 2013"}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output-display">
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="464px" id="htmlwidget-9751372a7e0a836293be" width="100%"></span>
+<script type="application/json" data-for="htmlwidget-9751372a7e0a836293be">{"x":{"element":"S-2","opts":{"content":"Sentinel 2 - Launched June 2015 and acquires high spatial resolution images over land and water"}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output-display">
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="464px" id="htmlwidget-58e7ad941eec8538e97c" width="100%"></span>
+<script type="application/json" data-for="htmlwidget-58e7ad941eec8538e97c">{"x":{"element":"TC","opts":{"content":"Red, Blue, Green (RGB) bands to create output familiar to the human eye"}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output-display">
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="464px" id="htmlwidget-ec97b2fea7f4e455a1ce" width="100%"></span>
+<script type="application/json" data-for="htmlwidget-ec97b2fea7f4e455a1ce">{"x":{"element":"POI","opts":{"content":"Points of interest - selected areas containing specific terrain characteristics"}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+OVERVIEW
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>presentation of Bucharest’s topography and characteristics through <u id="L-8">L-8</u> and <u id="S-2">S-2</u> imagery analysis</li>
+<li>Using basic raster processing and statistics to visualise <u id="TC">True-Colour</u> outputs
+<ul>
+<li>Selecting <u id="POI">POI’s</u> and clipping image to fit our desired study area</li>
+</ul>
+</li>
+<li>understanding differences between the two satellites
+<ul>
+<li><p>how bands work between platforms and how they are characterised by different wavelengths</p></li>
+<li><p>how different <u id="RT">revisit-times</u> and cloud cover affect image availability</p></li>
+</ul>
+</li>
+<li>Leading computational analysis in R to compare results between S-2 and L-8</li>
+</ul>
+</div>
+</div>
 <div class="cell">
 <style type="text/css">
 p.caption {

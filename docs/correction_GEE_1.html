@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.2.269">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>CASA0023 Learning Diary - Corrections in GEE - Part 1</title>
+<title>CASA0023 Learning Diary - Corrections in GEE - 1</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -108,7 +108,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./summary.html" rel="next">
+<link href="./correction_GEE_2.html" rel="next">
 <link href="./GEE_intro.html" rel="prev">
 <link href="./img/UCL_square.jpeg" rel="icon" type="image/jpeg">
 <script src="site_libs/quarto-html/quarto.js"></script>
@@ -151,7 +151,11 @@ gtag('config', 'G-5LZK055F2X', { 'anonymize_ip': true});
 background-size: cover;
     }
     </style>
-<script src="site_libs/kePrint-0.0.1/kePrint.js"></script><link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="site_libs/htmlwidgets-1.6.1/htmlwidgets.js"></script><link href="site_libs/tippyjs-3.2.0/themes/google.css" rel="stylesheet">
+<link href="site_libs/tippyjs-3.2.0/themes/light-border.css" rel="stylesheet">
+<link href="site_libs/tippyjs-3.2.0/themes/light.css" rel="stylesheet">
+<link href="site_libs/tippyjs-3.2.0/themes/translucent.css" rel="stylesheet">
+<script src="site_libs/tippyjs-3.2.0/tippy.all.min.js"></script><script src="site_libs/tippy-binding-0.1.0/tippy.js"></script><script src="site_libs/kePrint-0.0.1/kePrint.js"></script><link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 </head>
 <body class="nav-sidebar docked nav-fixed">
 
@@ -170,7 +174,7 @@ background-size: cover;
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
 <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/vtesniere/CASA0023_book"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/vtesniere/CASA0023_book"><i class="bi bi-github" role="img" aria-label="Source Code">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
@@ -182,14 +186,14 @@ background-size: cover;
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Corrections in GEE - Part 1</h1>
+      <h1 class="quarto-secondary-nav-title">Corrections in GEE - 1</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
     </div>
   </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default page-columns page-full"><div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title d-none d-lg-block">Corrections in GEE - Part 1</h1>
+      <h1 class="title d-none d-lg-block">Corrections in GEE - 1</h1>
                       </div>
   </div>
     
@@ -271,7 +275,12 @@ background-size: cover;
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./correction_GEE_1.html" class="sidebar-item-text sidebar-link active">Corrections in GEE - Part 1</a>
+  <a href="./correction_GEE_1.html" class="sidebar-item-text sidebar-link active">Corrections in GEE - 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./correction_GEE_2.html" class="sidebar-item-text sidebar-link">Corrections in GEE - 2</a>
   </div>
 </li>
       </ul>
@@ -302,8 +311,9 @@ background-size: cover;
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li>
-<a href="#setting-the-area-in-gee" id="toc-setting-the-area-in-gee" class="nav-link active" data-scroll-target="#setting-the-area-in-gee">Setting the area in GEE</a>
+<li><a href="#study-area-selection" id="toc-study-area-selection" class="nav-link active" data-scroll-target="#study-area-selection">Study area selection</a></li>
+  <li>
+<a href="#setting-the-area-in-gee" id="toc-setting-the-area-in-gee" class="nav-link" data-scroll-target="#setting-the-area-in-gee">Setting the area in GEE</a>
   <ul class="collapse">
 <li><a href="#understanding-how-cloud-mask-works" id="toc-understanding-how-cloud-mask-works" class="nav-link" data-scroll-target="#understanding-how-cloud-mask-works">Understanding how cloud mask works</a></li>
   </ul>
@@ -340,13 +350,59 @@ background-size: cover;
 <main class="content quarto-banner-title-block" id="quarto-document-content"><div style="text-align: justify">
 
 
-<p>For this entry, we focus on atmospheric correction in GEE, with specific on the Wollongong area, in New South Wales Australia. We initially chose this region because the name is particularly interesting but also has the advantage of having interesting characteristics:</p>
+<div class="cell">
+<div class="cell-output-display">
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="464px" id="htmlwidget-0afdf290dd2db8d1cf7a" width="100%"></span>
+<script type="application/json" data-for="htmlwidget-0afdf290dd2db8d1cf7a">{"x":{"element":"CART","opts":{"content":"Classification and Regression Tree - predictive tool which provides prediction of outcome variables based on previously obtained ground-truth data (in our case, manually annotated areas that fit terrain characteristics)"}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output-display">
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="464px" id="htmlwidget-d86fe656175193c57846" width="100%"></span>
+<script type="application/json" data-for="htmlwidget-d86fe656175193c57846">{"x":{"element":"nodes","opts":{"content":"a node being the representation of an outcome, selecting 10 or 100 nodes tells the algorithm how many branches it can create. Different number of branches leads to different arguments in the creation of these branches, thus influencing and changing the results."}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+OVERVIEW
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Atmospheric correction in Wollongong using GEE
+<ul>
+<li>cloud masking in a very cloud urban area Wollongong</li>
+</ul>
+</li>
+<li>Introduction to classification Methods at polygon and pixel level
+<ul>
+<li>polygons locally defined to areas with specific characteristics to teach the algorithm how to recognise categorised surface types</li>
+</ul>
+</li>
+<li>Use of machine learning methods for surface classification, Random Forest (RF) and <u id="CART">CART</u>
+<ul>
+<li><p>best results at pixel level for the RF (over 80% Validation accuracy) although over-fitting witnessed (99% training accuracy)</p></li>
+<li>
+<p>running CART method with for <u id="nodes">10 and 100 nodes</u> to understand difference in parameter tuning</p>
+<ul>
+<li>better results at CART 10 nodes (79% training and validation accuracy), proving model does not over-fit and provides reliable output</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Understanding function elements work in GEE, and how to output requested functionalities</li>
+</ul>
+</div>
+</div>
+<section id="study-area-selection" class="level2"><h2 class="anchored" data-anchor-id="study-area-selection">Study area selection</h2>
+<p>For this entry, we focus on atmospheric correction in GEE, with specific on the Wollongong area, in New South Wales, Australia. We initially chose this region because the name is particularly interesting but also has the advantage of having interesting characteristics:</p>
 <ul>
 <li><p>is surrounded by the ocean on the east</p></li>
 <li><p>wilderness on the western side</p></li>
 <li><p>urban areas in Wollongong itself, providing ground contrast interesting to analyse.</p></li>
-</ul>
-<section id="setting-the-area-in-gee" class="level1"><h1>Setting the area in GEE</h1>
+</ul></section><section id="setting-the-area-in-gee" class="level1"><h1>Setting the area in GEE</h1>
 <p>We start of our analysis by getting a simple view of the studied area. Here, we have Wollongong illustrated through S-2 with images collected between January and October 2022. In this case, we selected images with less than <strong>1%</strong> cloud cover, which allows up to not need to implement a cloud mask but provide a clear image of the area:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="Week_6/wollo_low_cloud_cover.png" class="img-fluid figure-img"></p>
@@ -360,9 +416,9 @@ background-size: cover;
 </figure>
 </div>
 <section id="understanding-how-cloud-mask-works" class="level2"><h2 class="anchored" data-anchor-id="understanding-how-cloud-mask-works">Understanding how cloud mask works</h2>
-<p>The urban area of Wollongong is particularly covered in clouds, so-much so that none of the urban area is visible. To counter this, we use a cloud mask which uses the <strong>QA60 band</strong>, where the QA stands for ‘Quality Assurance’ and 60 refers to the granularity of the image, with 60m spatial resolution <a href="https://philippgaertner.github.io/2020/08/percent-cloud-cover/">source</a>. It has two possible values, bit 10 and bit 11 which respectively to opaque and cirrus clouds. Using this band has been particularly successful in developing automatic cloud models for S-2 in GEE ( <span class="citation" data-cites="li2022">Li et al. (<a href="references.html#ref-li2022" role="doc-biblioref">2022</a>)</span> ).</p>
+<p>The urban area of Wollongong is particularly covered in clouds, so-much so that none of the urban area is visible. To counter this, we use a cloud mask which uses the <strong>QA60 band</strong>, where the QA stands for ‘Quality Assurance’ and 60 refers to the granularity of the image, with 60m spatial resolution <a href="https://philippgaertner.github.io/2020/08/percent-cloud-cover/" target="_blank">source</a>. It has two possible values, bit 10 and bit 11 which respectively to opaque and cirrus clouds. Using this band has been particularly successful in developing automatic cloud models for S-2 in GEE ( <span class="citation" data-cites="li2022">Li et al. (<a href="references.html#ref-li2022" role="doc-biblioref">2022</a>)</span> ).</p>
 <p>In addition to the mask, we take the median value of the pixel and apply it as a value. This allows the removal of the clouds whilst also keeping the image information.</p>
-<p><strong>NOTE:</strong> we acknowledge that other methods which are more efficient exist, as some information is lost with the ‘median’ method. We attempted to use a <a href="https://code.earthengine.google.com/?scriptPath=Examples%3ACloud%20Masking%2FSentinel2%20Cloud%20And%20Shadow">GEE community provided example</a> of s2cloudless but was unsuccessful as we recurring memory limit issues.</p>
+<p><strong>NOTE:</strong> we acknowledge that other methods which are more efficient exist, as some information is lost with the ‘median’ method. We attempted to use a <a href="https://code.earthengine.google.com/?scriptPath=Examples%3ACloud%20Masking%2FSentinel2%20Cloud%20And%20Shadow" target="_blank">GEE community provided example</a> of s2cloudless but was unsuccessful as we recurring memory limit issues.</p>
 <p>When applying the respective cloud masking function, we get the following result:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="Week_6/wollo_cloud_msk_polygons.png" class="img-fluid figure-img"></p>
@@ -403,6 +459,7 @@ background-size: cover;
 <p></p><figcaption class="figure-caption">Example of how nodes in CART work</figcaption><p></p>
 </figure>
 </div>
+<p>These create a decision tree, which typically start with a single node, and branches out into the different possible outcomes. By selecting 10 or 100 nodes, the algorithm creates these branches according to different arguments, thus influencing and changing the results.</p>
 <section id="at-polygon-level-1" class="level3"><h3 class="anchored" data-anchor-id="at-polygon-level-1">At polygon level</h3>
 <p>Our initial Cart output illustrates the model with object based references with 10 nodes.</p>
 <div class="quarto-figure quarto-figure-center">
@@ -475,7 +532,7 @@ background-size: cover;
 <p>Finally, we also acknowledge the black box elements to these statistical methods used for analysis. Black boxes are systems that their internal logic to the user ( <span class="citation" data-cites="guidotti2019">Guidotti et al. (<a href="references.html#ref-guidotti2019" role="doc-biblioref">2019</a>)</span> ) which make certain results, although correct, difficult to precisely explain.</p>
 </section><section id="gee-technicalities" class="level2"><h2 class="anchored" data-anchor-id="gee-technicalities">GEE Technicalities</h2>
 <p>This entry allowed to further delve into the technical side of GEE.</p>
-<p>Initially, we managed to clip the relevant area from the GAUL data set and <a href="https://stackoverflow.com/questions/61220828/how-to-clip-an-image-collection-to-a-feature-collections-geometry">user forums</a>. This is interesting as we used the clip directly when defining the mask instead of clipping the image separately. The JS code format is as follows:</p>
+<p>Initially, we managed to clip the relevant area from the GAUL data set and <a href="https://stackoverflow.com/questions/61220828/how-to-clip-an-image-collection-to-a-feature-collections-geometry" target="_blank">user forums</a>. This is interesting as we used the clip directly when defining the mask instead of clipping the image separately. The JS code format is as follows:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> waytwo <span class="op">=</span> ee<span class="op">.</span><span class="fu">ImageCollection</span>(<span class="st">'COPERNICUS/S2_SR_HARMONIZED'</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                  <span class="op">.</span><span class="fu">filterDate</span>(<span class="st">'2022-01-01'</span><span class="op">,</span> <span class="st">'2022-10-31'</span>)</span>
@@ -784,8 +841,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./summary.html" class="pagination-link">
-        <span class="nav-page-text">Policy</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./correction_GEE_2.html" class="pagination-link">
+        <span class="nav-page-text">Corrections in GEE - 2</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

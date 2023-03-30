@@ -1,8 +1,33 @@
 <div style="text-align: justify">
 
-# Corrections in GEE - Part 1 {.unnumbered}
+```{r echo = FALSE}
+tippy::tippy_this(elementId = "CART", tooltip = "Classification and Regression Tree - predictive tool which provides prediction of outcome variables based on previously obtained ground-truth data (in our case, manually annotated areas that fit terrain characteristics)")
 
-For this entry, we focus on atmospheric correction in GEE, with specific on the Wollongong area, in New South Wales Australia. We initially chose this region because the name is particularly interesting but also has the advantage of having interesting characteristics:
+tippy::tippy_this(elementId = "nodes", tooltip = "a node being the representation of an outcome, selecting 10 or 100 nodes tells the algorithm how many branches it can create. Different number of branches leads to different arguments in the creation of these branches, thus influencing and changing the results.")
+
+```
+
+# Corrections in GEE - 1 {.unnumbered}
+
+::: callout-note
+# OVERVIEW
+
+-   Atmospheric correction in Wollongong using GEE
+    -   cloud masking in a very cloud urban area Wollongong
+-   Introduction to classification Methods at polygon and pixel level
+    -   polygons locally defined to areas with specific characteristics to teach the algorithm how to recognise categorised surface types
+-   Use of machine learning methods for surface classification, Random Forest (RF) and <u id='CART'>CART</u>
+    -   best results at pixel level for the RF (over 80% Validation accuracy) although over-fitting witnessed (99% training accuracy)
+
+    -   running CART method with for <u id='nodes'>10 and 100 nodes</u> to understand difference in parameter tuning
+
+        -   better results at CART 10 nodes (79% training and validation accuracy), proving model does not over-fit and provides reliable output
+-   Understanding function elements work in GEE, and how to output requested functionalities
+:::
+
+## Study area selection
+
+For this entry, we focus on atmospheric correction in GEE, with specific on the Wollongong area, in New South Wales, Australia. We initially chose this region because the name is particularly interesting but also has the advantage of having interesting characteristics:
 
 -   is surrounded by the ocean on the east
 
@@ -22,11 +47,11 @@ Whilst this method allows for clear images, when studying an area these might no
 
 ## Understanding how cloud mask works
 
-The urban area of Wollongong is particularly covered in clouds, so-much so that none of the urban area is visible. To counter this, we use a cloud mask which uses the **QA60 band**, where the QA stands for 'Quality Assurance' and 60 refers to the granularity of the image, with 60m spatial resolution [source](https://philippgaertner.github.io/2020/08/percent-cloud-cover/). It has two possible values, bit 10 and bit 11 which respectively to opaque and cirrus clouds. Using this band has been particularly successful in developing automatic cloud models for S-2 in GEE ( @li2022 ).
+The urban area of Wollongong is particularly covered in clouds, so-much so that none of the urban area is visible. To counter this, we use a cloud mask which uses the **QA60 band**, where the QA stands for 'Quality Assurance' and 60 refers to the granularity of the image, with 60m spatial resolution [source](https://philippgaertner.github.io/2020/08/percent-cloud-cover/){target="_blank"}. It has two possible values, bit 10 and bit 11 which respectively to opaque and cirrus clouds. Using this band has been particularly successful in developing automatic cloud models for S-2 in GEE ( @li2022 ).
 
 In addition to the mask, we take the median value of the pixel and apply it as a value. This allows the removal of the clouds whilst also keeping the image information.
 
-**NOTE:** we acknowledge that other methods which are more efficient exist, as some information is lost with the 'median' method. We attempted to use a [GEE community provided example](https://code.earthengine.google.com/?scriptPath=Examples%3ACloud%20Masking%2FSentinel2%20Cloud%20And%20Shadow) of s2cloudless but was unsuccessful as we recurring memory limit issues.
+**NOTE:** we acknowledge that other methods which are more efficient exist, as some information is lost with the 'median' method. We attempted to use a [GEE community provided example](https://code.earthengine.google.com/?scriptPath=Examples%3ACloud%20Masking%2FSentinel2%20Cloud%20And%20Shadow){target="_blank"} of s2cloudless but was unsuccessful as we recurring memory limit issues.
 
 When applying the respective cloud masking function, we get the following result:
 
@@ -67,6 +92,8 @@ We then proceed to run the same analysis for CART. We use the same methods as ab
 Like for the RF, we initially use 10 nodes, meaning using trees with a maximum of 10 leaf nodes. These trees look something a little like this:
 
 ![Example of how nodes in CART work](Week_6/leaf_example.jpeg)
+
+These create a decision tree, which typically start with a single node, and branches out into the different possible outcomes. By selecting 10 or 100 nodes, the algorithm creates these branches according to different arguments, thus influencing and changing the results.
 
 ### At polygon level
 
@@ -127,7 +154,7 @@ Finally, we also acknowledge the black box elements to these statistical methods
 
 This entry allowed to further delve into the technical side of GEE.
 
-Initially, we managed to clip the relevant area from the GAUL data set and [user forums](https://stackoverflow.com/questions/61220828/how-to-clip-an-image-collection-to-a-feature-collections-geometry). This is interesting as we used the clip directly when defining the mask instead of clipping the image separately. The JS code format is as follows:
+Initially, we managed to clip the relevant area from the GAUL data set and [user forums](https://stackoverflow.com/questions/61220828/how-to-clip-an-image-collection-to-a-feature-collections-geometry){target="_blank"}. This is interesting as we used the clip directly when defining the mask instead of clipping the image separately. The JS code format is as follows:
 
 ```{javascript, eval=FALSE}
 var waytwo = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED')
