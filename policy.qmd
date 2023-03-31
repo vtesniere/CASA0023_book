@@ -50,7 +50,7 @@ We add an example of the current interface that can be used by local researchers
 
 ![Data Explorer Interface Example](Week_4/Database_example.png)
 
-# Personal Relection
+# Personal Reflection
 
 ## Limitations of the Data Source
 
