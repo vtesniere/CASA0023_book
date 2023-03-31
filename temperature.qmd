@@ -1,0 +1,117 @@
+<div style="text-align: justify">
+
+```{r echo = FALSE}
+tippy::tippy_this(elementId = "MODIS", tooltip = "Moderate Resolution Imaging Spectroradiometer - used for earth and climate measurements")
+tippy::tippy_this(elementId = "GAUL", tooltip = "Global Administrative Unit Layers")
+tippy::tippy_this(elementId = "LST", tooltip = "Land Surface Temperature")
+tippy::tippy_this(elementId = "RCP", tooltip = "Representative Concentration Pathways")
+tippy::tippy_this(elementId = "UHI", tooltip = "Urban Heat Island")
+tippy::tippy_this(elementId = "SDG", tooltip = "Sustainable Development Goal")
+
+```
+
+# Exploring temperature across urban areas {.unnumbered}
+
+::: callout-note
+# OVERVIEW
+
+-   Understanding the importance of temperature on a local and international scale and how it can influence the environment and living conditions
+    -   discussing <u id='UHI'>UHI's</u> and how their correct identification can support policy implementation and help cities reach <u id='SDG'>SDG's</u>
+-   Using L-8 and <u id='MODIS'>MODIS</u> to explore temperature across urban areas
+    -   understanding 2 day revisit time between Terra and Aqua and comparing how results change between the two
+    -   understanding the <u id='LST'>LST</u> dynamics in Bucharest
+-   Comparing outputs between city defined Bucharest shapefile and GEE accessible Bucharest general area delimitations
+:::
+
+# Setting the scene
+
+Different global warming predictions exist, with experts trying to understand and estimate how human interaction with out environment can bring different possible scenarios. To illustrate these different possible outcomes, researchers have been using <u id='RCP'>RCP's</u> to illustrate how our actions, or lack thereof, can influence global warming. The below image illustrates the evolution of the various different scenarios (@bowyer2014)
+
+![Different RCP scenarios until 2100](Week_8/RCP_scenarios.png)
+
+The different RCP values represent different actions taken at national and international level, with the following examples:
+
+-   RCP2.6 - "very stringent pathway" - high global effort to keep rising temperatures below 2°C
+
+-   RCP4.6 - "intermediate scenario" - most probable baseline scenario which accounts for the exhaustible nature of non-renewable fossil fuels
+
+-   RCP6.0 - "high emission" - emissions will peak in 2080 and stabilisation on taking place in end of 21st century
+
+-   RCP8.5 - "very high emission" - emissions will rise non-stop throughout the 21st century considered the worst-case scenario possible
+
+For this reason, properly analysing temperature, through Landsat or MODIS (or any other means) is important in understanding how heat evolves through time, seeing the effects on global warming on a global scale.
+
+It also allows researchers to have insight on local level population insights and can support the well being of individuals. Indeed, indentifiying Urban Heat Islands, areas with dense concentrations of man-made buildings which accumulate heat, and implementing the correct policies to lower the temperature of these areas will benefit the living conditions of local populations. This is ever more so important as it allows cities to be in line with <u id='SDG'>SDG</u>
+
+# How to work with temperature in GEE?
+
+## Landsat-8
+
+L-8 has **two** thermal infrared band ([c.f.](https://vtesniere.github.io/CASA0023_book/intro.html#:~:text=Landsat%2D8%20(right)%20band%20comparisons "refresher") with Band 10 and 11) which allow it to retrieve precise information on temperature trends, using single-channel or split-window algorithms to make these insights (@jiménez-muñoz2014). In our Bucharest analysis, we only use a single channel analysis to analyse our area, using band 10 from data between May and September 2022.
+
+We run our first analysis on the Bucharest region, as delimited by the <u id='GAUL'>GAUL</u> . With a temperature range between 20°C and 50°C (blue being coldest and red warmest), we see that our initial results are not too successful as much of the image is blue. This makes sense as Bucharest warmest ever temperature was of 42.2°C in 2000, therefore even with accumulation of heat, 50°C is a high margin.
+
+![Temperature ranges Bucharest between 20°C and 50°C in summer 2022](Week_8/initial_bucharest_temperature_landsat.png)
+
+To remedy this, we reduce the range to 20-45°C. With this change, the results are more insightful and we better visualise areas with high heat concentration. We also add the actual Bucharest outline (with local shapefile) which will be the area we focus on from this point forward:
+
+![Temperature ranges Bucharest between 20 and 45°C](Week_8/better_ranger_global.png)
+
+The output allows us to better see the variations in temperature but we also notice that some areas do not have values, either due to the lack of values, constant cloud cover over the area or simply the area being under 20°C:
+
+![Missing Areas in Bucharest](Week_8/missing_areas.png)
+
+## MODIS AQUA AND TERRA
+
+Now moving on to the MODIS data, we use Aqua and Terra to visualise temperature in Bucharest. Our first results are less contrasted than for the L-8 data, and we also see that the area's previously missing the L-8 are available for MODIS
+
+![Bucharest MODIS Temperature illustration](Week_8/modis_temp.png)
+
+For better understanding of LST distribution around the city, the graph below provides precise quantitative information. We see peaks around August, with LST temperatures reaching 45°C. We also notice some data limitations as certain days do not seem to have information (i.e. early September or second quarter of July). This is likely due to some limiting factor, which could be simply cloud cover, as MODIS cannot observe the surface when cloud cover is present (NASA: [NSDIC](https://nsidc.org/data/user-resources/help-center/what-are-limitations-modis-data#:~:text=MODIS%20is%20an%20optical%20sensor,when%20cloud%20cover%20is%20present.))
+
+![Graphical Visualisation Temperature Bucharest Summer 2022](Week_8/ee-chart.png)
+
+To provide better understanding of the above chart, we decide to use an interactive version of the chart, which allows for detailed information on the different temperature characteristics over time.
+
+```{r include=FALSE}
+library(plotly)
+library(lubridate)
+```
+
+```{r echo=FALSE, warning=FALSE, fig.cap='LST Interactive Chart - Bucharest summer 2022'}
+ee_data <- read.csv('Week_8/ee-chart.csv')
+ee_data$system.time_start <- mdy(ee_data$system.time_start)
+p <- ggplot(data = ee_data, aes(x = system.time_start, y = LST_Day_1km, group = 1)) +
+  geom_path() + scale_x_date(date_labels = "%b-%d")+
+  theme(
+  panel.background = element_rect(fill = "lightblue",
+                                colour = "lightblue",
+                                size = 0.5, linetype = "solid"),
+  panel.grid.major = element_line(size = 0.5, linetype = 'solid',
+                                colour = "white"), 
+  panel.grid.minor = element_line(size = 0.3, linetype = 'solid',
+                                colour = "black")
+  ) +ggtitle('Temperature (°C) Time Series')
+ggplotly(p)
+
+```
+
+# Personal Reflection
+
+As the Bucharest area studied in this entry is only composed on a single spatial unit, we can only conduct statistics on a singular spatial unit. This is applicable both for Bucharest in the shapefile form and through the GAUL.
+
+In further works, we would look to use areas which have spatial area separations which would allow us to make temperature comparisons between various areas or neighborhoods (depending on the granularity of the data available)
+
+```{r, echo=FALSE, warning=FALSE, composites, fig.cap="Bucharest GAUL (left) and Beijing Gaul Seperation example (right)", fig.align='center', results='asis',fig.height=3, fig.width=6}
+knitr::opts_chunk$set(fig.pos = "H", out.extra = "")
+library(cowplot)
+ggdraw() + draw_image('Week_8/bucharest_shape.png', width = 0.5) + draw_image('Week_8/beijing_shape.png', width = 0.5, x = 0.5)
+```
+
+We would look to create a similar LST chart as in the previous section, but adding more lines for different recorded areas or sectors.
+
+It would also be interesting to potential indexes for Heat, but also other measures such as moisture or dryness, to understand how certain urban areas are and how they influence the quality of life of local people.
+
+# Thank you for reading!
+
+Finally, I highly values the skills, techniques and approaches used throughout the create of this Diary! I believe that, now accustomed to this panoply of methods to analyse remote sensing imagery, I have a much more developed understanding of current climate issues, but also how to implement and propose viable solutions. I look forward to continue developing these skills and had fun personalizing this work!

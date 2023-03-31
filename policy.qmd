@@ -1,0 +1,61 @@
+<div style="text-align: justify">
+
+```{r echo = FALSE}
+tippy::tippy_this(elementId = "OECD", tooltip = "Organisation for Economic Co-Operation and Economic Development")
+tippy::tippy_this(elementId = "PCA", tooltip = "Principal Component Analysis")
+tippy::tippy_this(elementId = "NDVI", tooltip = "Normalized Vegetation Index - indicator of vegetation in an area ")
+tippy::tippy_this(elementId = "NDMI", tooltip = "Normalized Moisutre Index - indicator for the amount of moisture in the soil")
+tippy::tippy_this(elementId = "GCI", tooltip = "Green Chlorophyll Index - indicator calculating the total amount of chlorophyll in plants")
+
+```
+
+# Policy discussion {.unnumbered}
+
+::: callout-note
+# OVERVIEW
+
+-   Discussing policy implementation with the use of remotely sensed data
+-   Newly released initiative by the <u id='OECD'>OECD</u> which uses a [detailed database](https://data-explorer.oecd.org/) to provide governments with detailed information on the real-time evolution of geographic indicators
+:::
+
+# The problematic area
+
+For the question of policy implementation, we focus on Romania's Capital, Bucharest! Below we have it's current delimiations
+
+![Bucharest Current Delimitations](Week_4/Bucharest_sector_delimitation.jpeg)
+
+# The identified data policy source
+
+We select the 'Data Explorer' source provided by the OECD. It is a data source that monitors exposure to climate-related hazards, consisting of 7 main categories, all constructed using remote sensing sources (@maes2022)
+
+-   Extreme Temperature
+
+-   Extreme Precipitation
+
+-   Drought
+
+-   Wildfire
+
+-   Wind Threats
+
+-   River Flooding
+
+-   Coastal Flooding
+
+One of the most powerful tools of this database is it's ability to provide near-real time results, which allows better understanding of various Characteristics, such as LULC, which is a factor with high variability which is not always captured.
+
+Furthermore, the data for all of these characteristics are available at a minimum since 1997 (for wildfires) and goes back up to 1950 (for drought info).
+
+We add an example of the current interface that can be used by local researchers in order to tackle their current policy challenges, which could strongly benefit from this emerging datasource
+
+![Data Explorer Interface Example](Week_4/Database_example.png)
+
+# Personal Relection
+
+## Limitations of the Data Source
+
+One of the current limitations in the use of the 'Data Explorer' database is that it is still in the public beta release, as the initial launch of the programme was only in the second half of 2021. The beta release means that they are still testing new features in order to make sure all of their functionalities and data are correct.
+
+## Additional information
+
+Additional information can be found on the following Xaringan presentation, which was led by my classmates (Ella, Sophia, Yanbo and Winxi) and myself, where we develop on this topic. We focused particular on improving the population quality of life through the re-delimitation of Bucharest boundaries: [available here!](https://vtesniere.github.io/CASA0023_geographers_presentation/#1){target="_blank"}

@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>CASA0023 Learning Diary - Exploring temperature across urban areas</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./policy.html" rel="next">
+<link href="./correction_GEE_2.html" rel="prev">
+<link href="./img/UCL_square.jpeg" rel="icon" type="image/jpeg">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5LZK055F2X"></script><script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-5LZK055F2X', { 'anonymize_ip': true});
+</script><style>
+    .quarto-title-block .quarto-title-banner {
+      background-image: url(img/Nighttime-purple.jpeg);
+background-size: cover;
+    }
+    </style>
+<script src="site_libs/htmlwidgets-1.6.1/htmlwidgets.js"></script><link href="site_libs/tippyjs-3.2.0/themes/google.css" rel="stylesheet">
+<link href="site_libs/tippyjs-3.2.0/themes/light-border.css" rel="stylesheet">
+<link href="site_libs/tippyjs-3.2.0/themes/light.css" rel="stylesheet">
+<link href="site_libs/tippyjs-3.2.0/themes/translucent.css" rel="stylesheet">
+<script src="site_libs/tippyjs-3.2.0/tippy.all.min.js"></script><script src="site_libs/tippy-binding-0.1.0/tippy.js"></script><script src="site_libs/plotly-binding-4.10.1/plotly.js"></script><script src="site_libs/typedarray-0.1/typedarray.min.js"></script><script src="site_libs/jquery-3.5.1/jquery.min.js"></script><link href="site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><link href="site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+</head>
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./img/ucl_logo.png" alt="" class="navbar-logo"></a>
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">CASA0023 Learning Diary</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/vtesniere/CASA0023_book"><i class="bi bi-github" role="img" aria-label="Source Code">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+<div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Exploring temperature across urban areas</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default page-columns page-full"><div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title d-none d-lg-block">Exploring temperature across urban areas</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto"><div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true"><strong>Introduction and Helpful Tools</strong></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Introduction and Presentation</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./abbreviations.html" class="sidebar-item-text sidebar-link">Common Remote Sensing Abbreviations!</a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true"><strong>Using SNAP and understanding Landsat Data</strong></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">Introducing Remote Sensing - A Bucharest Analysis</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2_sensor_presentation.html" class="sidebar-item-text sidebar-link">Presenting a Sensor: Sentinel 6A and the Poseidon-4 Radar Altimeter</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./corrections.html" class="sidebar-item-text sidebar-link">Atmospheric Corrections</a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true"><strong>GEE and Classification</strong></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./GEE_intro.html" class="sidebar-item-text sidebar-link">Introduction to Google Earth Engine</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./correction_GEE_1.html" class="sidebar-item-text sidebar-link">Corrections in GEE - 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./correction_GEE_2.html" class="sidebar-item-text sidebar-link">Corrections in GEE - 2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./temperature.html" class="sidebar-item-text sidebar-link active">Exploring temperature across urban areas</a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true"><strong>Discussing Policy and additional resources</strong></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./policy.html" class="sidebar-item-text sidebar-link">Policy discussion</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#setting-the-scene" id="toc-setting-the-scene" class="nav-link active" data-scroll-target="#setting-the-scene">Setting the scene</a></li>
+  <li>
+<a href="#how-to-work-with-temperature-in-gee" id="toc-how-to-work-with-temperature-in-gee" class="nav-link" data-scroll-target="#how-to-work-with-temperature-in-gee">How to work with temperature in GEE?</a>
+  <ul class="collapse">
+<li><a href="#landsat-8" id="toc-landsat-8" class="nav-link" data-scroll-target="#landsat-8">Landsat-8</a></li>
+  <li><a href="#modis-aqua-and-terra" id="toc-modis-aqua-and-terra" class="nav-link" data-scroll-target="#modis-aqua-and-terra">MODIS AQUA AND TERRA</a></li>
+  </ul>
+</li>
+  <li><a href="#personal-reflection" id="toc-personal-reflection" class="nav-link" data-scroll-target="#personal-reflection">Personal Reflection</a></li>
+  <li><a href="#thank-you-for-reading" id="toc-thank-you-for-reading" class="nav-link" data-scroll-target="#thank-you-for-reading">Thank you for reading!</a></li>
+  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/vtesniere/CASA0023_book/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content"><div style="text-align: justify">
+
+
+<div class="cell">
+<div class="cell-output-display">
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="464px" id="htmlwidget-3c6ef6dc3a182491bd6a" width="100%"></span>
+<script type="application/json" data-for="htmlwidget-3c6ef6dc3a182491bd6a">{"x":{"element":"MODIS","opts":{"content":"Moderate Resolution Imaging Spectroradiometer - used for earth and climate measurements"}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output-display">
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="464px" id="htmlwidget-18f561e2f3df999228b9" width="100%"></span>
+<script type="application/json" data-for="htmlwidget-18f561e2f3df999228b9">{"x":{"element":"GAUL","opts":{"content":"Global Administrative Unit Layers"}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output-display">
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="464px" id="htmlwidget-3da4acd0197691e46a32" width="100%"></span>
+<script type="application/json" data-for="htmlwidget-3da4acd0197691e46a32">{"x":{"element":"LST","opts":{"content":"Land Surface Temperature"}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output-display">
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="464px" id="htmlwidget-be802c87e8cac305ecd7" width="100%"></span>
+<script type="application/json" data-for="htmlwidget-be802c87e8cac305ecd7">{"x":{"element":"RCP","opts":{"content":"Representative Concentration Pathways"}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output-display">
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="464px" id="htmlwidget-80aac6e8376ffdfa8393" width="100%"></span>
+<script type="application/json" data-for="htmlwidget-80aac6e8376ffdfa8393">{"x":{"element":"UHI","opts":{"content":"Urban Heat Island"}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="cell-output-display">
+<span class="tippy html-widget html-fill-item-overflow-hidden html-fill-item" height="464px" id="htmlwidget-182c6f2ff99dbeef5191" width="100%"></span>
+<script type="application/json" data-for="htmlwidget-182c6f2ff99dbeef5191">{"x":{"element":"SDG","opts":{"content":"Sustainable Development Goal"}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+OVERVIEW
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Understanding the importance of temperature on a local and international scale and how it can influence the environment and living conditions
+<ul>
+<li>discussing <u id="UHI">UHI’s</u> and how their correct identification can support policy implementation and help cities reach <u id="SDG">SDG’s</u>
+</li>
+</ul>
+</li>
+<li>Using L-8 and <u id="MODIS">MODIS</u> to explore temperature across urban areas
+<ul>
+<li>understanding 2 day revisit time between Terra and Aqua and comparing how results change between the two</li>
+<li>understanding the <u id="LST">LST</u> dynamics in Bucharest</li>
+</ul>
+</li>
+<li>Comparing outputs between city defined Bucharest shapefile and GEE accessible Bucharest general area delimitations</li>
+</ul>
+</div>
+</div>
+<section id="setting-the-scene" class="level1"><h1>Setting the scene</h1>
+<p>Different global warming predictions exist, with experts trying to understand and estimate how human interaction with out environment can bring different possible scenarios. To illustrate these different possible outcomes, researchers have been using <u id="RCP">RCP’s</u> to illustrate how our actions, or lack thereof, can influence global warming. The below image illustrates the evolution of the various different scenarios (<span class="citation" data-cites="bowyer2014">Bowyer et al. (<a href="references.html#ref-bowyer2014" role="doc-biblioref">2014</a>)</span>)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="Week_8/RCP_scenarios.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Different RCP scenarios until 2100</figcaption><p></p>
+</figure>
+</div>
+<p>The different RCP values represent different actions taken at national and international level, with the following examples:</p>
+<ul>
+<li><p>RCP2.6 - “very stringent pathway” - high global effort to keep rising temperatures below 2°C</p></li>
+<li><p>RCP4.6 - “intermediate scenario” - most probable baseline scenario which accounts for the exhaustible nature of non-renewable fossil fuels</p></li>
+<li><p>RCP6.0 - “high emission” - emissions will peak in 2080 and stabilisation on taking place in end of 21st century</p></li>
+<li><p>RCP8.5 - “very high emission” - emissions will rise non-stop throughout the 21st century considered the worst-case scenario possible</p></li>
+</ul>
+<p>For this reason, properly analysing temperature, through Landsat or MODIS (or any other means) is important in understanding how heat evolves through time, seeing the effects on global warming on a global scale.</p>
+<p>It also allows researchers to have insight on local level population insights and can support the well being of individuals. Indeed, indentifiying Urban Heat Islands, areas with dense concentrations of man-made buildings which accumulate heat, and implementing the correct policies to lower the temperature of these areas will benefit the living conditions of local populations. This is ever more so important as it allows cities to be in line with <u id="SDG">SDG</u></p>
+</section><section id="how-to-work-with-temperature-in-gee" class="level1"><h1>How to work with temperature in GEE?</h1>
+<section id="landsat-8" class="level2"><h2 class="anchored" data-anchor-id="landsat-8">Landsat-8</h2>
+<p>L-8 has <strong>two</strong> thermal infrared band (<a href="https://vtesniere.github.io/CASA0023_book/intro.html#:~:text=Landsat%2D8%20(right)%20band%20comparisons" title="refresher">c.f.</a> with Band 10 and 11) which allow it to retrieve precise information on temperature trends, using single-channel or split-window algorithms to make these insights (<span class="citation" data-cites="jiménez-muñoz2014">Jiménez-Muñoz et al. (<a href="references.html#ref-jim%C3%A9nez-mu%C3%B1oz2014" role="doc-biblioref">2014</a>)</span>). In our Bucharest analysis, we only use a single channel analysis to analyse our area, using band 10 from data between May and September 2022.</p>
+<p>We run our first analysis on the Bucharest region, as delimited by the <u id="GAUL">GAUL</u> . With a temperature range between 20°C and 50°C (blue being coldest and red warmest), we see that our initial results are not too successful as much of the image is blue. This makes sense as Bucharest warmest ever temperature was of 42.2°C in 2000, therefore even with accumulation of heat, 50°C is a high margin.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="Week_8/initial_bucharest_temperature_landsat.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Temperature ranges Bucharest between 20°C and 50°C in summer 2022</figcaption><p></p>
+</figure>
+</div>
+<p>To remedy this, we reduce the range to 20-45°C. With this change, the results are more insightful and we better visualise areas with high heat concentration. We also add the actual Bucharest outline (with local shapefile) which will be the area we focus on from this point forward:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="Week_8/better_ranger_global.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Temperature ranges Bucharest between 20 and 45°C</figcaption><p></p>
+</figure>
+</div>
+<p>The output allows us to better see the variations in temperature but we also notice that some areas do not have values, either due to the lack of values, constant cloud cover over the area or simply the area being under 20°C:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="Week_8/missing_areas.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Missing Areas in Bucharest</figcaption><p></p>
+</figure>
+</div>
+</section><section id="modis-aqua-and-terra" class="level2"><h2 class="anchored" data-anchor-id="modis-aqua-and-terra">MODIS AQUA AND TERRA</h2>
+<p>Now moving on to the MODIS data, we use Aqua and Terra to visualise temperature in Bucharest. Our first results are less contrasted than for the L-8 data, and we also see that the area’s previously missing the L-8 are available for MODIS</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="Week_8/modis_temp.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Bucharest MODIS Temperature illustration</figcaption><p></p>
+</figure>
+</div>
+<p>For better understanding of LST distribution around the city, the graph below provides precise quantitative information. We see peaks around August, with LST temperatures reaching 45°C. We also notice some data limitations as certain days do not seem to have information (i.e.&nbsp;early September or second quarter of July). This is likely due to some limiting factor, which could be simply cloud cover, as MODIS cannot observe the surface when cloud cover is present (NASA: <a href="https://nsidc.org/data/user-resources/help-center/what-are-limitations-modis-data#:~:text=MODIS%20is%20an%20optical%20sensor,when%20cloud%20cover%20is%20present.">NSDIC</a>)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="Week_8/ee-chart.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Graphical Visualisation Temperature Bucharest Summer 2022</figcaption><p></p>
+</figure>
+</div>
+<p>To provide better understanding of the above chart, we decide to use an interactive version of the chart, which allows for detailed information on the different temperature characteristics over time.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-e198ed0f86881c049774" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-e198ed0f86881c049774">{"x":{"data":[{"x":[19113,19113,19114,19114,19115,19115,19116,19116,19117,19117,19118,19118,19119,19119,19120,19120,19121,19121,19122,19122,19123,19123,19124,19124,19125,19125,19126,19126,19127,19127,19128,19128,19129,19129,19130,19130,19131,19131,19132,19132,19133,19133,19134,19134,19135,19135,19136,19136,19137,19137,19138,19138,19139,19139,19140,19140,19141,19141,19142,19142,19143,19143,19144,19144,19145,19145,19146,19146,19147,19147,19148,19148,19149,19149,19150,19150,19151,19151,19152,19152,19153,19153,19154,19154,19155,19155,19156,19156,19157,19157,19158,19158,19159,19159,19160,19160,19161,19161,19162,19162,19163,19163,19164,19164,19165,19165,19166,19166,19167,19167,19168,19168,19169,19169,19170,19170,19171,19171,19172,19172,19173,19173,19174,19174,19175,19175,19176,19176,19177,19177,19178,19178,19179,19179,19180,19180,19181,19181,19182,19182,19183,19183,19184,19184,19185,19185,19186,19186,19187,19187,19188,19188,19189,19189,19190,19190,19191,19191,19192,19192,19193,19193,19194,19194,19195,19195,19196,19196,19197,19197,19198,19198,19199,19199,19200,19200,19201,19201,19202,19202,19203,19203,19204,19204,19205,19205,19206,19206,19207,19207,19208,19208,19209,19209,19210,19210,19211,19211,19212,19212,19213,19213,19214,19214,19215,19215,19216,19216,19217,19217,19218,19218,19219,19219,19220,19220,19221,19221,19222,19222,19223,19223,19224,19224,19225,19225,19226,19226,19227,19227,19228,19228,19229,19229,19230,19230,19231,19231,19232,19232,19233,19233,19234,19234,19235,19235,19236,19236,19237,19237,19238,19238,19239,19239,19240,19240,19241,19241,19242,19242,19243,19243,19244,19244,19245,19245,19246,19246,19247,19247,19248,19248,19249,19249,19250,19250,19251,19251,19252,19252,19253,19253,19254,19254,19255,19255,19256,19256,19257,19257,19258,19258,19259,19259,19260,19260,19261,19261,19262,19262,19263,19263,19264,19264,19265,19265],"y":[22.539,25.721,23.778,22.77,null,null,27.31,17.831,20.948,21.169,23.084,23.835,16.19,null,22.526,20.355,23.792,21.125,null,null,31.766,28.483,34.407,35.601,40.624,36.351,31.44,31.189,null,null,35.848,27.548,35.293,36.156,null,null,29.213,30.58,36.705,29.818,35.48,33.334,34.92,32.269,32.74,24.351,30.485,28.489,32.698,28.784,35.734,35.613,35.95,28.606,28.409,35.599,25.814,21.167,24.913,null,34.439,34.488,35.208,32.793,38.301,37.791,34.869,31.793,30.891,36.67,39.754,34.025,28.638,29.782,32.768,30.719,30.662,26.102,31.398,null,32.709,null,null,null,33.347,null,32.024,35.831,35.658,33.622,31.099,null,32.635,31.186,36.414,31.343,28.936,32.035,37.363,31.947,31.214,37.772,37.737,37.893,36.235,36.628,null,null,38.175,36.166,35.519,37.444,null,null,35.279,36.294,null,null,39.354,41.209,44.416,39.769,41.047,37.047,39.303,39.624,40.298,null,37.703,39.193,41.876,37.696,null,38.018,null,null,31.14,34.557,null,32.276,null,null,32.729,32.878,35.752,31.448,36.36,36.156,43.72,37.526,40.147,41.81,43.188,38.596,37.189,38.242,37.243,33.994,42.001,36.568,39.766,39.746,41.139,36.707,40.824,41.242,45.676,40.323,44.955,37.325,39.524,36.845,41.953,37.322,41.136,39.956,38.568,null,40.002,38.738,43.669,37.429,null,null,37.356,null,38.759,null,37.133,36.463,40.542,35.919,36.234,39.043,40.187,null,38.946,37.844,41.395,36.293,37.556,36.829,31.792,null,null,35.229,38.772,36.81,37.812,34.754,null,30.772,34.151,null,37.834,36.046,39.368,37.014,38.358,36.084,38.385,38.51,39.255,35.792,null,34.943,36.675,null,null,34.763,null,null,35.056,32.933,32.361,34.95,36.935,29.889,37.379,38.878,39.723,34.864,35.039,37.15,36.655,null,33.085,24.362,null,null,null,null,null,null,28.188,27.484,28.727,26.557,31.723,30.011,35.862,30.032,null,null,null,32.896,33.635,32.442,29.999,30.53,27.934,28.228,31.42,28.507,24.378,31.406,null,31.655,null,null,27.046,24.854,30.319,26.147,22.976,24.449,23.333,22.26,null,22.155,20.993,18.183,26.353,24.329,28.663,23.219,null,22.938,null,null,28.638,24.43,null,null,33.124,29.073],"text":["system.time_start: 2022-05-01<br />LST_Day_1km: 22.539","system.time_start: 2022-05-01<br />LST_Day_1km: 25.721","system.time_start: 2022-05-02<br />LST_Day_1km: 23.778","system.time_start: 2022-05-02<br />LST_Day_1km: 22.770","system.time_start: 2022-05-03<br />LST_Day_1km:     NA","system.time_start: 2022-05-03<br />LST_Day_1km:     NA","system.time_start: 2022-05-04<br />LST_Day_1km: 27.310","system.time_start: 2022-05-04<br />LST_Day_1km: 17.831","system.time_start: 2022-05-05<br />LST_Day_1km: 20.948","system.time_start: 2022-05-05<br />LST_Day_1km: 21.169","system.time_start: 2022-05-06<br />LST_Day_1km: 23.084","system.time_start: 2022-05-06<br />LST_Day_1km: 23.835","system.time_start: 2022-05-07<br />LST_Day_1km: 16.190","system.time_start: 2022-05-07<br />LST_Day_1km:     NA","system.time_start: 2022-05-08<br />LST_Day_1km: 22.526","system.time_start: 2022-05-08<br />LST_Day_1km: 20.355","system.time_start: 2022-05-09<br />LST_Day_1km: 23.792","system.time_start: 2022-05-09<br />LST_Day_1km: 21.125","system.time_start: 2022-05-10<br />LST_Day_1km:     NA","system.time_start: 2022-05-10<br />LST_Day_1km:     NA","system.time_start: 2022-05-11<br />LST_Day_1km: 31.766","system.time_start: 2022-05-11<br />LST_Day_1km: 28.483","system.time_start: 2022-05-12<br />LST_Day_1km: 34.407","system.time_start: 2022-05-12<br />LST_Day_1km: 35.601","system.time_start: 2022-05-13<br />LST_Day_1km: 40.624","system.time_start: 2022-05-13<br />LST_Day_1km: 36.351","system.time_start: 2022-05-14<br />LST_Day_1km: 31.440","system.time_start: 2022-05-14<br />LST_Day_1km: 31.189","system.time_start: 2022-05-15<br />LST_Day_1km:     NA","system.time_start: 2022-05-15<br />LST_Day_1km:     NA","system.time_start: 2022-05-16<br />LST_Day_1km: 35.848","system.time_start: 2022-05-16<br />LST_Day_1km: 27.548","system.time_start: 2022-05-17<br />LST_Day_1km: 35.293","system.time_start: 2022-05-17<br />LST_Day_1km: 36.156","system.time_start: 2022-05-18<br />LST_Day_1km:     NA","system.time_start: 2022-05-18<br />LST_Day_1km:     NA","system.time_start: 2022-05-19<br />LST_Day_1km: 29.213","system.time_start: 2022-05-19<br />LST_Day_1km: 30.580","system.time_start: 2022-05-20<br />LST_Day_1km: 36.705","system.time_start: 2022-05-20<br />LST_Day_1km: 29.818","system.time_start: 2022-05-21<br />LST_Day_1km: 35.480","system.time_start: 2022-05-21<br />LST_Day_1km: 33.334","system.time_start: 2022-05-22<br />LST_Day_1km: 34.920","system.time_start: 2022-05-22<br />LST_Day_1km: 32.269","system.time_start: 2022-05-23<br />LST_Day_1km: 32.740","system.time_start: 2022-05-23<br />LST_Day_1km: 24.351","system.time_start: 2022-05-24<br />LST_Day_1km: 30.485","system.time_start: 2022-05-24<br />LST_Day_1km: 28.489","system.time_start: 2022-05-25<br />LST_Day_1km: 32.698","system.time_start: 2022-05-25<br />LST_Day_1km: 28.784","system.time_start: 2022-05-26<br />LST_Day_1km: 35.734","system.time_start: 2022-05-26<br />LST_Day_1km: 35.613","system.time_start: 2022-05-27<br />LST_Day_1km: 35.950","system.time_start: 2022-05-27<br />LST_Day_1km: 28.606","system.time_start: 2022-05-28<br />LST_Day_1km: 28.409","system.time_start: 2022-05-28<br />LST_Day_1km: 35.599","system.time_start: 2022-05-29<br />LST_Day_1km: 25.814","system.time_start: 2022-05-29<br />LST_Day_1km: 21.167","system.time_start: 2022-05-30<br />LST_Day_1km: 24.913","system.time_start: 2022-05-30<br />LST_Day_1km:     NA","system.time_start: 2022-05-31<br />LST_Day_1km: 34.439","system.time_start: 2022-05-31<br />LST_Day_1km: 34.488","system.time_start: 2022-06-01<br />LST_Day_1km: 35.208","system.time_start: 2022-06-01<br />LST_Day_1km: 32.793","system.time_start: 2022-06-02<br />LST_Day_1km: 38.301","system.time_start: 2022-06-02<br />LST_Day_1km: 37.791","system.time_start: 2022-06-03<br />LST_Day_1km: 34.869","system.time_start: 2022-06-03<br />LST_Day_1km: 31.793","system.time_start: 2022-06-04<br />LST_Day_1km: 30.891","system.time_start: 2022-06-04<br />LST_Day_1km: 36.670","system.time_start: 2022-06-05<br />LST_Day_1km: 39.754","system.time_start: 2022-06-05<br />LST_Day_1km: 34.025","system.time_start: 2022-06-06<br />LST_Day_1km: 28.638","system.time_start: 2022-06-06<br />LST_Day_1km: 29.782","system.time_start: 2022-06-07<br />LST_Day_1km: 32.768","system.time_start: 2022-06-07<br />LST_Day_1km: 30.719","system.time_start: 2022-06-08<br />LST_Day_1km: 30.662","system.time_start: 2022-06-08<br />LST_Day_1km: 26.102","system.time_start: 2022-06-09<br />LST_Day_1km: 31.398","system.time_start: 2022-06-09<br />LST_Day_1km:     NA","system.time_start: 2022-06-10<br />LST_Day_1km: 32.709","system.time_start: 2022-06-10<br />LST_Day_1km:     NA","system.time_start: 2022-06-11<br />LST_Day_1km:     NA","system.time_start: 2022-06-11<br />LST_Day_1km:     NA","system.time_start: 2022-06-12<br />LST_Day_1km: 33.347","system.time_start: 2022-06-12<br />LST_Day_1km:     NA","system.time_start: 2022-06-13<br />LST_Day_1km: 32.024","system.time_start: 2022-06-13<br />LST_Day_1km: 35.831","system.time_start: 2022-06-14<br />LST_Day_1km: 35.658","system.time_start: 2022-06-14<br />LST_Day_1km: 33.622","system.time_start: 2022-06-15<br />LST_Day_1km: 31.099","system.time_start: 2022-06-15<br />LST_Day_1km:     NA","system.time_start: 2022-06-16<br />LST_Day_1km: 32.635","system.time_start: 2022-06-16<br />LST_Day_1km: 31.186","system.time_start: 2022-06-17<br />LST_Day_1km: 36.414","system.time_start: 2022-06-17<br />LST_Day_1km: 31.343","system.time_start: 2022-06-18<br />LST_Day_1km: 28.936","system.time_start: 2022-06-18<br />LST_Day_1km: 32.035","system.time_start: 2022-06-19<br />LST_Day_1km: 37.363","system.time_start: 2022-06-19<br />LST_Day_1km: 31.947","system.time_start: 2022-06-20<br />LST_Day_1km: 31.214","system.time_start: 2022-06-20<br />LST_Day_1km: 37.772","system.time_start: 2022-06-21<br />LST_Day_1km: 37.737","system.time_start: 2022-06-21<br />LST_Day_1km: 37.893","system.time_start: 2022-06-22<br />LST_Day_1km: 36.235","system.time_start: 2022-06-22<br />LST_Day_1km: 36.628","system.time_start: 2022-06-23<br />LST_Day_1km:     NA","system.time_start: 2022-06-23<br />LST_Day_1km:     NA","system.time_start: 2022-06-24<br />LST_Day_1km: 38.175","system.time_start: 2022-06-24<br />LST_Day_1km: 36.166","system.time_start: 2022-06-25<br />LST_Day_1km: 35.519","system.time_start: 2022-06-25<br />LST_Day_1km: 37.444","system.time_start: 2022-06-26<br />LST_Day_1km:     NA","system.time_start: 2022-06-26<br />LST_Day_1km:     NA","system.time_start: 2022-06-27<br />LST_Day_1km: 35.279","system.time_start: 2022-06-27<br />LST_Day_1km: 36.294","system.time_start: 2022-06-28<br />LST_Day_1km:     NA","system.time_start: 2022-06-28<br />LST_Day_1km:     NA","system.time_start: 2022-06-29<br />LST_Day_1km: 39.354","system.time_start: 2022-06-29<br />LST_Day_1km: 41.209","system.time_start: 2022-06-30<br />LST_Day_1km: 44.416","system.time_start: 2022-06-30<br />LST_Day_1km: 39.769","system.time_start: 2022-07-01<br />LST_Day_1km: 41.047","system.time_start: 2022-07-01<br />LST_Day_1km: 37.047","system.time_start: 2022-07-02<br />LST_Day_1km: 39.303","system.time_start: 2022-07-02<br />LST_Day_1km: 39.624","system.time_start: 2022-07-03<br />LST_Day_1km: 40.298","system.time_start: 2022-07-03<br />LST_Day_1km:     NA","system.time_start: 2022-07-04<br />LST_Day_1km: 37.703","system.time_start: 2022-07-04<br />LST_Day_1km: 39.193","system.time_start: 2022-07-05<br />LST_Day_1km: 41.876","system.time_start: 2022-07-05<br />LST_Day_1km: 37.696","system.time_start: 2022-07-06<br />LST_Day_1km:     NA","system.time_start: 2022-07-06<br />LST_Day_1km: 38.018","system.time_start: 2022-07-07<br />LST_Day_1km:     NA","system.time_start: 2022-07-07<br />LST_Day_1km:     NA","system.time_start: 2022-07-08<br />LST_Day_1km: 31.140","system.time_start: 2022-07-08<br />LST_Day_1km: 34.557","system.time_start: 2022-07-09<br />LST_Day_1km:     NA","system.time_start: 2022-07-09<br />LST_Day_1km: 32.276","system.time_start: 2022-07-10<br />LST_Day_1km:     NA","system.time_start: 2022-07-10<br />LST_Day_1km:     NA","system.time_start: 2022-07-11<br />LST_Day_1km: 32.729","system.time_start: 2022-07-11<br />LST_Day_1km: 32.878","system.time_start: 2022-07-12<br />LST_Day_1km: 35.752","system.time_start: 2022-07-12<br />LST_Day_1km: 31.448","system.time_start: 2022-07-13<br />LST_Day_1km: 36.360","system.time_start: 2022-07-13<br />LST_Day_1km: 36.156","system.time_start: 2022-07-14<br />LST_Day_1km: 43.720","system.time_start: 2022-07-14<br />LST_Day_1km: 37.526","system.time_start: 2022-07-15<br />LST_Day_1km: 40.147","system.time_start: 2022-07-15<br />LST_Day_1km: 41.810","system.time_start: 2022-07-16<br />LST_Day_1km: 43.188","system.time_start: 2022-07-16<br />LST_Day_1km: 38.596","system.time_start: 2022-07-17<br />LST_Day_1km: 37.189","system.time_start: 2022-07-17<br />LST_Day_1km: 38.242","system.time_start: 2022-07-18<br />LST_Day_1km: 37.243","system.time_start: 2022-07-18<br />LST_Day_1km: 33.994","system.time_start: 2022-07-19<br />LST_Day_1km: 42.001","system.time_start: 2022-07-19<br />LST_Day_1km: 36.568","system.time_start: 2022-07-20<br />LST_Day_1km: 39.766","system.time_start: 2022-07-20<br />LST_Day_1km: 39.746","system.time_start: 2022-07-21<br />LST_Day_1km: 41.139","system.time_start: 2022-07-21<br />LST_Day_1km: 36.707","system.time_start: 2022-07-22<br />LST_Day_1km: 40.824","system.time_start: 2022-07-22<br />LST_Day_1km: 41.242","system.time_start: 2022-07-23<br />LST_Day_1km: 45.676","system.time_start: 2022-07-23<br />LST_Day_1km: 40.323","system.time_start: 2022-07-24<br />LST_Day_1km: 44.955","system.time_start: 2022-07-24<br />LST_Day_1km: 37.325","system.time_start: 2022-07-25<br />LST_Day_1km: 39.524","system.time_start: 2022-07-25<br />LST_Day_1km: 36.845","system.time_start: 2022-07-26<br />LST_Day_1km: 41.953","system.time_start: 2022-07-26<br />LST_Day_1km: 37.322","system.time_start: 2022-07-27<br />LST_Day_1km: 41.136","system.time_start: 2022-07-27<br />LST_Day_1km: 39.956","system.time_start: 2022-07-28<br />LST_Day_1km: 38.568","system.time_start: 2022-07-28<br />LST_Day_1km:     NA","system.time_start: 2022-07-29<br />LST_Day_1km: 40.002","system.time_start: 2022-07-29<br />LST_Day_1km: 38.738","system.time_start: 2022-07-30<br />LST_Day_1km: 43.669","system.time_start: 2022-07-30<br />LST_Day_1km: 37.429","system.time_start: 2022-07-31<br />LST_Day_1km:     NA","system.time_start: 2022-07-31<br />LST_Day_1km:     NA","system.time_start: 2022-08-01<br />LST_Day_1km: 37.356","system.time_start: 2022-08-01<br />LST_Day_1km:     NA","system.time_start: 2022-08-02<br />LST_Day_1km: 38.759","system.time_start: 2022-08-02<br />LST_Day_1km:     NA","system.time_start: 2022-08-03<br />LST_Day_1km: 37.133","system.time_start: 2022-08-03<br />LST_Day_1km: 36.463","system.time_start: 2022-08-04<br />LST_Day_1km: 40.542","system.time_start: 2022-08-04<br />LST_Day_1km: 35.919","system.time_start: 2022-08-05<br />LST_Day_1km: 36.234","system.time_start: 2022-08-05<br />LST_Day_1km: 39.043","system.time_start: 2022-08-06<br />LST_Day_1km: 40.187","system.time_start: 2022-08-06<br />LST_Day_1km:     NA","system.time_start: 2022-08-07<br />LST_Day_1km: 38.946","system.time_start: 2022-08-07<br />LST_Day_1km: 37.844","system.time_start: 2022-08-08<br />LST_Day_1km: 41.395","system.time_start: 2022-08-08<br />LST_Day_1km: 36.293","system.time_start: 2022-08-09<br />LST_Day_1km: 37.556","system.time_start: 2022-08-09<br />LST_Day_1km: 36.829","system.time_start: 2022-08-10<br />LST_Day_1km: 31.792","system.time_start: 2022-08-10<br />LST_Day_1km:     NA","system.time_start: 2022-08-11<br />LST_Day_1km:     NA","system.time_start: 2022-08-11<br />LST_Day_1km: 35.229","system.time_start: 2022-08-12<br />LST_Day_1km: 38.772","system.time_start: 2022-08-12<br />LST_Day_1km: 36.810","system.time_start: 2022-08-13<br />LST_Day_1km: 37.812","system.time_start: 2022-08-13<br />LST_Day_1km: 34.754","system.time_start: 2022-08-14<br />LST_Day_1km:     NA","system.time_start: 2022-08-14<br />LST_Day_1km: 30.772","system.time_start: 2022-08-15<br />LST_Day_1km: 34.151","system.time_start: 2022-08-15<br />LST_Day_1km:     NA","system.time_start: 2022-08-16<br />LST_Day_1km: 37.834","system.time_start: 2022-08-16<br />LST_Day_1km: 36.046","system.time_start: 2022-08-17<br />LST_Day_1km: 39.368","system.time_start: 2022-08-17<br />LST_Day_1km: 37.014","system.time_start: 2022-08-18<br />LST_Day_1km: 38.358","system.time_start: 2022-08-18<br />LST_Day_1km: 36.084","system.time_start: 2022-08-19<br />LST_Day_1km: 38.385","system.time_start: 2022-08-19<br />LST_Day_1km: 38.510","system.time_start: 2022-08-20<br />LST_Day_1km: 39.255","system.time_start: 2022-08-20<br />LST_Day_1km: 35.792","system.time_start: 2022-08-21<br />LST_Day_1km:     NA","system.time_start: 2022-08-21<br />LST_Day_1km: 34.943","system.time_start: 2022-08-22<br />LST_Day_1km: 36.675","system.time_start: 2022-08-22<br />LST_Day_1km:     NA","system.time_start: 2022-08-23<br />LST_Day_1km:     NA","system.time_start: 2022-08-23<br />LST_Day_1km: 34.763","system.time_start: 2022-08-24<br />LST_Day_1km:     NA","system.time_start: 2022-08-24<br />LST_Day_1km:     NA","system.time_start: 2022-08-25<br />LST_Day_1km: 35.056","system.time_start: 2022-08-25<br />LST_Day_1km: 32.933","system.time_start: 2022-08-26<br />LST_Day_1km: 32.361","system.time_start: 2022-08-26<br />LST_Day_1km: 34.950","system.time_start: 2022-08-27<br />LST_Day_1km: 36.935","system.time_start: 2022-08-27<br />LST_Day_1km: 29.889","system.time_start: 2022-08-28<br />LST_Day_1km: 37.379","system.time_start: 2022-08-28<br />LST_Day_1km: 38.878","system.time_start: 2022-08-29<br />LST_Day_1km: 39.723","system.time_start: 2022-08-29<br />LST_Day_1km: 34.864","system.time_start: 2022-08-30<br />LST_Day_1km: 35.039","system.time_start: 2022-08-30<br />LST_Day_1km: 37.150","system.time_start: 2022-08-31<br />LST_Day_1km: 36.655","system.time_start: 2022-08-31<br />LST_Day_1km:     NA","system.time_start: 2022-09-01<br />LST_Day_1km: 33.085","system.time_start: 2022-09-01<br />LST_Day_1km: 24.362","system.time_start: 2022-09-02<br />LST_Day_1km:     NA","system.time_start: 2022-09-02<br />LST_Day_1km:     NA","system.time_start: 2022-09-03<br />LST_Day_1km:     NA","system.time_start: 2022-09-03<br />LST_Day_1km:     NA","system.time_start: 2022-09-04<br />LST_Day_1km:     NA","system.time_start: 2022-09-04<br />LST_Day_1km:     NA","system.time_start: 2022-09-05<br />LST_Day_1km: 28.188","system.time_start: 2022-09-05<br />LST_Day_1km: 27.484","system.time_start: 2022-09-06<br />LST_Day_1km: 28.727","system.time_start: 2022-09-06<br />LST_Day_1km: 26.557","system.time_start: 2022-09-07<br />LST_Day_1km: 31.723","system.time_start: 2022-09-07<br />LST_Day_1km: 30.011","system.time_start: 2022-09-08<br />LST_Day_1km: 35.862","system.time_start: 2022-09-08<br />LST_Day_1km: 30.032","system.time_start: 2022-09-09<br />LST_Day_1km:     NA","system.time_start: 2022-09-09<br />LST_Day_1km:     NA","system.time_start: 2022-09-10<br />LST_Day_1km:     NA","system.time_start: 2022-09-10<br />LST_Day_1km: 32.896","system.time_start: 2022-09-11<br />LST_Day_1km: 33.635","system.time_start: 2022-09-11<br />LST_Day_1km: 32.442","system.time_start: 2022-09-12<br />LST_Day_1km: 29.999","system.time_start: 2022-09-12<br />LST_Day_1km: 30.530","system.time_start: 2022-09-13<br />LST_Day_1km: 27.934","system.time_start: 2022-09-13<br />LST_Day_1km: 28.228","system.time_start: 2022-09-14<br />LST_Day_1km: 31.420","system.time_start: 2022-09-14<br />LST_Day_1km: 28.507","system.time_start: 2022-09-15<br />LST_Day_1km: 24.378","system.time_start: 2022-09-15<br />LST_Day_1km: 31.406","system.time_start: 2022-09-16<br />LST_Day_1km:     NA","system.time_start: 2022-09-16<br />LST_Day_1km: 31.655","system.time_start: 2022-09-17<br />LST_Day_1km:     NA","system.time_start: 2022-09-17<br />LST_Day_1km:     NA","system.time_start: 2022-09-18<br />LST_Day_1km: 27.046","system.time_start: 2022-09-18<br />LST_Day_1km: 24.854","system.time_start: 2022-09-19<br />LST_Day_1km: 30.319","system.time_start: 2022-09-19<br />LST_Day_1km: 26.147","system.time_start: 2022-09-20<br />LST_Day_1km: 22.976","system.time_start: 2022-09-20<br />LST_Day_1km: 24.449","system.time_start: 2022-09-21<br />LST_Day_1km: 23.333","system.time_start: 2022-09-21<br />LST_Day_1km: 22.260","system.time_start: 2022-09-22<br />LST_Day_1km:     NA","system.time_start: 2022-09-22<br />LST_Day_1km: 22.155","system.time_start: 2022-09-23<br />LST_Day_1km: 20.993","system.time_start: 2022-09-23<br />LST_Day_1km: 18.183","system.time_start: 2022-09-24<br />LST_Day_1km: 26.353","system.time_start: 2022-09-24<br />LST_Day_1km: 24.329","system.time_start: 2022-09-25<br />LST_Day_1km: 28.663","system.time_start: 2022-09-25<br />LST_Day_1km: 23.219","system.time_start: 2022-09-26<br />LST_Day_1km:     NA","system.time_start: 2022-09-26<br />LST_Day_1km: 22.938","system.time_start: 2022-09-27<br />LST_Day_1km:     NA","system.time_start: 2022-09-27<br />LST_Day_1km:     NA","system.time_start: 2022-09-28<br />LST_Day_1km: 28.638","system.time_start: 2022-09-28<br />LST_Day_1km: 24.430","system.time_start: 2022-09-29<br />LST_Day_1km:     NA","system.time_start: 2022-09-29<br />LST_Day_1km:     NA","system.time_start: 2022-09-30<br />LST_Day_1km: 33.124","system.time_start: 2022-09-30<br />LST_Day_1km: 29.073"],"type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":43.7625570776256,"r":7.30593607305936,"b":40.1826484018265,"l":37.2602739726027},"plot_bgcolor":"rgba(173,216,230,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"title":{"text":"Temperature (°C) Time Series","font":{"color":"rgba(0,0,0,1)","family":"","size":17.5342465753425},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[19105.4,19272.6],"tickmode":"array","ticktext":["May-01","Jun-01","Jul-01","Aug-01","Sep-01","Oct-01"],"tickvals":[19113,19144,19174,19205,19236,19266],"categoryorder":"array","categoryarray":["May-01","Jun-01","Jul-01","Aug-01","Sep-01","Oct-01"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"system.time_start","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[14.7157,47.1503],"tickmode":"array","ticktext":["20","30","40"],"tickvals":[20,30,40],"categoryorder":"array","categoryarray":["20","30","40"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"LST_Day_1km","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"14457638a266c":{"x":{},"y":{},"type":"scatter"}},"cur_data":"14457638a266c","visdat":{"14457638a266c":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script><p>LST Interactive Chart - Bucharest summer 2022</p>
+</div>
+</div>
+</section></section><section id="personal-reflection" class="level1"><h1>Personal Reflection</h1>
+<p>As the Bucharest area studied in this entry is only composed on a single spatial unit, we can only conduct statistics on a singular spatial unit. This is applicable both for Bucharest in the shapefile form and through the GAUL.</p>
+<p>In further works, we would look to use areas which have spatial area separations which would allow us to make temperature comparisons between various areas or neighborhoods (depending on the granularity of the data available)</p>
+<div class="cell" data-layout-align="center">
+<pre><code>
+Attaching package: 'cowplot'</code></pre>
+<pre><code>The following object is masked from 'package:lubridate':
+
+    stamp</code></pre>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="temperature_files/figure-html/composites-1.png" class="img-fluid figure-img" width="576"></p>
+<p></p><figcaption class="figure-caption">Bucharest GAUL (left) and Beijing Gaul Seperation example (right)</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We would look to create a similar LST chart as in the previous section, but adding more lines for different recorded areas or sectors.</p>
+<p>It would also be interesting to potential indexes for Heat, but also other measures such as moisture or dryness, to understand how certain urban areas are and how they influence the quality of life of local people.</p>
+</section><section id="thank-you-for-reading" class="level1"><h1>Thank you for reading!</h1>
+<p>Finally, I highly values the skills, techniques and approaches used throughout the create of this Diary! I believe that, now accustomed to this panoply of methods to analyse remote sensing imagery, I have a much more developed understanding of current climate issues, but also how to implement and propose viable solutions. I look forward to continue developing these skills and had fun personalizing this work!</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
+<div id="ref-bowyer2014" class="csl-entry" role="doc-biblioentry">
+Bowyer, Paul, Michaela Schaller, Steffen Bender, and Daniela Jacob. 2014. <span>“AdaptationAdaptation as ClimateClimate Change Risk ManagementRisk Management : Methods and Approaches.”</span> In, 1–18. <a href="https://doi.org/10.1007/978-3-642-40455-9_28-1">https://doi.org/10.1007/978-3-642-40455-9_28-1</a>.
+</div>
+<div id="ref-jiménez-muñoz2014" class="csl-entry" role="doc-biblioentry">
+Jiménez-Muñoz, Juan C., José A. Sobrino, Dražen Skoković, Cristian Mattar, and Jordi Cristóbal. 2014. <span>“Land Surface Temperature Retrieval Methods from Landsat-8 Thermal Infrared Sensor Data.”</span> <em>IEEE Geoscience and Remote Sensing Letters</em> 11 (10): 1840–43. <a href="https://doi.org/10.1109/LGRS.2014.2312032">https://doi.org/10.1109/LGRS.2014.2312032</a>.
+</div>
+</div>
+</section><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./correction_GEE_2.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Corrections in GEE - 2</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./policy.html" class="pagination-link">
+        <span class="nav-page-text">Policy discussion</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+</main>
+</div>
+
+
+</body></html>
