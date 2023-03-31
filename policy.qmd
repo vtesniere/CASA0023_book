@@ -17,6 +17,7 @@ tippy::tippy_this(elementId = "GCI", tooltip = "Green Chlorophyll Index - indica
 -   Discussing policy implementation with the use of remotely sensed data in Bucharest
 -   Newly released initiative by the <u id='OECD'>OECD</u> which uses a [detailed database](https://data-explorer.oecd.org/) to provide governments with detailed information on the real-time evolution of geographic indicators
     -   Providing examples of how to use this newly developed data source, and presenting the advantages it has in centralising information and facilitating exchange
+    -   understanding what data sources to use and how, with the methodology in place, technological advancements will be more easily applied in future policy
 :::
 
 # The problematic area
