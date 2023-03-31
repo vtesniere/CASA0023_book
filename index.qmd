@@ -1,8 +1,6 @@
-Vlad Tesniere [^index-1]
+**Vlad Tesniere** [^index-1]
 
 [^index-1]: UCL Department of Geography, MSc Social and Geographic Data Science, [LinkedIn](https://www.linkedin.com/in/vladimir-tesniere/)
-
-Last updated: `r Sys.Date()`
 
 ## Introduction and Presentation {.unnumbered}
 
