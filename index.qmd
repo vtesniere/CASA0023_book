@@ -5,9 +5,17 @@
 ::: callout-note
 # Publications
 
+Main /Co-author:
+
 -   Monitoring land cover change to understand biodiversity pressures (DOI: <https://doi.org/10.1787/441a7a6c-en>, December 2024)
--   *Conference paper:* Leveraging advances in Language Models for neighbourhood delineation in the London housing market (DOI: <https://doi.org/10.5281/zenodo.10897775>, April 2024)
--   Contributor to "OECD Regions and Cities at a glance 2024" (DOI: <https://doi.org/10.1787/f42db3bf-en>, December 2024)
+
+Conference Paper:
+
+-   Leveraging advances in Language Models for neighbourhood delineation in the London housing market (DOI: <https://doi.org/10.5281/zenodo.10897775>, April 2024)
+
+Contributor:
+
+-   "OECD Regions and Cities at a glance 2024" (DOI: <https://doi.org/10.1787/f42db3bf-en>, December 2024)
 :::
 
 ## Introduction and Presentation {.unnumbered}
