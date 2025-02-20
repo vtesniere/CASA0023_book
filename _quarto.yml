@@ -3,7 +3,8 @@ project:
   output-dir: docs
 
 book:
-  title: "Vlad's Remote Sensing Exploration"
+  title: "Vlad Tesniere - Blog and projects"
+  # <!--'s Remote Sensing Exploration"
   # author: "Vlad Tesniere"
   favicon: "img/UCL_square.jpeg"
   navbar:

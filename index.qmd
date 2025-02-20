@@ -10,7 +10,7 @@ Vlad's Blog and general thoughts on Remote Sensing Topics!
 
 Although preferable to follow the blog entries in order, there should be sufficient information (with support from the '[Common Abbreviations](https://vtesniere.github.io/CASA0023_book/abbreviations.html)' page and various mouse-over explanations) to understand each individually.
 
-I am a graduate of the Master's in Social and Geographic Data Science, at the Geography Department at UCL!
+I am currently working as a Geo-spatial data scientist at the OECD environment directorate, and a graduate of the Master's in Social and Geographic Data Science, at the Geography Department at UCL!
 
 I come from a multi-cultural background, having Franco-Romania Heritage, and having had the opportunity to live in Paris, Bucharest, London and Syndey!
 
@@ -20,9 +20,9 @@ Have fun reading and I hope you find as much interest reading, than I had resear
 
 This work is a good representation of myself, as I aim to continue developing my skills in remote sensing, specially looking to find experience in Earth Observation and Policy Recommendation positions!
 
-Other than working, I love a good hike with my sister and am a Bubble Tea fanatic (accurately represented by the Cat on the Right) although very cost to my student bank account
+<!-- Other than working, I love a good hike with my sister and am a Bubble Tea fanatic (accurately represented by the Cat on the Right) although very costly to my student bank account -->
 
-```{r echo=FALSE, composites, fig.cap="After a pleasant walk in Timisoara (left) and a bubble tea loving cat (right)", fig.align='center', results='asis',fig.height=3, fig.width=6}
+```{r echo=FALSE, include=FALSE, composites, fig.cap="After a pleasant walk in Timisoara (left) and a bubble tea loving cat (right)", fig.align='center', results='asis',fig.height=3, fig.width=6}
 knitr::opts_chunk$set(fig.pos = "H", out.extra = "")
 library(cowplot)
 ggdraw() + draw_image('img/IMG_5443.heic', width = 0.5) + draw_image('img/IMG_5187.heic', width = 0.5, x = 0.5)
