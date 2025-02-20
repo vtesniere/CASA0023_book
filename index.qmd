@@ -1,6 +1,6 @@
 **Vlad Tesniere** [^index-1]
 
-[^index-1]: Geo-spatial data scientist @OECD, UCL Department of Geography, MSc Social and Geographic Data Science, [LinkedIn](https://www.linkedin.com/in/vladimir-tesniere/)
+[^index-1]: Geo-spatial data scientist at the OECD environment directorate, UCL Department of Geography, MSc Social and Geographic Data Science, [LinkedIn](https://www.linkedin.com/in/vladimir-tesniere/)
 
 ## Introduction and Presentation {.unnumbered}
 
