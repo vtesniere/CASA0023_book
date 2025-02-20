@@ -4,7 +4,7 @@
 
 ## Introduction and Presentation {.unnumbered}
 
-Vlad's Learning Diary and general thoughts on Remote Sensing Topics!
+Vlad's Blog and general thoughts on Remote Sensing Topics!
 
 In this diary, the topics cover all material from [CASA0023](https://andrewmaclachlan.github.io/CASA0023/) led by [Andrew Maclachlan](https://www.ucl.ac.uk/bartlett/casa/people/dr-andrew-maclachlan). There are no numbers in the entries of the diary as the aim of this blog is to provide an overview of the different techniques used in remote sensing.
 
