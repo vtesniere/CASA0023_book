@@ -9,17 +9,26 @@
 
 Main/Co-author:
 
--   Monitoring land cover change to understand biodiversity pressures (DOI: <https://doi.org/10.1787/441a7a6c-en>, December 2024)
--   *"Monitoring exposure to future climate-related hazards"* - forthcoming (April-May 2025) - submitted script available on demand
--   "*Measuring CO$_{2}$ emissions from land cover and land cover change based on Earth Observations"* - forthcoming - draft and methodology available on demande
+-   "*Monitoring land cover change to understand biodiversity pressures*"
+    -   DOI: <https://doi.org/10.1787/441a7a6c-en>, published December 2024
+-   *"Monitoring exposure to future climate-related hazards"*
+    -   forthcoming, script submitted - publication expected April-May 2025
+
+    -   script available on demand
+-   "*Measuring CO*$_{2}$ *emissions from land cover and land cover change based on Earth Observations*"
+    -   forthcoming - publication expected June 2025
+
+    -   paper draft and methodology available on demand
 
 Conference Paper:
 
--   Leveraging advances in Language Models for neighbourhood delineation in the London housing market (DOI: <https://doi.org/10.5281/zenodo.10897775>, April 2024)
+-   Leveraging advances in Language Models for neighbourhood delineation in the London housing market
+    -   DOI: <https://doi.org/10.5281/zenodo.10897775>, published April 2024
 
 Contributor:
 
--   "OECD Regions and Cities at a glance 2024" (DOI: <https://doi.org/10.1787/f42db3bf-en>, December 2024)
+-   "*OECD Regions and Cities at a glance 2024*"
+    -   DOI: <https://doi.org/10.1787/f42db3bf-en>, published December 2024
 :::
 
 <!--## Introduction and Presentation {.unnumbered} -->
