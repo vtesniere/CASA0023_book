@@ -12,13 +12,11 @@ Main/Co-author:
 -   "*Monitoring land cover change to understand biodiversity pressures*"
     -   DOI: <https://doi.org/10.1787/441a7a6c-en>, published December 2024
 -   *"Monitoring exposure to future climate-related hazards"*
-    -   forthcoming, script submitted - publication expected April-May 2025
-
-    -   script available on demand
+    -   forthcoming, submitted - publication expected April-May 2025
+    -   paper available on demand
 -   "*Measuring CO*$_{2}$ *emissions from land cover and land cover change based on Earth Observations*"
     -   forthcoming - publication expected June 2025
-
-    -   paper draft and methodology available on demand
+    -   draft and methodology available on demand
 
 Conference Paper:
 
