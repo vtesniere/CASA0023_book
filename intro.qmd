@@ -37,7 +37,7 @@ p.caption {
 # install.packages("xml2")
 ```
 
-For my first entry to this Learning diary, I chose to present my hometown of Bucharest! I believe this example to be particularly relevant as the city shows a complex structural transformation following implementation of strict socialist urban policy, paired with intensive real-estate development following the Christmas Revolution in 1989 ( @nistor2021 ) .
+For this first entry, I chose to present my hometown of Bucharest! I believe this example to be particularly relevant as the city shows a complex structural transformation following implementation of strict socialist urban policy, paired with intensive real-estate development following the Christmas Revolution in 1989 ( @nistor2021 ) .
 
 We use the most up-to-date Sentinel and Landsat imagery that we download from [Copernicus Open Access Hub](https://scihub.copernicus.eu/dhus/#/home) and [Earth Explorer](https://earthexplorer.usgs.gov/) respectively! This working of this first week were not without hiccups, but provides an introduction to SNAP and satellite imagery processing in Rstudio with my thoughts along the way.
 
