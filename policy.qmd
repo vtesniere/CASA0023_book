@@ -22,7 +22,7 @@ tippy::tippy_this(elementId = "GCI", tooltip = "Green Chlorophyll Index - indica
 
 # The problematic area
 
-For the question of policy implementation, we focus on Romania's Capital, Bucharest! Below we have it's current delimiations
+For the question of policy implementation, we focus on Romania's Capital, Bucharest! Below we have it's current delineations
 
 ![Bucharest Current Delimitations and layout](Week_4/Bucharest_sector_delimitation.jpeg)
 
